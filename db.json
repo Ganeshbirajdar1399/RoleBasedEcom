@@ -1,0 +1,11 @@
+{
+    "products": [
+      { "id": 1, "name": "Product 1", "category": "Electronics", "price": 100 },
+      { "id": 2, "name": "Product 2", "category": "Clothing", "price": 50 },
+      { "id": 3, "name": "Product 3", "category": "Home Appliances", "price": 200 }
+    ],
+    "users": [
+      { "id": 1, "username": "admin", "password": "admin123", "role": "admin" },
+      { "id": 2, "username": "user", "password": "user123", "role": "user" }
+    ]
+  }
