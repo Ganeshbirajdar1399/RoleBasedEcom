@@ -1,11 +1,98 @@
 {
-    "products": [
-      { "id": 1, "name": "Product 1", "category": "Electronics", "price": 100 },
-      { "id": 2, "name": "Product 2", "category": "Clothing", "price": 50 },
-      { "id": 3, "name": "Product 3", "category": "Home Appliances", "price": 200 }
-    ],
-    "users": [
-      { "id": 1, "username": "admin", "password": "admin123", "role": "admin" },
-      { "id": 2, "username": "user", "password": "user123", "role": "user" }
-    ]
-  }
+  "products": [
+    {
+      "id": 1,
+      "name": "realme x1",
+      "brand": "realme",
+      "price": 12999,
+      "imageUrl": "mobile2.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 2,
+      "name": "realme x2",
+      "brand": "realme",
+      "price": 14000,
+      "imageUrl": "mobile3.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 3,
+      "name": "Samsung f1",
+      "brand": "samsung",
+      "price": 14000,
+      "imageUrl": "mobile2.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 4,
+      "name": "Samsung S20 ultra",
+      "brand": "samsung",
+      "price": 120000,
+      "imageUrl": "mobile3.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 5,
+      "name": "Vivo T1",
+      "brand": "vivo",
+      "price": 15000,
+      "imageUrl": "mobile2.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 6,
+      "name": "Vivo T2",
+      "brand": "vivo",
+      "price": 14999,
+      "imageUrl": "mobile3.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 7,
+      "name": "Xiomi F20",
+      "brand": "xiomi",
+      "price": 14988,
+      "imageUrl": "mobile2.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 8,
+      "name": "Lava Agni 3",
+      "brand": "lava",
+      "price": 16000,
+      "imageUrl": "mobile3.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 9,
+      "name": "Lava Agni 2",
+      "brand": "lava",
+      "price": 16000,
+      "imageUrl": "mobile2.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 10,
+      "name": "OnePlus Nord 10",
+      "brand": "OnePlus",
+      "price": 17000,
+      "imageUrl": "mobile3.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 11,
+      "name": "Xiomi F22",
+      "brand": "xiomi",
+      "price": 14988,
+      "imageUrl": "mobile2.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    }
+    
+   
+  ],
+  "users": [
+    { "id": 1, "username": "admin", "password": "admin123", "role": "admin" },
+    { "id": 2, "username": "user", "password": "user123", "role": "user" }
+  ]
+}

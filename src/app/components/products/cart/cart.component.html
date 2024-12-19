@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <h2>Your Cart</h2>
+  <div *ngIf="cartItems.length > 0; else emptyCart">
+    <div class="list-group">
+      <div class="list-group-item" *ngFor="let item of cartItems">
+        <div class="row">
+          <div class="col-md-3">
+            <img
+              [src]="item.imageUrl"
+              class="img-fluid"
+              alt="{{ item.name }}"
+            />
+          </div>
+          <div class="col-md-6">
+            <h5>{{ item.name }}</h5>
+            <p>Price: {{ item.price | currency : "INR" }}</p>
+            <p>Description: {{ item.description }}</p>
+            <p>
+              Quantity: {{ item.quantity
+              }}<span
+                ><button
+                  (click)="increaseQuantity(item)"
+                  class="btn btn-sm btn-primary"
+                >
+                  +
+                </button></span
+              >
+            </p>
+          </div>
+          <div class="col-md-3 text-end">
+            <p>
+              <strong
+                >Total:
+                {{ item.price * item.quantity | currency : "INR" }}</strong
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <h4>Total: {{ getTotal() | currency : "INR" }}</h4>
+    <div class="d-flex justify-content-end mb-5">
+      <button class="btn btn-success">Checkout</button>
+    </div>
+  </div>
+  <ng-template #emptyCart>
+    <div class="alert alert-warning">Your cart is empty!</div>
+  </ng-template>
+</div>

@@ -1,0 +1,48 @@
+<div class="list-group">
+  <h5 class="list-group-item">Sort & Filter</h5>
+
+  <!-- Price Range -->
+  <div class="list-group-item">
+    <label for="priceRange">Price Range (Up to)</label>
+    <input
+      type="range"
+      class="form-range"
+      id="priceRange"
+      min="0"
+      max="1000"
+      step="50"
+      [(ngModel)]="priceRange"
+    />
+    <span>{{ priceRange }} USD</span>
+  </div>
+
+  <!-- Sort By -->
+  <div class="list-group-item">
+    <label for="sortBy">Sort By</label>
+    <select
+      class="form-select"
+      id="sortBy"
+      [(ngModel)]="sortBy"
+      (change)="onSortChange()"
+    >
+      <option value="priceLowToHigh">Price: Low to High</option>
+      <option value="priceHighToLow">Price: High to Low</option>
+      <option value="rating">Rating</option>
+    </select>
+  </div>
+
+  <!-- Filter by Brand -->
+  <div class="list-group-item">
+    <label for="brands">Brands</label>
+    <select
+      class="form-select"
+      id="brands"
+      [(ngModel)]="selectedBrand"
+      (change)="onBrandChange()"
+    >
+      <option value="all">All</option>
+      <option value="Brand1">Brand 1</option>
+      <option value="Brand2">Brand 2</option>
+    </select>
+  </div>
+</div>

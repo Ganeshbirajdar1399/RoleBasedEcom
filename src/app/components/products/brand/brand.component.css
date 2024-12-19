@@ -1,0 +1,98 @@
+/* General Layout */
+.container {
+    max-width: 1200px;
+}
+
+/* Sidebar Styling */
+.list-group-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f0f8ff;
+    color: #0d6efd;
+    font-weight: bold;
+}
+
+.list-group-item.active {
+    background-color: #0d6efd;
+    color: white;
+    font-weight: bold;
+}
+
+/* Product Card Styling */
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Card Body Content */
+.card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Buttons */
+.btn-outline-primary {
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: #0d6efd;
+    color: white;
+}
+
+/* Badge Styling */
+.badge {
+    font-size: 0.8rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-image {
+        height: 150px;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+}
+
+/* Filter Section */
+.filter-section {
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-check-label {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.form-range {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}

@@ -1,0 +1,121 @@
+/* Sidebar Styling */
+.sidebar {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 20px;
+  /* Sticky sidebar stays in view while scrolling */
+}
+
+.sidebar h5 {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #6c63ff;
+  transition: color 0.3s ease;
+}
+
+.sidebar a:hover {
+  color: #5147c0;
+  text-decoration: underline;
+}
+
+/* Product Card Styling */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.card-text strong {
+  color: #222;
+}
+
+.btn-outline-primary {
+  border-radius: 20px;
+  font-size: 0.9rem;
+  padding: 5px 15px;
+  color: #6c63ff;
+  border-color: #6c63ff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: #6c63ff;
+  color: #fff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .sidebar {
+    position: relative;
+    margin-bottom: 20px;
+    top: 0;
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .card-img-top {
+    height: 150px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-title {
+    font-size: 0.95rem;
+  }
+
+  .btn-outline-primary {
+    font-size: 0.85rem;
+  }
+}

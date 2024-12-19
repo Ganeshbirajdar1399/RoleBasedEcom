@@ -1,0 +1,96 @@
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+      <h1>Welcome to MobileShopee</h1>
+      <p>Discover the best deals on your favorite products.</p>
+      <a href="#" class="btn btn-warning btn-lg">Shop Now</a>
+      <!-- <button class="btn btn-primary" (click)="fetchData()">Fetch Data</button> -->
+    </div>
+  </section>
+  
+  <!-- Categories Section -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Shop by Brands</h2>
+      <div class="row g-4">
+        <div class="col-md-2" *ngFor="let brand of getBrands()">
+          <div class="card category-card">
+            <!-- <img
+            [src]="product.imageUrl"
+              class="card-img-top"
+              alt="{{product.name}}"
+            /> -->
+            <div class="card-body text-center">
+              <button class="btn btn-primary" (click)="navigateToBrand(brand)">{{ brand | titlecase }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured Products Section -->
+  <div class="container py-5">
+    <div *ngFor="let brand of getBrands()" class="mb-5">
+      <h2 class="text-center mb-4">Featured Products from {{ brand | titlecase }}</h2>
+      <div class="row g-4">
+        <div
+          class="col-md-3"
+          *ngFor="let product of groupedProducts[brand]; let i = index"
+        >
+          <div class="card product-card">
+            <img
+              [src]="product.imageUrl"
+              class="card-img-top"
+              [alt]="product.name"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text">
+                {{ product.price | currency : 'INR' : true }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <!-- Testimonials Section -->
+  <!-- <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">What Our Customers Say</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="testimonial-card p-3">
+            <p>
+              "ShopEasy makes online shopping so much easier. The discounts are
+              unbeatable!"
+            </p>
+            <h6 class="text-end">- John Doe</h6>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card p-3">
+            <p>
+              "Amazing variety and excellent customer service. Highly recommend
+              ShopEasy!"
+            </p>
+            <h6 class="text-end">- Jane Smith</h6>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-card p-3">
+            <p>
+              "I found all my favorite products here. The shipping was fast and
+              reliable."
+            </p>
+            <h6 class="text-end">- Sarah Lee</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  

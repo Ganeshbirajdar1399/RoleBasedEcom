@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="row g-0">
+      <div class="col-md-6">
+        <img
+          [src]="product?.imageUrl"
+          class="img-fluid rounded-start"
+          alt="{{ product?.name }}"
+        />
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h3 class="card-title text-primary">{{ product?.name }}</h3>
+          <p class="card-text text-primary">{{ product?.description }}</p>
+          <p class="card-text">
+            <strong>Price: </strong>
+            <span class="text-success">{{ product?.price | currency:'INR' }}</span>
+          </p>
+
+          <button class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
