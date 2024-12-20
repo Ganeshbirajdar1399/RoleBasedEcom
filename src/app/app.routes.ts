@@ -6,6 +6,7 @@ import { ProductDetailsComponent } from './components/products/product-details/p
 import { CartComponent } from './components/products/cart/cart.component';
 
 
+
 export const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'categories/electronics', component: ElectronicsComponent },

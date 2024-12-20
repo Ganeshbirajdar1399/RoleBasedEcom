@@ -3,6 +3,7 @@ import { GetProductService } from '../../../services/get-product.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { ProductUtilsService } from '../../../services/utils/product-utils.service';
 
 @Component({
   selector: 'app-main',
@@ -13,37 +14,25 @@ import { Router, RouterModule } from '@angular/router';
 export class MainComponent implements OnInit {
   groupedProducts: { [brand: string]: any[] } = {};
 
-
   constructor(
     private productService: GetProductService,
-    private router: Router
+    private productUtils: ProductUtilsService
   ) {}
 
   ngOnInit(): void {
-    this.fetchData();
+    this.loadProducts();
   }
 
-  fetchData(): void {
-    this.productService.fetchData().subscribe((products: any[]) => {
-      this.groupedProducts = this.groupByBrand(products);
-      console.log('Grouped Products:', this.groupedProducts);
+  loadProducts(): void {
+    this.productService.fetchGroupedByBrand().subscribe((grouped) => {
+      this.groupedProducts = grouped;
     });
   }
 
-  groupByBrand(products: any[]): { [brand: string]: any[] } {
-    return products.reduce((groups, product) => {
-      const brand = product.brand;
-      if (!groups[brand]) {
-        groups[brand] = [];
-      }
-      groups[brand].push(product);
-      return groups;
-    }, {});
-  }
   getBrands(): string[] {
-    return Object.keys(this.groupedProducts);
+    return this.productUtils.getBrands(this.groupedProducts);
   }
   navigateToBrand(brand: string): void {
-    this.router.navigate(['/brand', brand]); // Navigate to the route with the brand name
+    this.productUtils.navigateToBrand(brand);
   }
 }

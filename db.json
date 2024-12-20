@@ -2,10 +2,10 @@
   "products": [
     {
       "id": 1,
-      "name": "realme x1",
+      "name": "realme GT 7 Pro",
       "brand": "realme",
       "price": 12999,
-      "imageUrl": "mobile2.jpg",
+      "imageUrl": "/realme/gt7pro_580x675.png",
       "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
     },
     {
@@ -13,23 +13,31 @@
       "name": "realme x2",
       "brand": "realme",
       "price": 14000,
-      "imageUrl": "mobile3.jpg",
+      "imageUrl": "/realme/gt7pro_580x675.png",
       "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
     },
     {
       "id": 3,
-      "name": "Samsung f1",
+      "name": "Samsung M15",
       "brand": "samsung",
       "price": 14000,
-      "imageUrl": "mobile2.jpg",
+      "imageUrl": "/samsung/M15_Prime_BB_1.png",
       "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
     },
     {
       "id": 4,
-      "name": "Samsung S20 ultra",
+      "name": "Samsung M35 5G",
       "brand": "samsung",
       "price": 120000,
-      "imageUrl": "mobile3.jpg",
+      "imageUrl": "/samsung/M35_5G_Buybox.png",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 4,
+      "name": "Samsung S23 Ultra 5G",
+      "brand": "samsung",
+      "price": 120000,
+      "imageUrl": "/samsung/S23_Ultra_5G_580x675_2.png",
       "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
     },
     {

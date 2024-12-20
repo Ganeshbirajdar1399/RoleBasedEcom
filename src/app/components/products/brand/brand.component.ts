@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { GetProductService } from '../../../services/get-product.service';
 import { FormsModule } from '@angular/forms';
+import { ProductUtilsService } from '../../../services/utils/product-utils.service';
 
 @Component({
   selector: 'app-brand',
@@ -19,48 +20,31 @@ export class BrandComponent implements OnInit {
   constructor(
     private productService: GetProductService,
     private route: ActivatedRoute,
-    private router: Router
+    private productUtils: ProductUtilsService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.brandName = params['brandName'];
-      this.fetchData();
+      this.loadProducts();
     });
   }
 
-  fetchData(): void {
-    // Fetch all products from the service
-    this.productService.fetchData().subscribe((products: any[]) => {
-      // Group products by brand
-      this.groupedProducts = this.groupByBrand(products);
+  loadProducts(): void {
+    this.productService.fetchGroupedByBrand().subscribe((grouped) => {
+      this.groupedProducts = grouped;
 
-      // Filter products for the selected brand
       if (this.brandName) {
         this.filteredProducts = this.groupedProducts[this.brandName] || [];
       }
     });
   }
 
-  groupByBrand(products: any[]): { [brand: string]: any[] } {
-    return products.reduce((groups, product) => {
-      const brand = product.brand;
-      if (!groups[brand]) {
-        groups[brand] = [];
-      }
-      groups[brand].push(product);
-      return groups;
-    }, {});
-  }
-
   getBrands(): string[] {
-    return Object.keys(this.groupedProducts);
+    return this.productUtils.getBrands(this.groupedProducts);
   }
 
   navigateToBrand(brand: string): void {
-    this.router.navigate(['/brand', brand]); // Navigate to a different brand route
+    this.productUtils.navigateToBrand(brand);
   }
-
-
-
 }

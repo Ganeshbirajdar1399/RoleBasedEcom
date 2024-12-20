@@ -41,18 +41,6 @@ strong {
   border-color: #5147c0;
 }
 
-/* Alert for No Product */
-.alert-danger {
-  margin-top: 20px;
-  padding: 15px;
-  border-radius: 10px;
-  font-size: 1.2rem;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-  color: #721c24;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
@@ -77,16 +65,19 @@ strong {
     font-size: 0.9rem;
     padding: 8px 15px;
   }
+
   .card {
     border-radius: 10px;
     overflow: hidden;
   }
+
   .card-body {
     padding: 20px;
   }
+
   .img-fluid {
     object-fit: cover;
     max-height: 400px;
   }
-  
+
 }

@@ -1,0 +1,171 @@
+.main-card {
+    margin: 2rem auto;
+    max-width: 90%;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  
+  .card-header {
+    font-size: 1.5rem;
+    padding: 1rem;
+    border-bottom: 2px solid #ffffff;
+  }
+  
+  .card-body {
+    padding: 2rem;
+  }
+  
+  .product-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .product-card:hover .card-img-top {
+    transform: scale(1.05);
+  }
+  
+  .card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+    color: #e8e8e8;
+  }
+  
+  .row {
+    gap: 1rem;
+  }
+  
+  .brand-card {
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .brand-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .brand-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 0.5rem;
+  }
+  
+  .product-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .product-card:hover .card-img-top {
+    transform: scale(1.05);
+  }
+  
+  .card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+    color: #e8e8e8;
+  }
+  
+  /* Unique Colors for Each Brand */
+  .brand-card-0 {
+    background-color: #fce4ec; /* Light Pink */
+  }
+  
+  .brand-card-1 {
+    background-color: #e3f2fd; /* Light Blue */
+  }
+  
+  .brand-card-2 {
+    background-color: #e8f5e9; /* Light Green */
+  }
+  
+  .brand-card-3 {
+    background-color: #fffde7; /* Light Yellow */
+  }
+  
+  .carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
+  border-radius: 50%; /* Make the buttons circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10; /* Ensure the buttons appear above other elements */
+  cursor: pointer;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: #6f42c1; /* Darken background on hover */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 20px;
+  height: 20px;
+  background-size: 100%; /* Ensure the icon covers the entire button */
+}
+
+.carousel-control-prev {
+  left: 10px; /* Position the button on the left */
+}
+
+.carousel-control-next {
+  right: 10px; /* Position the button on the right */
+}
+
+  /* Add more styles for additional brands */
+  

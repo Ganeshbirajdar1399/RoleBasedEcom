@@ -2,7 +2,8 @@
   <div class="container">
     <!-- Branding -->
     <a class="navbar-brand" routerLink=""
-      ><span class="text-light">Mobile</span><span class="text-warning">Shopee</span></a
+      ><span class="text-light">Mobile</span
+      ><span class="text-warning">Shopee</span></a
     >
 
     <!-- Toggler for Mobile View -->
@@ -20,17 +21,16 @@
 
     <!-- Navbar Content -->
     <div class="collapse navbar-collapse" id="navbarNav">
-       <!-- Navigation Links -->
-       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <!-- Navigation Links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <button class="nav-link" routerLink="/">Home</button>
         </li>
         <li class="nav-item" *ngFor="let brand of getBrands()">
-          <button class="nav-link" (click)="navigateToBrand(brand)"
-            >{{ brand | titlecase }}</button
-          >
+          <button class="nav-link" (click)="navigateToBrand(brand)">
+            {{ brand | titlecase }}
+          </button>
         </li>
-       
       </ul>
 
       <!-- Search Bar -->
@@ -41,7 +41,12 @@
           placeholder="Search products..."
           aria-label="Search"
         />
-        <button class="btn btn-sm btn-outline-warning search-button" type="submit">Search</button>
+        <button
+          class="btn btn-sm btn-outline-warning search-button"
+          type="submit"
+        >
+          Search
+        </button>
       </form>
 
       <!-- Icons Section -->
@@ -69,4 +74,3 @@
     </div>
   </div>
 </nav>
-

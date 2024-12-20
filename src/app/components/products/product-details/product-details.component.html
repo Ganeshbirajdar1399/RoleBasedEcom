@@ -1,25 +1,36 @@
 <div class="container mt-5">
-  <div class="card shadow-sm">
-    <div class="row g-0">
-      <div class="col-md-6">
-        <img
-          [src]="product?.imageUrl"
-          class="img-fluid rounded-start"
-          alt="{{ product?.name }}"
-        />
-      </div>
-      <div class="col-md-6">
-        <div class="card-body">
-          <h3 class="card-title text-primary">{{ product?.name }}</h3>
-          <p class="card-text text-primary">{{ product?.description }}</p>
-          <p class="card-text">
-            <strong>Price: </strong>
-            <span class="text-success">{{ product?.price | currency:'INR' }}</span>
-          </p>
-
-          <button class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
+  <div class="card shadow-sm" style="max-width: 100%; margin: 0 auto">
+    <div class="card-header text-center bg-primary text-white py-2">
+      <h5 class="m-0">{{ product?.name }}</h5>
+    </div>
+    <div class="card-body p-3">
+      <div class="row g-2">
+        <div class="col-6">
+          <img
+            [src]="product?.imageUrl"
+            class="img-fluid rounded"
+            [alt]="product?.name"
+            style="max-height: 200px; object-fit: cover"
+          />
+        </div>
+        <div class="col-6">
+          <h6 class="text-primary mb-2">
+            Price: {{ product?.price | currency : "INR" }}
+          </h6>
+          <p class="small text-muted mb-3">{{ product?.description }}</p>
+          <button
+            class="btn btn-primary btn-sm w-100"
+            (click)="addToCart(product)"
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
   </div>
+  <!-- Include the Cart Popup -->
+  <app-animated-popup
+    [show]="showPopup"
+    (closePopup)="showPopup = false"
+  ></app-animated-popup>
 </div>
