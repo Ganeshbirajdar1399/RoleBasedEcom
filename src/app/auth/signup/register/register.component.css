@@ -1,0 +1,9 @@
+.container{
+    display: flex;
+     justify-content: center;
+      align-items: center
+}
+.card-header h4 {
+    margin: 0;
+    font-size: 1.5em;
+  }

@@ -1,0 +1,139 @@
+<!-- Hero Section -->
+<div class="container mb-5">
+  <div
+    id="carouselExample"
+    class="carousel slide w-100"
+    data-bs-ride="carousel"
+    data-bs-interval="3000"
+  >
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide-to="0"
+        class="active"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide-to="1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide-to="2"
+      ></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+          class="d-block w-100"
+          src="\courosel\D119951047_WLD_5Grevamp_March2024_1400x800_14._CB539119306_.jpg"
+          alt="First slide"
+        />
+      </div>
+      <div class="carousel-item">
+        <img
+          class="d-block w-100"
+          src="\courosel\D138805427_WLD_OnePlus_NordCE4Lite_NewLaunch_1400x800_2_1._CB538174726_.jpg"
+          alt="Second slide"
+        />
+      </div>
+      <div class="carousel-item">
+        <img
+          class="d-block w-100"
+          src="\courosel\D155866635_WLD_realme_70Turbo_New_Launch_catpage_1400x800_2._CB538129870_.jpg"
+          alt="Third slide"
+        />
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      data-bs-target="#carouselExample"
+      type="button"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      data-bs-target="#carouselExample"
+      type="button"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<div class="main-card container my-5">
+  <div class="card shadow-lg">
+    <!-- <div
+      class="card-header text-white text-center"
+      style="background-color: #6f42c1"
+    >
+      <h3>Our Product Collections</h3>
+    </div> -->
+    <div class="card-body bg-light">
+      <div class="container">
+        <div *ngFor="let brand of getBrands(); let idx = index" class="mb-5">
+          <div class="brand-card shadow-lg" [ngClass]="'brand-card-' + idx">
+            <h2 class="text-start mb-4 brand-title">
+              {{ brand | titlecase }} Mobiles
+            </h2>
+            <div class="row g-4">
+              <div
+                class="col-md-2"
+                *ngFor="let product of groupedProducts[brand]; let i = index"
+              >
+                <div class="card product-card">
+                  <!-- Image with routerLink -->
+                  <a [routerLink]="['/product', product.id]">
+                    <img
+                      [src]="product.image"
+                      class="card-img-top"
+                      [alt]="product.pname"
+                    />
+                  </a>
+
+                  <!-- <div class="card-body" style="background-color: #6f42c1">
+                    <a
+                      [routerLink]="['/product', product.id]"
+                      class="text-decoration-none text-light"
+                    >
+                      <h5 class="card-title">{{ product.name }}</h5>
+                    </a>
+                    <p class="card-text text-light">
+                      {{ product.price | currency : "INR" : true }}
+                    </p>
+                  </div> -->
+                </div>
+              </div>
+              <!-- <div class="d-flex justify-content-end">
+            <button class="btn btn-outline-primary">View All</button>
+          </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Categories Section -->
+<!-- <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Shop by Brands</h2>
+      <div class="row g-4">
+        <div class="col-lg-2" *ngFor="let brand of getBrands()">
+          <div class="card category-card">
+            <div class="card-body text-center">
+              <button class="btn btn-primary" (click)="navigateToBrand(brand)">{{ brand | titlecase }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->

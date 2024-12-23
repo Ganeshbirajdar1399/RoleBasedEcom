@@ -1,0 +1,100 @@
+,
+    {
+      "id": 2,
+      "name": "realme x2",
+      "brand": "realme",
+      "price": 14000,
+      "imageUrl": "/realme/gt7pro_580x675.png",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 3,
+      "name": "Samsung M15",
+      "brand": "samsung",
+      "price": 14000,
+      "imageUrl": "/samsung/M15_Prime_BB_1.png",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 4,
+      "name": "Samsung M35 5G",
+      "brand": "samsung",
+      "price": 120000,
+      "imageUrl": "/samsung/M35_5G_Buybox.png",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 4,
+      "name": "Samsung S23 Ultra 5G",
+      "brand": "samsung",
+      "price": 120000,
+      "imageUrl": "/samsung/S23_Ultra_5G_580x675_2.png",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 5,
+      "name": "Vivo T1",
+      "brand": "vivo",
+      "price": 15000,
+      "imageUrl": "mobile2.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 6,
+      "name": "Vivo T2",
+      "brand": "vivo",
+      "price": 14999,
+      "imageUrl": "mobile3.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 7,
+      "name": "Xiomi F20",
+      "brand": "xiomi",
+      "price": 14988,
+      "imageUrl": "mobile2.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 8,
+      "name": "Lava Agni 3",
+      "brand": "lava",
+      "price": 16000,
+      "imageUrl": "mobile3.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 9,
+      "name": "Lava Agni 2",
+      "brand": "lava",
+      "price": 16000,
+      "imageUrl": "mobile2.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 10,
+      "name": "OnePlus Nord 10",
+      "brand": "OnePlus",
+      "price": 17000,
+      "imageUrl": "mobile3.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    },
+    {
+      "id": 11,
+      "name": "Xiomi F22",
+      "brand": "xiomi",
+      "price": 14988,
+      "imageUrl": "mobile2.jpg",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+    }
+
+
+Realme Rmx 3990 13 Pro 5G 8/128 GB Green
+    
+
+    1. 8 GB RAM | 128 GB ROM
+    2. 17.02 cm (6.7 inch) Full HD+ Display
+    3. 50MP + 8MP + 2MP | 32MP Front Camera
+    4. 5200 mAh Battery
+    5. Snapdragon 7s Gen2 Processor
+
