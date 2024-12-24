@@ -1,100 +1,256 @@
-,
-    {
-      "id": 2,
-      "name": "realme x2",
-      "brand": "realme",
-      "price": 14000,
-      "imageUrl": "/realme/gt7pro_580x675.png",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
-    },
-    {
-      "id": 3,
-      "name": "Samsung M15",
-      "brand": "samsung",
-      "price": 14000,
-      "imageUrl": "/samsung/M15_Prime_BB_1.png",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
-    },
-    {
-      "id": 4,
-      "name": "Samsung M35 5G",
-      "brand": "samsung",
-      "price": 120000,
-      "imageUrl": "/samsung/M35_5G_Buybox.png",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
-    },
-    {
-      "id": 4,
-      "name": "Samsung S23 Ultra 5G",
-      "brand": "samsung",
-      "price": 120000,
-      "imageUrl": "/samsung/S23_Ultra_5G_580x675_2.png",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
-    },
-    {
-      "id": 5,
-      "name": "Vivo T1",
-      "brand": "vivo",
-      "price": 15000,
-      "imageUrl": "mobile2.jpg",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
-    },
-    {
-      "id": 6,
-      "name": "Vivo T2",
-      "brand": "vivo",
-      "price": 14999,
-      "imageUrl": "mobile3.jpg",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
-    },
-    {
-      "id": 7,
-      "name": "Xiomi F20",
-      "brand": "xiomi",
-      "price": 14988,
-      "imageUrl": "mobile2.jpg",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
-    },
-    {
-      "id": 8,
-      "name": "Lava Agni 3",
-      "brand": "lava",
-      "price": 16000,
-      "imageUrl": "mobile3.jpg",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
-    },
-    {
-      "id": 9,
-      "name": "Lava Agni 2",
-      "brand": "lava",
-      "price": 16000,
-      "imageUrl": "mobile2.jpg",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
-    },
-    {
-      "id": 10,
-      "name": "OnePlus Nord 10",
-      "brand": "OnePlus",
-      "price": 17000,
-      "imageUrl": "mobile3.jpg",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
-    },
-    {
-      "id": 11,
-      "name": "Xiomi F22",
-      "brand": "xiomi",
-      "price": 14988,
-      "imageUrl": "mobile2.jpg",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi architecto optio dolorem amet enim excepturi? Eius ullam ex minus facere expedita blanditiis ipsa, eaque recusandae officiis eligendi, quasi fugit debitis."
+// app.module.ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { UserComponent } from './components/user/user.component';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    AdminComponent,
+    UserComponent,
+    RegisterUserComponent,
+    RegisterAdminComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+
+// app-routing.module.ts
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { UserComponent } from './components/user/user.component';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
+import { AuthGuard } from './guards/auth.guard';
+
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
+  { path: 'register-user', component: RegisterUserComponent },
+  { path: 'register-admin', component: RegisterAdminComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+
+// auth.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+  private apiUrl = 'http://localhost:3000/users';
+  private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+
+  constructor(private http: HttpClient, private router: Router) {}
+
+  login(username: string, password: string) {
+    return this.http.get<any[]>(`${this.apiUrl}?username=${username}&password=${password}`);
+  }
+
+  register(user: any) {
+    return this.http.post(this.apiUrl, user);
+  }
+
+  logout() {
+    this.isLoggedInSubject.next(false);
+    localStorage.removeItem('role');
+    this.router.navigate(['/login']);
+  }
+
+  setRole(role: string) {
+    localStorage.setItem('role', role);
+  }
+
+  getRole() {
+    return localStorage.getItem('role');
+  }
+
+  isLoggedIn() {
+    return this.isLoggedInSubject.asObservable();
+  }
+
+  setLoginStatus(status: boolean) {
+    this.isLoggedInSubject.next(status);
+  }
+}
+
+// auth.guard.ts
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthGuard implements CanActivate {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  canActivate(): boolean {
+    const role = this.authService.getRole();
+    if (role) {
+      return true;
     }
+    this.router.navigate(['/login']);
+    return false;
+  }
+}
 
+// login.component.ts
+import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
-Realme Rmx 3990 13 Pro 5G 8/128 GB Green
-    
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
+})
+export class LoginComponent {
+  username: string = '';
+  password: string = '';
+  errorMessage: string = '';
 
-    1. 8 GB RAM | 128 GB ROM
-    2. 17.02 cm (6.7 inch) Full HD+ Display
-    3. 50MP + 8MP + 2MP | 32MP Front Camera
-    4. 5200 mAh Battery
-    5. Snapdragon 7s Gen2 Processor
+  constructor(private authService: AuthService, private router: Router) {}
 
+  login() {
+    this.authService.login(this.username, this.password).subscribe(
+      (users) => {
+        if (users.length > 0) {
+          const user = users[0];
+          this.authService.setRole(user.role);
+          this.authService.setLoginStatus(true);
+          if (user.role === 'admin') {
+            this.router.navigate(['/admin']);
+          } else {
+            this.router.navigate(['/user']);
+          }
+        } else {
+          this.errorMessage = 'Invalid credentials!';
+        }
+      },
+      (error) => {
+        console.error('Login error:', error);
+      }
+    );
+  }
+}
+
+// register-user.component.ts
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-register-user',
+  templateUrl: './register-user.component.html',
+  styleUrls: ['./register-user.component.css'],
+})
+export class RegisterUserComponent {
+  userForm: FormGroup;
+  message: string = '';
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.userForm = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  register() {
+    if (this.userForm.valid) {
+      const newUser = {
+        ...this.userForm.value,
+        role: 'user',
+      };
+      this.authService.register(newUser).subscribe(() => {
+        this.message = 'Registration successful! Please login.';
+        this.router.navigate(['/login']);
+      });
+    }
+  }
+}
+
+// register-admin.component.ts
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-register-admin',
+  templateUrl: './register-admin.component.html',
+  styleUrls: ['./register-admin.component.css'],
+})
+export class RegisterAdminComponent {
+  adminForm: FormGroup;
+  message: string = '';
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.adminForm = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+    });
+  }
+
+  register() {
+    if (this.adminForm.valid) {
+      const newAdmin = {
+        ...this.adminForm.value,
+        role: 'admin',
+      };
+      this.authService.register(newAdmin).subscribe(() => {
+        this.message = 'Admin registration successful!';
+        this.router.navigate(['/login']);
+      });
+    }
+  }
+}
+
+// db.json (JSON Server)
+{
+  "users": [
+    { "id": 1, "username": "admin", "password": "admin123", "role": "admin" },
+    { "id": 2, "username": "user", "password": "user123", "role": "user" }
+  ]
+}

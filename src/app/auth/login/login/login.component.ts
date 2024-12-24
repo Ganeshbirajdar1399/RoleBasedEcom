@@ -9,6 +9,9 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { validate } from 'uuid';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../../core/services/auth/auth.service';
+import { DummyService } from '../../../core/services/dummy.service';
 
 @Component({
   selector: 'app-login',
@@ -18,14 +21,29 @@ import { validate } from 'uuid';
 })
 export class LoginComponent {
   myForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+  error = '';
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private dummyService: DummyService
+  ) {
     this.myForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
-  login() {
-    console.log(this.myForm.value);
+  onLogin(): void {
+    const { email, password } = this.myForm.value;
+
+    this.dummyService.login(email, password).subscribe((user) => {
+      if (user) {
+        this.dummyService.setUser(user);
+        this.router.navigate([user.role]);
+      } else {
+        this.error = 'Invalid email or password';
+      }
+    });
   }
 }

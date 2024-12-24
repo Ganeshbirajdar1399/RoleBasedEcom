@@ -26,7 +26,7 @@
       <li class="nav-item">
         <button class="nav-link" routerLink="/">Home</button>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" *ngIf="loggedInUser?.role === 'admin'">
         <a
           class="nav-link dropdown-toggle"
           href="#"
@@ -88,6 +88,7 @@
           {{ cartCount }}
         </span>
       </button>
+
       <div class="dropdown">
         <button
           class="btn btn-outline-secondary dropdown-toggle"
@@ -97,18 +98,27 @@
           aria-expanded="false"
         >
           <i class="fas fa-user"></i>
+
           <!-- User icon -->
         </button>
         <ul class="dropdown-menu" aria-labelledby="userDropdown">
-          <li>
+          <li *ngIf="isLoggedIn()">
+            <button class="dropdown-item" routerLink="profile">Profile</button>
+          </li>
+          <li *ngIf="isLoggedIn()">
+            <button class="dropdown-item" routerLink="login">
+              {{ loggedInUser?.firstNmae }}{{ loggedInUser?.lastName }}
+            </button>
+          </li>
+          <li *ngIf="!isLoggedIn()">
             <button class="dropdown-item" routerLink="login">Login</button>
           </li>
-          <li>
+          <li *ngIf="!isLoggedIn()">
             <button class="dropdown-item" routerLink="register">
               Register
             </button>
           </li>
-          <li>
+          <li *ngIf="isLoggedIn()">
             <button class="dropdown-item" (click)="logout()">Logout</button>
           </li>
         </ul>

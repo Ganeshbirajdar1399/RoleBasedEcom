@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { UsersService } from '../../../core/services/users/users.service';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -24,17 +23,10 @@ export class RegisterComponent {
 
   usersData: any[] = [];
 
-  constructor(private userService: UsersService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  fetchUsers() {
-    this.userService.fetchUsers().subscribe((res) => {
-      this.usersData = res;
-      console.log('All Users', res);
-    });
-  }
-
-  addUsers() {
-    this.userService.addUsers(this.users).subscribe((res) => {
+  onSubmit() {
+    this.authService.register(this.users).subscribe((res) => {
       console.log('User Register successfully', res);
       this.isRegister = true;
       setTimeout(() => {

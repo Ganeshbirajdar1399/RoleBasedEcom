@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart/cart-service.service';
 import { GetProductService } from '../../services/product/get-product.service';
 import { ProductUtilsService } from '../../services/utils/product-utils.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { DummyService } from '../../services/dummy.service';
 
 @Component({
   selector: 'app-header',
@@ -12,16 +13,18 @@ import { AuthService } from '../../services/auth/auth.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   cartCount: number = 0;
   groupedProducts: { [brand: string]: any[] } = {};
 
+  loggedInUser: any = null;
   constructor(
     private cartService: CartService,
     private router: Router,
     private productService: GetProductService,
     private productUtils: ProductUtilsService,
-    public authService:AuthService
+    public authService: AuthService,
+    private dummyService: DummyService
   ) {
     // Subscribe to cart changes
     this.cartService.getCartObservable().subscribe((cart) => {
@@ -29,12 +32,16 @@ export class HeaderComponent {
     });
   }
 
-  goToCart() {
-    this.router.navigate(['/cart']);
+  ngOnInit(): void {
+    this.loggedInUser = this.dummyService.getUser(); // Fetch user data
+    this.fetchData();
+  }
+  isLoggedIn(): boolean {
+    return this.dummyService.isLoggedIn(); // Check if the user is logged in
   }
 
-  ngOnInit(): void {
-    this.fetchData();
+  goToCart() {
+    this.router.navigate(['/cart']);
   }
 
   fetchData(): void {
@@ -57,9 +64,7 @@ export class HeaderComponent {
     }
   }
 
-  logout():void{
-
-    this.router.navigate(['']);
+  logout(): void {
+    this.dummyService.logout(); // Clear session and redirect
   }
-  
 }

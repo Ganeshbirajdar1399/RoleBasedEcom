@@ -308,26 +308,19 @@
       "lastName": "Kumar",
       "email": "rk1@gmail.com",
       "mobile": "9090098765",
-      "password": "12345",
-      "address": "Pune"
+      "password": "12345678",
+      "address": "Pune",
+      "role":"admin"
     },
     {
-      "id": "9cd9",
-      "firstName": "aaaa",
-      "lastName": "aaa",
-      "email": "aa@222",
-      "mobile": "222",
-      "password": "ddd",
-      "address": "dddd"
-    },
-    {
-      "id": "18d7",
-      "firstName": "aa",
-      "lastName": "aaa",
-      "email": "aaa@111",
-      "mobile": "222",
-      "password": "222",
-      "address": "aaaa"
+      "id": "0c44",
+      "firstName": "Shyam",
+      "lastName": "Kumar",
+      "email": "sk1@gmail.com",
+      "mobile": "9090098765",
+      "password": "12345678",
+      "address": "Pune",
+      "role":"user"
     }
   ]
 }
