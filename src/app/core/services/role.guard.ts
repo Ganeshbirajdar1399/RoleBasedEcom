@@ -6,19 +6,26 @@ export const roleGuard: CanActivateFn = (route, state) => {
   const dummyService = inject(DummyService);
   const router = inject(Router);
 
-  const expectedRoles: string[] = route.data?.['role']; // Array of roles
+  // Retrieve expected roles from route data
+  const expectedRoles: string[] = route.data?.['role'] || [];
   const userRole = dummyService.getRole();
 
-  // Check if the user's role is included in the expected roles
-  if (!dummyService.isLoggedIn() || !expectedRoles.includes(userRole)) {
-    console.warn(
-      `Access denied: User role '${userRole}' does not match expected roles '${expectedRoles.join(
-        ', '
-      )}'`
-    );
-    router.navigate(['/login']);
+  // Check if the user is logged in and their role matches any expected role
+  if (!dummyService.isLoggedIn()) {
+    console.warn('Access denied: User is not logged in');
+    router.navigate(['/login']); // Navigate to login if not logged in
     return false;
   }
 
-  return true;
+  if (!expectedRoles.includes(userRole)) {
+    console.warn(
+      `Access denied: User role '${userRole}' does not match required roles: ${expectedRoles.join(
+        ', '
+      )}`
+    );
+    router.navigate(['/login']); // Navigate to login if role mismatch
+    return false;
+  }
+
+  return true; // Grant access
 };

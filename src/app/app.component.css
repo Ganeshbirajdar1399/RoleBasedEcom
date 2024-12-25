@@ -11,7 +11,8 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   font-size: 24px;
-  display: none; /* Initially hidden */
+  display: none;
+  /* Initially hidden */
   align-items: center;
   justify-content: center;
   z-index: 1000;

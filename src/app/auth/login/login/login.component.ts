@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -19,19 +19,28 @@ import { DummyService } from '../../../core/services/dummy.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   myForm: FormGroup;
   error = '';
+
+  hide = true;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private dummyService: DummyService
+    private dummyService: DummyService,
+    private scroller: ViewportScroller
   ) {
     this.myForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
+  }
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.scroller.scrollToPosition([0, 0]);
   }
 
   onLogin(): void {
@@ -45,5 +54,9 @@ export class LoginComponent {
         this.error = 'Invalid email or password';
       }
     });
+  }
+
+  toggleHide() {
+    this.hide = !this.hide;
   }
 }

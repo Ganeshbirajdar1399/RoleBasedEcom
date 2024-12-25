@@ -1,15 +1,21 @@
-<div class="container m-4">
-  <div class="card">
-    <div class="card-header text-center">
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow-lg p-4 login-card">
+    <div class="card-header text-center bg-primary text-white">
       <h4>Login Here!</h4>
     </div>
     <div class="card-body">
       <form [formGroup]="myForm" (ngSubmit)="onLogin()">
+        <!-- Email Input -->
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label"
-            >Email address</label
+            >Email Address</label
           >
-          <input type="email" class="form-control" formControlName="email" />
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            placeholder="Enter your email"
+          />
           <div
             *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched"
           >
@@ -26,13 +32,23 @@
           </div>
         </div>
 
-        <div class="mb-3">
+        <!-- Password Input -->
+        <div class="mb-3 position-relative">
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input
-            type="password"
+            [type]="hide ? 'password' : 'text'"
             class="form-control"
             formControlName="password"
+            placeholder="Enter your password"
           />
+          <button
+            type="button"
+            class="btn toggle-password position-absolute"
+            (click)="toggleHide()"
+            aria-label="Toggle password visibility"
+          >
+            <i class="fas" [ngClass]="hide ? 'fa-eye-slash' : 'fa-eye'"></i>
+          </button>
           <div
             *ngIf="
               myForm.get('password')?.invalid && myForm.get('password')?.touched
@@ -52,18 +68,22 @@
           </div>
         </div>
 
+        <!-- Login Button -->
         <button
           type="submit"
-          class="btn btn-primary"
+          class="btn btn-primary w-100"
           [disabled]="myForm.invalid"
         >
-          LogIn
+          Log In
         </button>
       </form>
     </div>
-    <p class="ms-3">
-      Don't have account please click
-      <a class="text-primary" routerLink="/register"> SignUp </a>Here!
-    </p>
+
+    <div class="card-footer text-center">
+      <p>
+        Don't have an account?
+        <a class="text-primary fw-bold" routerLink="/register">Sign Up</a>
+      </p>
+    </div>
   </div>
 </div>

@@ -254,3 +254,29 @@ export class RegisterAdminComponent {
     { "id": 2, "username": "user", "password": "user123", "role": "user" }
   ]
 }
+
+
+
+
+
+
+
+
+
+
+
+// export const routes: Routes = [
+//   { path: '', component: MainComponent },
+//   { path: 'product/:id', component: ProductDetailsComponent }, // Dynamic route for product details
+//   { path: 'cart', component: CartComponent },
+//   // { path: 'login', component: LoginComponent },
+//   { path: 'register', component: RegisterComponent },
+//   { path: 'add-products', component: AddProductsComponent },
+//   { path: 'view-products', component: ViewProductsComponent },
+//   { path: 'brand/:brandName', component: BrandComponent },
+//   { path: 'login', component: LoginComponent,canActivate: [dummyAuthGuard] },
+//   { path: 'dashboard', component: HomeComponent },
+//   {path: 'admin',component: AdminDashboardComponent,canActivate: [roleGuard],data: { role: 'admin' },},
+//   {path: 'user',component: HomeComponent,canActivate: [roleGuard],data: { role: 'user' },},
+//   { path: '**', component: NotFoundComponentComponent },
+// ];

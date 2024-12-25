@@ -1,9 +1,34 @@
-.container{
-    display: flex;
-     justify-content: center;
-      align-items: center
+.register-card {
+  margin-top: 50px;
+  max-width: 500px;
+  border-radius: 10px;
+  overflow: hidden;
 }
-.card-header h4 {
-    margin: 0;
-    font-size: 1.5em;
-  }
+
+.register-card .card-header {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.register-card .form-label {
+  font-weight: 500;
+}
+
+.register-card .btn {
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.register-card .alert {
+  font-size: 0.9rem;
+  border-radius: 5px;
+}
+
+.register-card .card-footer a {
+  text-decoration: none;
+}
+
+.register-card .card-footer a:hover {
+  text-decoration: underline;
+}

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart/cart-service.service';
 import { GetProductService } from '../../services/product/get-product.service';
@@ -14,6 +14,8 @@ import { DummyService } from '../../services/dummy.service';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit {
+  sidebarOpen = false;
+
   cartCount: number = 0;
   groupedProducts: { [brand: string]: any[] } = {};
 
@@ -30,10 +32,21 @@ export class HeaderComponent implements OnInit {
     this.cartService.getCartObservable().subscribe((cart) => {
       this.cartCount = cart.reduce((count, item) => count + item.quantity, 0);
     });
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.sidebarOpen = false; // Close sidebar on route change
+      }
+    });
   }
 
   ngOnInit(): void {
-    this.loggedInUser = this.dummyService.getUser(); // Fetch user data
+    // Subscribe to the user observable to track the logged-in state
+    this.dummyService.user$.subscribe((user) => {
+      this.loggedInUser = user;
+    });
+
+    // this.loggedInUser = this.dummyService.getUser(); // Fetch user data
     this.fetchData();
   }
   isLoggedIn(): boolean {
@@ -57,6 +70,11 @@ export class HeaderComponent implements OnInit {
   navigateToBrand(brand: string): void {
     this.productUtils.navigateToBrand(brand);
   }
+
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
+  }
+
   closeNavbar() {
     const navbar = document.getElementById('navbarNav');
     if (navbar?.classList.contains('show')) {

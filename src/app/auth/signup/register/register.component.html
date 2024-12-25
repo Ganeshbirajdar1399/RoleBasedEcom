@@ -1,156 +1,150 @@
-<div class="container m-4">
-  <div class="card">
-    <div class="card-header text-center">
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow-lg p-4 register-card">
+    <div class="card-header text-center bg-primary text-white">
       <h4>Register Here!</h4>
     </div>
     <div class="card-body">
       <form (ngSubmit)="onSubmit()" #registrationForm="ngForm">
-        <div class="mb-3">
-          <label for="firstName" class="form-label">First Name</label>
-          <input
-            type="text"
-            id="firstName"
-            #firstname="ngModel"
-            class="form-control"
-            [(ngModel)]="users.firstName"
-            name="firstName"
-            required
-          />
-          <div>
-            <small
-              class="text-danger"
-              *ngIf="firstname.touched && firstname.errors?.['required']"
-              >First Name is required.</small
-            >
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="lastName" class="form-label">Last Name</label>
-          <input
-            type="text"
-            id="lastName"
-            #lastname="ngModel"
-            class="form-control"
-            [(ngModel)]="users.lastName"
-            name="lastName"
-            required
-          />
-          <div>
-            <small
-              class="text-danger"
-              *ngIf="lastname.touched && lastname.errors?.['required']"
-              >Last Name is required.</small
-            >
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            #email="ngModel"
-            class="form-control"
-            [(ngModel)]="users.email"
-            name="email"
-            required
-          />
-          <div>
-            <small
-              class="text-danger"
-              *ngIf="email.touched && email.errors?.['required']"
-              >Email is required.</small
-            >
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="mobile" class="form-label">Mobile No</label>
-          <input
-            type="text"
-            id="mobile"
-            #mobile="ngModel"
-            class="form-control"
-            [(ngModel)]="users.mobile"
-            name="mobile"
-            required
-          />
-          <div>
-            <small
-              class="text-danger"
-              *ngIf="mobile.touched && mobile.errors?.['required']"
-              >Mobile number is required.</small
-            >
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input
-            type="password"
-            id="password"
-            #password="ngModel"
-            class="form-control"
-            [(ngModel)]="users.password"
-            name="password"
-            required
-          />
 
-          <div>
-            <small
-              class="text-danger"
-              *ngIf="password.touched && password.errors?.['required']"
-              >Password is required.</small
-            >
-          </div>
-        </div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input
+        type="text"
+        id="firstName"
+        #firstname="ngModel"
+        class="form-control"
+        [(ngModel)]="users.firstName"
+        name="firstName"
+        required
+      />
+      <small
+        class="text-danger"
+        *ngIf="firstname.touched && firstname.errors?.['required']"
+        >First Name is required.</small
+      >
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input
+        type="text"
+        id="lastName"
+        #lastname="ngModel"
+        class="form-control"
+        [(ngModel)]="users.lastName"
+        name="lastName"
+        required
+      />
+      <small
+        class="text-danger"
+        *ngIf="lastname.touched && lastname.errors?.['required']"
+        >Last Name is required.</small
+      >
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        #email="ngModel"
+        class="form-control"
+        [(ngModel)]="users.email"
+        name="email"
+        required
+      />
+      <small
+        class="text-danger"
+        *ngIf="email.touched && email.errors?.['required']"
+        >Email is required.</small
+      >
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="mb-3">
+      <label for="mobile" class="form-label">Mobile No</label>
+      <input
+        type="text"
+        id="mobile"
+        #mobile="ngModel"
+        class="form-control"
+        [(ngModel)]="users.mobile"
+        name="mobile"
+        required
+      />
+      <small
+        class="text-danger"
+        *ngIf="mobile.touched && mobile.errors?.['required']"
+        >Mobile number is required.</small
+      >
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        id="password"
+        #password="ngModel"
+        class="form-control"
+        [(ngModel)]="users.password"
+        name="password"
+        required
+      />
+      <small
+        class="text-danger"
+        *ngIf="password.touched && password.errors?.['required']"
+        >Password is required.</small
+      >
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <input
+        type="text"
+        id="address"
+        #address="ngModel"
+        class="form-control"
+        [(ngModel)]="users.address"
+        name="address"
+        required
+      />
+      <small
+        class="text-danger"
+        *ngIf="address.touched && address.errors?.['required']"
+        >Address is required.</small
+      >
+    </div>
+  </div>
+</div>
 
-        <div class="mb-3">
-          <label for="password" class="form-label">Address</label>
-          <input
-            type="text"
-            id="address"
-            #address="ngModel"
-            class="form-control"
-            [(ngModel)]="users.address"
-            name="address"
-            required
-          />
 
-          <div>
-            <small
-              class="text-danger"
-              *ngIf="address.touched && address.errors?.['required']"
-              >Address is required.</small
-            >
-          </div>
-        </div>
 
+
+
+
+
+        
+       
         <button
           type="submit"
-          class="btn btn-primary"
+          class="btn btn-primary w-100"
           [disabled]="!registrationForm.valid"
         >
-          SignUp
+          Sign Up
         </button>
         <div
           *ngIf="isRegister"
-          class="alert alert-success d-flex align-items-center mt-2"
+          class="alert alert-success d-flex align-items-center mt-3"
           role="alert"
         >
-          <i class="bi bi-check-circle-fill"></i>
-          <div class="ms-3">User Register Successfully!!!</div>
+          <i class="bi bi-check-circle-fill me-2"></i>
+          <div>User Registered Successfully!</div>
         </div>
-
-        <!-- <button class="btn btn-sm btn-primary ms-2" (click)="fetchUsers()">Get Users</button>
-        <p *ngFor="let user of usersData">
-          firstname: -{{user.firstName}},
-          lastname: -{{user.lastName}},
-          mobile: -{{user.mobile}},
-          email: -{{user.email}}
-        </p> -->
       </form>
     </div>
-    <p class="ms-3">
-      Do have already account please click
-      <a class="text-primary" routerLink="/login"> SignIn </a>Here!
-    </p>
+    <div class="card-footer text-center">
+      <p>
+        Already have an account?
+        <a class="text-primary fw-bold" routerLink="/login">Sign In</a>
+      </p>
+    </div>
   </div>
 </div>

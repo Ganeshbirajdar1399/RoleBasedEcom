@@ -22,7 +22,7 @@
       "ram": "8 GB",
       "psp": 13500,
       "pop": 14500,
-      "image": "http://localhost:3001/uploads/1734976474251.webp"
+      "image": "http://localhost:3001/uploads/1735115202984.png"
     },
     {
       "id": "6bd8b548-4617-4810-979c-589b138f7fn5",
@@ -310,7 +310,7 @@
       "mobile": "9090098765",
       "password": "12345678",
       "address": "Pune",
-      "role":"admin"
+      "role": "admin"
     },
     {
       "id": "0c44",
@@ -320,7 +320,7 @@
       "mobile": "9090098765",
       "password": "12345678",
       "address": "Pune",
-      "role":"user"
+      "role": "user"
     }
   ]
 }

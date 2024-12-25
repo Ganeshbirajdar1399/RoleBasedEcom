@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { HeaderComponent } from './core/components/header/header.component';
 
+
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, CommonModule, FooterComponent, HeaderComponent],
+  imports: [RouterModule, CommonModule, FooterComponent,HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

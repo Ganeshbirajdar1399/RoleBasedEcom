@@ -6,20 +6,26 @@ export const dummyAuthGuard: CanActivateFn = (route, state) => {
   const authDummyService = inject(DummyService);
   const router = inject(Router);
 
-  if (authDummyService.isLoggedIn()) {
-    const role = authDummyService.getRole();
-    if (state.url === '/login') {
-      // If already logged in and trying to access the login page, redirect to role page
-      router.navigate([`/${role}`]);
-      return false; // Prevent access to login page
-    }
-    return true; // Allow access to other routes
-  } else {
-    // If not logged in, allow access only to the login page
-    if (state.url === '/login') {
-      return true;
-    }
-    router.navigate(['/login']); // Redirect to login page
+  const isLoggedIn = authDummyService.isLoggedIn();
+  const userRole = authDummyService.getRole();
+  const currentUrl = state.url;
+
+  // Redirect logged-in users away from login and register pages
+  if (isLoggedIn && (currentUrl === '/login' || currentUrl === '/register')) {
+    router.navigate([`/${userRole}`]); // Redirect to role-based route
     return false;
   }
+
+  // Allow non-logged-in users to access login and register pages
+  if (!isLoggedIn && (currentUrl === '/login' || currentUrl === '/register')) {
+    return true;
+  }
+
+  // Restrict non-logged-in users from accessing other routes
+  if (!isLoggedIn) {
+    router.navigate(['/login']);
+    return false;
+  }
+
+  return true; // Allow logged-in users to access non-restricted routes
 };

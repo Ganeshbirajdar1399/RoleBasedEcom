@@ -1,13 +1,60 @@
+<!-- Sidebar -->
+<div class="navbar-container">
+  <!-- Sidebar -->
+  <div class="sidebar" [ngClass]="{ active: sidebarOpen }">
+    <ul class="nav-links" *ngFor="let brand of getBrands()">
+      <li class="nav-link" (click)="navigateToBrand(brand)">
+        {{ brand | titlecase }}
+      </li>
+    </ul>
+    <ul class="nav-links">
+      <i class="fas fa-user"></i
+      >&nbsp;&nbsp;
+      <small>{{ loggedInUser?.firstName }} {{ loggedInUser?.lastName }}</small>
+      <li *ngIf="isLoggedIn()" class="nav-link" routerLink="profile">
+        Profile
+      </li>
+      <li
+        *ngIf="loggedInUser?.role === 'admin'"
+        class="nav-link"
+        routerLink="crudproducts"
+      >
+        Products
+      </li>
+      <li *ngIf="!isLoggedIn()" class="nav-link" routerLink="login">Login</li>
+      <li *ngIf="!isLoggedIn()" class="nav-link" routerLink="register">
+        Register
+      </li>
+      <li *ngIf="isLoggedIn()" class="nav-link" (click)="logout()">Logout</li>
+    </ul>
+    <ul class="nav-links">
+      <button class="icon-btn me-3 text-light" title="Wishlist">
+        <i class="bi bi-heart"></i>
+      </button>
+      <button
+        class="icon-btn me-3 position-relative text-light"
+        title="Cart"
+        (click)="goToCart()"
+      >
+        <i class="bi bi-cart"></i>
+        <span
+          *ngIf="cartCount > 0"
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+        >
+          {{ cartCount }}
+        </span>
+      </button>
+    </ul>
+  </div>
+</div>
+
 <nav class="navbar navbar-expand-lg shadow-sm">
-  <!-- <div class="container"> -->
-  <!-- Branding -->
   <a class="navbar-brand" routerLink=""
     ><span class="text-light">Mobile</span
     ><span class="text-warning">Shopee</span></a
   >
 
-  <!-- Toggler for Mobile View -->
-  <button
+  <!-- <button
     class="navbar-toggler"
     type="button"
     data-bs-toggle="collapse"
@@ -16,37 +63,26 @@
     aria-expanded="false"
     aria-label="Toggle navigation"
   >
+
     <span class="navbar-toggler-icon"></span>
+  </button> -->
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    (click)="toggleSidebar()"
+  >
+    <i class="fas" [ngClass]="sidebarOpen ? 'fa-times' : 'fa-bars'"></i>
   </button>
 
-  <!-- Navbar Content -->
   <div class="collapse navbar-collapse" id="navbarNav" (click)="closeNavbar()">
-    <!-- Navigation Links -->
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <button class="nav-link" routerLink="/">Home</button>
-      </li>
-      <li class="nav-item dropdown" *ngIf="loggedInUser?.role === 'admin'">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Products
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <!-- <li><a class="dropdown-item" routerLink="add-products">Add Products</a></li> -->
-          <li>
-            <a class="dropdown-item" routerLink="view-products"
-              >Add/View Products</a
-            >
-          </li>
-          <li><hr class="dropdown-divider" /></li>
-        </ul>
-      </li>
+      </li> -->
+
       <li class="nav-item" *ngFor="let brand of getBrands()">
         <button class="nav-link" (click)="navigateToBrand(brand)">
           {{ brand | titlecase }}
@@ -54,7 +90,6 @@
       </li>
     </ul>
 
-    <!-- Search Bar -->
     <form class="d-flex me-3" role="search">
       <input
         class="form-control me-2 search-input"
@@ -70,7 +105,6 @@
       </button>
     </form>
 
-    <!-- Icons Section -->
     <div class="d-flex justify-content-center">
       <button class="icon-btn me-3" title="Wishlist">
         <i class="bi bi-heart"></i>
@@ -98,16 +132,15 @@
           aria-expanded="false"
         >
           <i class="fas fa-user"></i>
-
-          <!-- User icon -->
+          <small>{{ loggedInUser?.firstName }}</small>
         </button>
         <ul class="dropdown-menu" aria-labelledby="userDropdown">
           <li *ngIf="isLoggedIn()">
             <button class="dropdown-item" routerLink="profile">Profile</button>
           </li>
-          <li *ngIf="isLoggedIn()">
-            <button class="dropdown-item" routerLink="login">
-              {{ loggedInUser?.firstNmae }}{{ loggedInUser?.lastName }}
+          <li *ngIf="loggedInUser?.role === 'admin'">
+            <button class="dropdown-item" routerLink="crudproducts">
+              Products
             </button>
           </li>
           <li *ngIf="!isLoggedIn()">
@@ -125,5 +158,4 @@
       </div>
     </div>
   </div>
-  <!-- </div> -->
 </nav>

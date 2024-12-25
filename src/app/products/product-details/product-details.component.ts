@@ -19,11 +19,11 @@ export class ProductDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: GetProductService,
     private cartService: CartService,
-    private viewportScroller: ViewportScroller
+    private scroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
-    this.viewportScroller.scrollToPosition([0, 0]);
+    this.scroller.scrollToPosition([0, 0]);
     const productId = this.route.snapshot.paramMap.get('id'); // Get product ID from route
     this.loadProduct(productId!);
     console.log('Product ID from route:', productId);
