@@ -10,21 +10,3 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   /* background: linear-gradient(135deg, #6f42c1 0%, #fad0c4 100%); */
 }
-
-
-.hero-section {
-  /* background: url('https://via.placeholder.com/1920x600') no-repeat center center/cover; */
-  color: white;
-  text-align: center;
-  padding: 100px 0;
-}
-
-.category-card img {
-  height: 150px;
-  object-fit: cover;
-}
-
-.product-card img {
-  height: 200px;
-  object-fit: cover;
-}

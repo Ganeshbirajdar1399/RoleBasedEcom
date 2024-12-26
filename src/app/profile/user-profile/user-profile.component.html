@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 100px;">
+<div class="container" style="margin-top: 100px; margin-bottom: 20px">
   <div class="row justify-content-center">
     <div class="col-lg-6 col-md-8 col-sm-10">
       <div class="card border-0 shadow-lg rounded-4">
@@ -38,7 +38,340 @@
             Welcome, Admin! Here are your tools and privileges.
           </p>
         </div>
+        <div class="d-flex justify-content-center pb-3">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#add"
+            *ngIf="loggedInUser?.role === 'admin'"
+          >
+            <i class="bi bi-person-plus-fill"></i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-success ms-2"
+            data-bs-toggle="modal"
+            data-bs-target="#updateAdminModal"
+          >
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-warning ms-2"
+            data-bs-toggle="modal"
+            data-bs-target="#seeusers"
+            *ngIf="loggedInUser?.role === 'admin'"
+          >
+            <i class="bi bi-eye"></i>
+          </button>
+        </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="add"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Admin</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmit()" #registrationForm="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  #firstname="ngModel"
+                  class="form-control"
+                  [(ngModel)]="users.firstName"
+                  name="firstName"
+                  required
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="firstname.touched && firstname.errors?.['required']"
+                  >First Name is required.</small
+                >
+              </div>
+              <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  #lastname="ngModel"
+                  class="form-control"
+                  [(ngModel)]="users.lastName"
+                  name="lastName"
+                  required
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="lastname.touched && lastname.errors?.['required']"
+                  >Last Name is required.</small
+                >
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  #email="ngModel"
+                  class="form-control"
+                  [(ngModel)]="users.email"
+                  name="email"
+                  required
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="email.touched && email.errors?.['required']"
+                  >Email is required.</small
+                >
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="mobile" class="form-label">Mobile No</label>
+                <input
+                  type="text"
+                  id="mobile"
+                  #mobile="ngModel"
+                  class="form-control"
+                  [(ngModel)]="users.mobile"
+                  name="mobile"
+                  required
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="mobile.touched && mobile.errors?.['required']"
+                  >Mobile number is required.</small
+                >
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  #password="ngModel"
+                  class="form-control"
+                  [(ngModel)]="users.password"
+                  name="password"
+                  required
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="password.touched && password.errors?.['required']"
+                  >Password is required.</small
+                >
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input
+                  type="text"
+                  id="address"
+                  #address="ngModel"
+                  class="form-control"
+                  [(ngModel)]="users.address"
+                  name="address"
+                  required
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="address.touched && address.errors?.['required']"
+                  >Address is required.</small
+                >
+              </div>
+            </div>
+            <button
+              type="submit"
+              data-bs-dismiss="modal"
+              class="btn btn-primary btn-sm"
+              [disabled]="!registrationForm.valid"
+            >
+              Add
+            </button>
+            <div
+              *ngIf="isRegister"
+              class="alert alert-success d-flex align-items-center mt-3"
+              role="alert"
+            >
+              <i class="bi bi-check-circle-fill me-2"></i>
+              <div>Added Successfully!</div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="seeusers"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Admin Users</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <!-- <th scope="col">Sr.No.</th> -->
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <!-- <th scope="col">Email Address</th>
+              <th scope="col">Mobile No.</th> -->
+              <th scope="col">Role</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let users of usersData; let i = index">
+              <tr *ngIf="loggedInUser?.role === users.role">
+                <!-- <td>{{i + 1}}</td> -->
+                <td>{{ users.firstName }}</td>
+                <td>{{ users.lastName }}</td>
+                <!-- <td>{{ users.email }}</td>
+                <td>{{ users.mobile }}</td> -->
+                <td>{{ users.role }}</td>
+                <td>
+                  <button class="btn btn-danger" (click)="deleteUser(users.id)">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="updateAdminModal"
+  tabindex="-1"
+  aria-labelledby="updateAdminModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateAdminModalLabel">
+          Edit Admin Details
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <form (ngSubmit)="updateAdminDetails()">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              class="form-control"
+              [(ngModel)]="adminDetails.firstName"
+              name="firstName"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              class="form-control"
+              [(ngModel)]="adminDetails.lastName"
+              name="lastName"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              [(ngModel)]="adminDetails.email"
+              name="email"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="mobile" class="form-label">Mobile</label>
+            <input
+              type="text"
+              id="mobile"
+              class="form-control"
+              [(ngModel)]="adminDetails.mobile"
+              name="mobile"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea
+              id="address"
+              class="form-control"
+              [(ngModel)]="adminDetails.address"
+              name="address"
+            ></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

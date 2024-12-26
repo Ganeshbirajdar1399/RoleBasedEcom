@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
     mobile: '',
     password: '',
     address: '',
+    role: 'user',
   };
 
   usersData: any[] = [];
@@ -55,6 +56,7 @@ export class RegisterComponent implements OnInit {
       mobile: '',
       password: '',
       address: '',
+      role: '',
     };
   }
 }

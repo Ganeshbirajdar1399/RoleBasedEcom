@@ -304,13 +304,12 @@
   "users": [
     {
       "id": "0c44",
-      "firstName": "Ram",
+      "firstName": "Shyam",
       "lastName": "Kumar",
-      "email": "rk1@gmail.com",
+      "email": "sk1@gmail.com",
       "mobile": "9090098765",
-      "password": "12345678",
       "address": "Pune",
-      "role": "admin"
+      "role": "user"
     },
     {
       "id": "0c44",
@@ -320,6 +319,25 @@
       "mobile": "9090098765",
       "password": "12345678",
       "address": "Pune",
+      "role": "user"
+    },
+    {
+      "id": "e879",
+      "firstName": "Aman rev",
+      "lastName": "Chopda",
+      "email": "ac1@gmail.com",
+      "mobile": "6655665566",
+      "address": "Pune",
+      "role": "admin"
+    },
+    {
+      "id": "b603",
+      "firstName": "aaaa",
+      "lastName": "sssss",
+      "email": "aaa@11",
+      "mobile": "1111",
+      "password": "11111111",
+      "address": "sss",
       "role": "user"
     }
   ]

@@ -1,6 +1,6 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { HeaderComponent } from './core/components/header/header.component';
 
@@ -11,8 +11,16 @@ import { HeaderComponent } from './core/components/header/header.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'MobileShopee';
+
+ constructor(private scroller:ViewportScroller ){} 
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.scroller.scrollToPosition([0, 0]);
+  }
+
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
     const scrollButton = document.getElementById('scrollToTopBtn');

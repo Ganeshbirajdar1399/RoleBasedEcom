@@ -1,9 +1,11 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { DummyService } from './dummy.service';
+import { AuthService } from './auth/auth.service';
 
 export const roleGuard: CanActivateFn = (route, state) => {
   const dummyService = inject(DummyService);
+  const authService = inject(AuthService);
   const router = inject(Router);
 
   // Retrieve expected roles from route data
@@ -11,7 +13,7 @@ export const roleGuard: CanActivateFn = (route, state) => {
   const userRole = dummyService.getRole();
 
   // Check if the user is logged in and their role matches any expected role
-  if (!dummyService.isLoggedIn()) {
+  if (!authService.isLoggedIn()) {
     console.warn('Access denied: User is not logged in');
     router.navigate(['/login']); // Navigate to login if not logged in
     return false;

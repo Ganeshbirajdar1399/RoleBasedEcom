@@ -1,6 +1,11 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterModule,
+} from '@angular/router';
 import { GetProductService } from '../../core/services/product/get-product.service';
 import { FormsModule } from '@angular/forms';
 import { ProductUtilsService } from '../../core/services/utils/product-utils.service';
@@ -20,17 +25,17 @@ export class BrandComponent implements OnInit {
   constructor(
     private productService: GetProductService,
     private route: ActivatedRoute,
-    private productUtils: ProductUtilsService
+    private productUtils: ProductUtilsService,
+    private scroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
+    this.scroller.scrollToPosition([0, 0]);
     this.route.params.subscribe((params) => {
       this.brandName = params['brandName'];
       this.loadProducts();
     });
-    
   }
-  
 
   loadProducts(): void {
     this.productService.fetchGroupedByBrand().subscribe((grouped) => {

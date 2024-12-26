@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     // Subscribe to the user observable to track the logged-in state
-    this.dummyService.user$.subscribe((user) => {
+    this.authService.user$.subscribe((user) => {
       this.loggedInUser = user;
     });
 
@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
     this.fetchData();
   }
   isLoggedIn(): boolean {
-    return this.dummyService.isLoggedIn(); // Check if the user is logged in
+    return this.authService.isLoggedIn(); // Check if the user is logged in
   }
 
   goToCart() {
@@ -83,6 +83,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.dummyService.logout(); // Clear session and redirect
+    this.authService.logout(); // Clear session and redirect
   }
 }

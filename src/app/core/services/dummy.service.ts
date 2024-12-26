@@ -1,7 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  map,
+  Observable,
+  of,
+  throwError,
+} from 'rxjs';
+import { Users } from './auth/users';
 
 @Injectable({
   providedIn: 'root',
@@ -34,9 +42,18 @@ export class DummyService {
     );
   }
 
+  register(user: Users): Observable<Users> {
+    return this.http.post<Users>(this.apiUrl, user).pipe(
+      catchError((error) => {
+        console.log('Error in adding users', error);
+        return of(null as unknown as Users);
+      })
+    );
+  }
+
   setUser(user: any): void {
     try {
-      localStorage.setItem('user', JSON.stringify(user));
+      sessionStorage.setItem('user', JSON.stringify(user));
     } catch (error) {
       console.error('Error saving user data:', error);
     }
@@ -44,11 +61,11 @@ export class DummyService {
 
   getUser(): any {
     try {
-      const user = localStorage.getItem('user');
+      const user = sessionStorage.getItem('user');
       return user ? JSON.parse(user) : null;
     } catch (error) {
       console.error('Error reading user data. Clearing corrupted data:', error);
-      localStorage.removeItem('user');
+      sessionStorage.removeItem('user');
       return null;
     }
   }
@@ -64,7 +81,7 @@ export class DummyService {
 
   logout(): void {
     if (confirm('Are you sure you want to log out?')) {
-      localStorage.removeItem('user'); // Clear user data
+      sessionStorage.removeItem('user'); // Clear user data
       this.router.navigate(['']); // Navigate to the home page
       this.userSubject.next(null); // Emit a null value to indicate logged-out state
     }

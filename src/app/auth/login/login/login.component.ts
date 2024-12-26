@@ -46,9 +46,9 @@ export class LoginComponent implements OnInit {
   onLogin(): void {
     const { email, password } = this.myForm.value;
 
-    this.dummyService.login(email, password).subscribe((user) => {
+    this.authService.login(email, password).subscribe((user) => {
       if (user) {
-        this.dummyService.setUser(user);
+        this.authService.setUser(user);
         this.router.navigate([user.role]);
       } else {
         this.error = 'Invalid email or password';
