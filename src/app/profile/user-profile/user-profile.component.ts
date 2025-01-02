@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DummyService } from '../../core/services/dummy.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/auth/auth.service';
@@ -17,6 +17,7 @@ export class UserProfileComponent implements OnInit {
   isRegister = false;
 
   users = {
+    id: '', // Add id field to store UUID
     firstName: '',
     lastName: '',
     email: '',
@@ -26,64 +27,16 @@ export class UserProfileComponent implements OnInit {
     role: 'admin',
   };
 
-  adminDetails = {
-    id: 0,
-    firstName: '',
-    lastName: '',
-    email: '',
-    mobile: '',
-    address: '',
-    role: '',
-  };
-
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private scroller: ViewportScroller
+  ) {}
 
   ngOnInit(): void {
+    this.scroller.scrollToPosition([0, 0]);
     this.loggedInUser = this.authService.getUser(); // Fetch user data
     this.fetchUsers();
-
-    // Initialize adminDetails with loggedInUser data
-    if (this.loggedInUser) {
-      this.adminDetails = {
-        id: this.loggedInUser.id,
-        firstName: this.loggedInUser.firstName,
-        lastName: this.loggedInUser.lastName,
-        email: this.loggedInUser.email,
-        mobile: this.loggedInUser.mobile,
-        address: this.loggedInUser.address || '',
-        role: this.loggedInUser.role,
-      };
-    }
-  }
-
-  updateAdminDetails() {
-    if (!this.adminDetails.id) {
-      alert('User ID is missing. Please try again.');
-      return;
-    }
-
-    this.authService.updateUser(this.adminDetails).subscribe(
-      (res) => {
-        console.log('Admin details updated successfully', res);
-
-        // Update session storage and local user
-        this.authService.setUser(this.adminDetails);
-        this.loggedInUser = { ...this.adminDetails };
-
-        alert('Profile updated successfully!');
-
-        // Close modal programmatically
-        // const modalElement = document.getElementById('updateAdminModal');
-        // if (modalElement) {
-        //   const modalInstance = bootstrap.Modal.getInstance(modalElement);
-        //   modalInstance?.hide();
-        // }
-      },
-      (err) => {
-        console.error('Error updating admin details', err);
-        alert('Failed to update profile. Please try again.');
-      }
-    );
   }
 
   onSubmit() {
@@ -115,11 +68,12 @@ export class UserProfileComponent implements OnInit {
 
   formEmpty() {
     this.users = {
+      id: '', // Add id field to store UUID
       firstName: '',
       lastName: '',
+      password: '',
       email: '',
       mobile: '',
-      password: '',
       address: '',
       role: '',
     };

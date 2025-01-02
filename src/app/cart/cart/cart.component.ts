@@ -1,37 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../core/services/cart/cart-service.service';
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css',
+  styleUrls: ['./cart.component.css'],
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   cartItems: any[] = [];
+  emptyCart = '';
 
-  constructor(private cartService: CartService,private viewportScroller: ViewportScroller) {
-    this.cartItems = this.cartService.getCartItems();
-  }
+  constructor(
+    public cartService: CartService,
+    private viewportScroller: ViewportScroller
+  ) {}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.viewportScroller.scrollToPosition([0, 0]);
+    this.getCartItem();
   }
 
-  getTotal() {
+  getCartItem(): void {
+    this.cartService.getCartItem().subscribe({
+      next: (res) => {
+        this.cartItems = res.map((item) => ({
+          ...item,
+          quantity: item.quantity ?? 1,
+        }));
+      },
+      error: (err) => console.error('Error fetching cart items:', err),
+    });
+  }
+
+  removeItem(id: string): void {
+    if (confirm('Are you sure you want to delete this product?')) {
+      this.cartService.removeItem(id).subscribe(() => this.getCartItem());
+    }
+  }
+
+  getTotal(): number {
     return this.cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
       0
     );
   }
+
   increaseQuantity(item: any): void {
-    item.quantity += 1;
+    item.quantity++;
   }
-  decreaseQuantity(item: any): void{
-    item.quantity -= 1;
+
+  decreaseQuantity(item: any): void {
+    if (item.quantity > 1) {
+      item.quantity--;
+    }
   }
 }

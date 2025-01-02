@@ -3,11 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { GetProductService } from '../../core/services/product/get-product.service';
 import { CartService } from '../../core/services/cart/cart-service.service';
-import { AnimatedPopupComponent } from '../animated-popup/animated-popup.component';
 
 @Component({
   selector: 'app-product-details',
-  imports: [CommonModule, AnimatedPopupComponent],
+  imports: [CommonModule],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
@@ -45,11 +44,13 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(product: any) {
-    this.cartService.addToCart(product);
-    // alert(`${product.name} has been added to your cart.`);
-    this.showPopup = true; // Show the popup after adding to cart
-    setTimeout(() => {
-      this.showPopup = !this.showPopup;
-    }, 2000);
+    this.cartService.addToCart(product).subscribe({
+      next: (response) => {
+        console.log('Product added successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error adding product to cart:', error);
+      },
+    });
   }
 }

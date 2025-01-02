@@ -38,22 +38,23 @@ export class LoginComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.scroller.scrollToPosition([0, 0]);
   }
 
   onLogin(): void {
     const { email, password } = this.myForm.value;
 
-    this.authService.login(email, password).subscribe((user) => {
-      if (user) {
-        this.authService.setUser(user);
-        this.router.navigate([user.role]);
-      } else {
-        this.error = 'Invalid email or password';
+    this.authService.login(email, password).subscribe(
+      (user) => {
+        if (user) {
+          this.authService.setUser(user);
+          this.router.navigate([user.role]);
+        }
+      },
+      () => {
+        this.error = 'Invalid email or password. Please try again.'; // Set error message
       }
-    });
+    );
   }
 
   toggleHide() {

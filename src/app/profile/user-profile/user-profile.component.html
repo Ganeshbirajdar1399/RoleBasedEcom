@@ -3,7 +3,7 @@
     <div class="col-lg-6 col-md-8 col-sm-10">
       <div class="card border-0 shadow-lg rounded-4">
         <div
-          class="card-header text-center bg-primary text-white rounded-top-4"
+          class="card-header text-center text-white rounded-top-4"
         >
           <h3 class="mb-0">{{ loggedInUser?.role | titlecase }} Profile</h3>
         </div>
@@ -48,11 +48,18 @@
           >
             <i class="bi bi-person-plus-fill"></i>
           </button>
-          <button
+          <!-- <button
             type="button"
             class="btn btn-success ms-2"
             data-bs-toggle="modal"
             data-bs-target="#updateAdminModal"
+          routerLink="/updateuserprofile">
+            <i class="bi bi-pencil-square"></i>
+          </button> -->
+          <button
+            type="button"
+            class="btn btn-success ms-2"
+            routerLink="/updateuserprofile"
           >
             <i class="bi bi-pencil-square"></i>
           </button>
@@ -199,14 +206,16 @@
                 >
               </div>
             </div>
-            <button
+            <div class="d-flex justify-content-center">
+              <button
               type="submit"
               data-bs-dismiss="modal"
-              class="btn btn-primary btn-sm"
+              class="btn btn-primary btn-sm w-25"
               [disabled]="!registrationForm.valid"
             >
               Add
             </button>
+            </div>
             <div
               *ngIf="isRegister"
               class="alert alert-success d-flex align-items-center mt-3"
@@ -283,95 +292,6 @@
         </button>
         <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
-    </div>
-  </div>
-</div>
-
-<div
-  class="modal fade"
-  id="updateAdminModal"
-  tabindex="-1"
-  aria-labelledby="updateAdminModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="updateAdminModalLabel">
-          Edit Admin Details
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-        ></button>
-      </div>
-      <form (ngSubmit)="updateAdminDetails()">
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="firstName" class="form-label">First Name</label>
-            <input
-              type="text"
-              id="firstName"
-              class="form-control"
-              [(ngModel)]="adminDetails.firstName"
-              name="firstName"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <label for="lastName" class="form-label">Last Name</label>
-            <input
-              type="text"
-              id="lastName"
-              class="form-control"
-              [(ngModel)]="adminDetails.lastName"
-              name="lastName"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input
-              type="email"
-              id="email"
-              class="form-control"
-              [(ngModel)]="adminDetails.email"
-              name="email"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <label for="mobile" class="form-label">Mobile</label>
-            <input
-              type="text"
-              id="mobile"
-              class="form-control"
-              [(ngModel)]="adminDetails.mobile"
-              name="mobile"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="address" class="form-label">Address</label>
-            <textarea
-              id="address"
-              class="form-control"
-              [(ngModel)]="adminDetails.address"
-              name="address"
-            ></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
-          <button type="submit" class="btn btn-primary">Save Changes</button>
-        </div>
-      </form>
     </div>
   </div>
 </div>

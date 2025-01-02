@@ -68,6 +68,20 @@
           </div>
         </div>
 
+        <!-- Error Message -->
+        <div
+          *ngIf="error"
+          class="error-message"
+          style="
+            color: red;
+            border: 1px solid blue;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+          "
+        >
+          {{ error }}
+        </div>
         <!-- Login Button -->
         <button
           type="submit"
@@ -77,6 +91,20 @@
           Log In
         </button>
       </form>
+    </div>
+
+    <div
+      *ngIf=""
+      class="error-message"
+      style="
+        color: red;
+        border: 1px solid blue;
+        margin: 10px;
+        padding: 10px;
+        border-radius: 5px;
+      "
+    >
+      Invalid email or password. Please try again.
     </div>
 
     <div class="card-footer text-center">

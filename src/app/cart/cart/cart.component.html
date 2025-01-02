@@ -50,65 +50,63 @@
 </div> -->
 
 <div class="container mt-5">
-  <div class="list-group shadow-sm">
-    <div
-      class="list-group-item"
-      *ngFor="let item of cartItems"
-      style="border: 1px solid #ddd; border-radius: 5px; margin-bottom: 15px"
-    >
-      <div class="row">
-        <!-- Image Column -->
-        <div class="col-md-3 d-flex align-items-center justify-content-center">
-          <img
-            [src]="item.image"
-            class="img-fluid rounded"
-            alt="{{ item.pname }}"
-            style="max-height: 120px; object-fit: contain"
-          />
-        </div>
-
-        <!-- Product Details Column -->
-        <div class="col-md-6">
-          <h5 class="mb-2 text-primary">{{ item.pname }}</h5>
-          <p class="mb-2">
-            Price: <strong>{{ item.psp | currency : "INR" }}</strong>
-          </p>
-          <p class="mb-2 text-muted">Description: {{ item.description }}</p>
-
-          <!-- Quantity Controls -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a>Home</a></li>
+      <li class="breadcrumb-item"><a>poducts</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Cart</li>
+    </ol>
+  </nav>
+  <h2 class="mb-4 text-center">Cart</h2>
+  <table class="table table-borderless align-middle text-center">
+    <thead class="border-bottom">
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems">
+        <!-- Product Details -->
+        <td>
           <div class="d-flex align-items-center">
-            <button
-              (click)="decreaseQuantity(item)"
-              class="btn btn-sm btn-primary"
-            >
-              -
-            </button>
-
-            <p class="mb-0 ms-2">Quantity: {{ item.quantity }}</p>
-            <button
-              (click)="increaseQuantity(item)"
-              class="btn btn-sm btn-primary ms-2"
-            >
-              +
-            </button>
+            <img
+              [src]="item.image"
+              alt="{{ item.pname }}"
+              class="cart-product-img me-3"
+            />
           </div>
-        </div>
+        </td>
+        <td>{{ item.pname }}</td>
 
-        <!-- Total Column -->
-        <div class="col-md-3 text-end">
-          <p>
-            <strong
-              >Total:
-              {{ item.psp * item.quantity | currency : "INR" }}
-            </strong>
-          </p>
+        <!-- Price -->
+        <td>{{ item.psp | currency : "INR" }}</td>
 
-          <p class="text-danger">
-            Discount:
-            {{ ((item.pop - item.psp) / item.pop) * 100 | number : "1.0-2" }}%
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+        <!-- Quantity -->
+        <td>
+          <input
+            type="number"
+            class="form-control cart-quantity-input"
+            [(ngModel)]="item.quantity"
+            min="1"
+          />
+        </td>
+
+        <!-- Subtotal -->
+        <td>{{ item.psp * item.quantity | currency : "INR" }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="removeItem(item.id)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #emptyCart>
+    <div class="alert alert-warning">Your cart is empty!</div>
+  </ng-template>
 </div>

@@ -1,14 +1,19 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }),
-     provideRouter(routes),
-      provideAnimationsAsync(),
-      provideHttpClient(withFetch()),
-    HttpClientModule]
+  providers: [
+    provideRouter(routes),  // Configures routing
+    provideAnimationsAsync(),  // Provides animations for the app
+    provideHttpClient(withFetch()),  // Configures HTTP client
+    provideToastr({
+      timeOut: 3000, // Toast duration
+      positionClass: 'toast-top-right', // Toast position
+      preventDuplicates: true, // Prevent duplicate messages
+    }),  // Configures Toastr
+  ]
 };

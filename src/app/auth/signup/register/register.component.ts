@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth/auth.service';
+import { v4 as uuidv4 } from 'uuid'; // Import uuidv4 for generating UUIDs
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,7 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 export class RegisterComponent implements OnInit {
   isRegister = false;
   users = {
+    id: '', // Add id field to store UUID
     firstName: '',
     lastName: '',
     email: '',
@@ -31,14 +33,16 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.scroller.scrollToPosition([0, 0]);
   }
 
   onSubmit() {
+// Generate UUID for the new user
+this.users.id = uuidv4(); // Assign UUID to the user's id field
+
     this.authService.register(this.users).subscribe((res) => {
       console.log('User Register successfully', res);
+      alert('Register successfully');
       this.isRegister = true;
       setTimeout(() => {
         this.isRegister = false;
@@ -50,6 +54,7 @@ export class RegisterComponent implements OnInit {
 
   formEmpty() {
     this.users = {
+      id: '', // Reset the id field
       firstName: '',
       lastName: '',
       email: '',

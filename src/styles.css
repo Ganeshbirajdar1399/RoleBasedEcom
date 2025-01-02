@@ -9,4 +9,75 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   /* background: linear-gradient(135deg, #6f42c1 0%, #fad0c4 100%); */
+  /* visibility: hidden; */
 }
+
+
+.navbar-container {
+  position: relative;
+  background-color: #6f42c1;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+/* Toggle button styles */
+.toggle-btn {
+  /* position: relative; */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 50px;
+  left: -250px;
+  width: 200px;
+  height: 100%;
+  background-color: #6f42c1;
+  color: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links .nav-link {
+  display: block;
+  padding: 0.35rem 0.60rem;
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.nav-links .nav-link:hover {
+  background-color: #6f42c1;
+  color: #ffc107;
+}
+
+/* Responsive design adjustments */
+@media (min-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}
+

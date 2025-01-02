@@ -11,6 +11,9 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { roleGuard } from './core/services/role.guard';
 import { dummyAuthGuard } from './core/services/dummy-auth.guard';
 import { UserProfileComponent } from './profile/user-profile/user-profile.component';
+import { UpdateprofileComponent } from './profile/updateprofile/updateprofile.component';
+import { CompareComponent } from './products/compare/compare.component';
+import { WishlistComponent } from './products/wishlist/wishlist.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
@@ -20,6 +23,11 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+    canActivate: [dummyAuthGuard],
+  },
+  {
+    path: 'updateuserprofile',
+    component: UpdateprofileComponent,
     canActivate: [dummyAuthGuard],
   },
   {
@@ -41,6 +49,8 @@ export const routes: Routes = [
     canActivate: [roleGuard],
     data: { role: 'user' },
   },
+  { path: 'compare', component: CompareComponent },
+  { path: 'wishlist', component: WishlistComponent },
   {
     path: 'profile',
     component: UserProfileComponent,

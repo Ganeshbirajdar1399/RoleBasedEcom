@@ -208,3 +208,43 @@ button.btn-success:hover {
         margin-top: 10px;
     }
 }
+
+/* Breadcrumb */
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .breadcrumb a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Cart Table */
+  .table-borderless th,
+  .table-borderless td {
+    border: none;
+  }
+  
+  .cart-product-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .cart-quantity-input {
+    width: 60px;
+    text-align: center;
+  }
+  
+  .alert {
+    margin-top: 2rem;
+  }
+  

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnimatedPopupComponent } from './animated-popup.component';
+import { WishlistComponent } from './wishlist.component';
 
-describe('AnimatedPopupComponent', () => {
-  let component: AnimatedPopupComponent;
-  let fixture: ComponentFixture<AnimatedPopupComponent>;
+describe('WishlistComponent', () => {
+  let component: WishlistComponent;
+  let fixture: ComponentFixture<WishlistComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AnimatedPopupComponent]
+      imports: [WishlistComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AnimatedPopupComponent);
+    fixture = TestBed.createComponent(WishlistComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

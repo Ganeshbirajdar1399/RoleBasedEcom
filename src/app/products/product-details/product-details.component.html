@@ -29,9 +29,4 @@
     </div>
   </div>
   <div *ngIf="!product" class="alert alert-danger">Product not found!</div>
-  <!-- Include the Cart Popup -->
-  <app-animated-popup
-    [show]="showPopup"
-    (closePopup)="showPopup = false"
-  ></app-animated-popup>
 </div>

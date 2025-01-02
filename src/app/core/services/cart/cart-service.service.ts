@@ -1,33 +1,86 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private cart: any[] = [];
+  private readonly apiUrl = 'http://localhost:3000/cart';
   private cartSubject = new BehaviorSubject<any[]>([]);
 
-  addToCart(product: any) {
-    const existingItem = this.cart.find((item) => item.id === product.id);
+  constructor(private http: HttpClient) {
+    this.loadCartFromServer();
+  }
+
+  private loadCartFromServer(): void {
+    this.http.get<any[]>(this.apiUrl).subscribe({
+      next: (cartItems) => this.cartSubject.next(cartItems),
+      error: (error) => console.error('Failed to load cart:', error),
+    });
+  }
+
+  getCartItem(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl).pipe(
+      tap((response) => this.cartSubject.next(response)),
+      catchError((error) => {
+        console.error('Error in getCartItem:', error);
+        throw error;
+      })
+    );
+  }
+
+  addToCart(product: any): Observable<any> {
+    const cart = this.cartSubject.getValue();
+    const existingItem = cart.find((item) => item.id === product.id);
+
     if (existingItem) {
       existingItem.quantity += 1;
+      return this.http
+        .put<any>(`${this.apiUrl}/${existingItem.id}`, existingItem)
+        .pipe(
+          tap(() => this.cartSubject.next([...cart])),
+          catchError((error) => {
+            console.error('Failed to update cart:', error);
+            throw error;
+          })
+        );
     } else {
-      this.cart.push({ ...product, quantity: 1 });
+      const newProduct = { ...product, quantity: 1 };
+      return this.http.post<any>(this.apiUrl, newProduct).pipe(
+        tap(() => this.cartSubject.next([...cart, newProduct])),
+        catchError((error) => {
+          console.error('Failed to add to cart:', error);
+          throw error;
+        })
+      );
     }
-    this.cartSubject.next(this.cart); // Notify subscribers
   }
 
-  getCartObservable() {
+  removeItem(id: string): Observable<any> {
+    const cart = this.cartSubject.getValue().filter((item) => item.id !== id);
+    this.cartSubject.next(cart);
+
+    return this.http.delete(`${this.apiUrl}/${id}`).pipe(
+      catchError((error) => {
+        console.error('Failed to remove item:', error);
+        throw error;
+      })
+    );
+  }
+
+  clearCart(): Observable<any> {
+    this.cartSubject.next([]);
+    return this.http.delete(`${this.apiUrl}`).pipe(
+      catchError((error) => {
+        console.error('Failed to clear cart:', error);
+        throw error;
+      })
+    );
+  }
+
+  getCartObservable(): Observable<any[]> {
     return this.cartSubject.asObservable();
-  }
-
-  getCartItems() {
-    return this.cart;
-  }
-
-  clearCart() {
-    this.cart = [];
-    this.cartSubject.next(this.cart); // Notify subscribers
   }
 }

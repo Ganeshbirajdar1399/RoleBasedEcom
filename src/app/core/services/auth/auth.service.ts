@@ -27,17 +27,18 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     const queryParams = `?email=${email}&password=${password}`;
     return this.http.get<any[]>(`${this.apiUrl}${queryParams}`).pipe(
-      map((users) => {
-        if (users.length > 0) {
-          this.setUser(users[0]); // Update the user data in sessionStorage
-          this.userSubject.next(users[0]); // Emit the new user to the observabl
-
-          return users[0]; // Return the first matching user
+      map(([user]) => {
+        if (user) {
+          this.setUser(user);
+          this.userSubject.next(user);
+          alert(`${user.firstName} ${user.lastName} logged in successfully`);
+          return user;
         }
-        throw new Error('Invalid credentials'); // Handle invalid login
+        throw new Error('Invalid credentials');
       }),
-      catchError(() => {
-        return throwError(() => new Error('Login failed')); // Handle API errors
+      catchError((error) => {
+        alert('Login failed');
+        return throwError(() => new Error('Login failed'));
       })
     );
   }

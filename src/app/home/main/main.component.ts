@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetProductService } from '../../core/services/product/get-product.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ProductUtilsService } from '../../core/services/utils/product-utils.service';
@@ -16,13 +16,16 @@ export class MainComponent implements OnInit {
 
   constructor(
     private productService: GetProductService,
-    private productUtils: ProductUtilsService
+    private productUtils: ProductUtilsService,
+    private scroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
+    this.scroller.scrollToPosition([0, 0]);
     this.loadProducts();
     // console.log('All brands',this.productUtils.getBrands(this.groupedProducts));
     // console.log('group products',this.productUtils.getBrands(this.groupedProducts));
+    
   }
 
   loadProducts(): void {
