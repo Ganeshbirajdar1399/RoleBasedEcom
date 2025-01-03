@@ -3,32 +3,31 @@ import { MainComponent } from './home/main/main.component';
 import { BrandComponent } from './products/brand/brand.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { CartComponent } from './cart/cart/cart.component';
-import { authGuard } from './guard/auth.guard';
 import { NotFoundComponentComponent } from './core/components/not-found-component/not-found-component.component';
 import { LoginComponent } from './auth/login/login/login.component';
 import { RegisterComponent } from './auth/signup/register/register.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { roleGuard } from './core/services/role.guard';
-import { dummyAuthGuard } from './core/services/dummy-auth.guard';
 import { UserProfileComponent } from './profile/user-profile/user-profile.component';
 import { UpdateprofileComponent } from './profile/updateprofile/updateprofile.component';
 import { CompareComponent } from './products/compare/compare.component';
 import { WishlistComponent } from './products/wishlist/wishlist.component';
+import { authGuard } from './guard/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'product/:id', component: ProductDetailsComponent }, // Dynamic route for product details
   { path: 'cart', component: CartComponent },
-  { path: 'login', component: LoginComponent, canActivate: [dummyAuthGuard] }, // Fixed duplicate path
+  { path: 'login', component: LoginComponent, canActivate: [authGuard] }, // Fixed duplicate path
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate: [dummyAuthGuard],
+    canActivate: [authGuard],
   },
   {
     path: 'updateuserprofile',
     component: UpdateprofileComponent,
-    canActivate: [dummyAuthGuard],
+    canActivate: [authGuard],
   },
   {
     path: 'crudproducts',

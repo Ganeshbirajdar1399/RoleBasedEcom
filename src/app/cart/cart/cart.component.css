@@ -7,6 +7,7 @@
     margin: 0 auto;
 }
 
+
 h2 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -38,6 +39,7 @@ h4 {
     transform: scale(1.02);
     transition: 0.3s ease;
 }
+
 /* .list-group-item:hover {
     background-color: #f8f9fa;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -214,37 +216,71 @@ button.btn-success:hover {
     background-color: transparent;
     padding: 0;
     margin-bottom: 1.5rem;
-  }
-  
-  .breadcrumb a {
+}
+
+.breadcrumb a {
     text-decoration: none;
     color: #007bff;
-  }
-  
-  .breadcrumb a:hover {
+}
+
+.breadcrumb a:hover {
     text-decoration: underline;
-  }
-  
-  /* Cart Table */
-  .table-borderless th,
-  .table-borderless td {
+}
+
+/* Cart Table */
+.table-borderless th,
+.table-borderless td {
     border: none;
-  }
-  
-  .cart-product-img {
+}
+
+.cart-product-img {
     width: 80px;
     height: 80px;
     object-fit: contain;
     border: 1px solid #ddd;
     border-radius: 5px;
-  }
-  
-  .cart-quantity-input {
+}
+
+.cart-quantity-input {
     width: 60px;
     text-align: center;
-  }
-  
-  .alert {
+}
+
+.alert {
     margin-top: 2rem;
-  }
-  
+}
+
+
+
+
+
+
+
+
+
+
+.card {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+@media (max-width: 576px) {
+    .card img {
+        max-width: 80px;
+        height: auto;
+    }
+
+    .form-control {
+        max-width: 60px;
+    }
+}

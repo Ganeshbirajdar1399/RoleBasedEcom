@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../core/services/cart/cart-service.service';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
@@ -38,6 +39,14 @@ export class CartComponent implements OnInit {
   removeItem(id: string): void {
     if (confirm('Are you sure you want to delete this product?')) {
       this.cartService.removeItem(id).subscribe(() => this.getCartItem());
+    }
+  }
+  clearCart() {
+    if (confirm('Are you sure you want to delete this product?')) {
+      this.cartService.clearCart().subscribe({
+        next: () => this.getCartItem(), // Refresh cart items
+        error: (err) => console.error('Failed to clear cart:', err), // Log any errors
+      });
     }
   }
 

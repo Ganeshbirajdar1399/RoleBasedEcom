@@ -11,7 +11,6 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { validate } from 'uuid';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../core/services/auth/auth.service';
-import { DummyService } from '../../../core/services/dummy.service';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +28,6 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private dummyService: DummyService,
     private scroller: ViewportScroller
   ) {
     this.myForm = this.fb.group({

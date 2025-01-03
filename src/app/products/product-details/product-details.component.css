@@ -1,84 +1,92 @@
-.container {
-  background: #fff;
-  padding: 20px;
-  margin-top: 50px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+/* Container and card styling */
+
+.product-card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.img-fluid {
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.product-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-h3 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 15px;
+/* Animated title */
+.animated-title {
+  position: relative;
+  animation: fadeInDown 1s ease-out;
 }
 
-p {
-  font-size: 1rem;
-  color: #555;
-  line-height: 1.6;
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-strong {
-  color: #222;
+/* Fade-in animation for card */
+.animate-fade {
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
 }
 
-.btn-primary {
-  background-color: #6c63ff;
-  border-color: #6c63ff;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
-.btn-primary:hover {
-  background-color: #5147c0;
-  border-color: #5147c0;
+/* Image styling (No hover animation) */
+.product-img {
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 
+/* Button animations */
+.btn-animated {
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
 
-/* Responsive Adjustments */
+.btn-animated:hover {
+  background: linear-gradient(90deg, #0056b3, #003f7f);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .container {
-    padding: 15px;
+  .product-card {
+    flex-direction: column;
+    text-align: center;
   }
 
-  .img-fluid {
-    width: 100%;
-    height: auto;
+  .product-img {
+    border-radius: 15px 15px 0 0;
   }
+}
 
-  h3 {
-    font-size: 1.5rem;
-  }
+/* List group styling */
+.list-group-item {
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+  transition: background 0.3s ease;
+}
 
-  p {
-    font-size: 0.9rem;
-  }
-
-  .btn-primary {
-    font-size: 0.9rem;
-    padding: 8px 15px;
-  }
-
-  .card {
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .card-body {
-    padding: 20px;
-  }
-
-  .img-fluid {
-    object-fit: cover;
-    max-height: 400px;
-  }
-
+.list-group-item:hover {
+  background: rgba(0, 123, 255, 0.1);
 }

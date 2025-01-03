@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DummyService } from '../../core/services/dummy.service';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';

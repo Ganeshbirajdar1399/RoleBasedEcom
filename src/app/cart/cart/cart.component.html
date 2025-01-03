@@ -1,112 +1,86 @@
-<!-- <div class="container mt-4">
-  <h2>Your Cart</h2>
-  <div *ngIf="cartItems.length > 0; else emptyCart">
-    <div class="list-group">
-      <div class="list-group-item" *ngFor="let item of cartItems">
-        <div class="row">
-          <div class="col-md-3">
-            <img
-              [src]="item.imageUrl"
-              class="img-fluid"
-              alt="{{ item.name }}"
-            />
+<div class="container mt-5">
+  <!-- Heading -->
+  <h2 class="mb-4 text-center">Your Cart</h2>
+
+  <!-- Delete All Button -->
+  <div class="d-flex justify-content-end mb-3">
+    <button
+      class="btn btn-danger btn-sm"
+      (click)="clearCart()"
+      aria-label="Remove all items from the cart"
+      title="Clear all items from the cart"
+    >
+      <i class="fa fa-trash"></i> Delete All
+    </button>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="row" *ngIf="cartItems.length > 0; else emptyCart">
+    <div class="col-12 mb-3" *ngFor="let item of cartItems">
+      <div class="card shadow-sm">
+        <div class="row g-0">
+          <!-- Product Image -->
+          <div
+            class="col-4 col-md-3 d-flex align-items-center justify-content-center"
+          >
+            <a [routerLink]="['/product', item.id]">
+              <img
+                [src]="item.image"
+                alt="{{ item.pname }}"
+                class="img-fluid rounded"
+                style="max-width: 100px; height: auto"
+              />
+            </a>
           </div>
-          <div class="col-md-6">
-            <h5>{{ item.name }}</h5>
-            <p>Price: {{ item.price | currency : "INR" }}</p>
-            <p>Description: {{ item.description }}</p>
-            <p>
-              Quantity: {{ item.quantity
-              }}<span
-                ><button
-                  (click)="increaseQuantity(item)"
-                  class="btn btn-sm btn-primary"
+
+          <!-- Product Details -->
+          <div class="col-8 col-md-9">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <a
+                  class="text-decoration-none"
+                  [routerLink]="['/product', item.id]"
+                  ><h5 class="card-title mb-1">{{ item.pname }}</h5></a
                 >
-                  +
-                </button></span
-              >
-            </p>
-          </div>
-          <div class="col-md-3 text-end">
-            <p>
-              <strong
-                >Total:
-                {{ item.price * item.quantity | currency : "INR" }}</strong
-              >
-            </p>
+                <button
+                  class="btn btn-danger btn-sm"
+                  (click)="removeItem(item.id)"
+                  aria-label="Remove item"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+              <p class="text-muted mb-2">{{ item.psp | currency : "INR" }}</p>
+
+              <div class="d-flex justify-content-between align-items-center">
+                <!-- Quantity -->
+                <div>
+                  <label class="form-label d-inline me-2 mb-0">Qty:</label>
+                  <input
+                    type="number"
+                    class="form-control d-inline"
+                    [(ngModel)]="item.quantity"
+                    min="1"
+                    style="width: 70px"
+                  />
+                </div>
+
+                <!-- Subtotal -->
+                <p class="mb-0 text-end">
+                  <strong>{{
+                    item.psp * item.quantity | currency : "INR"
+                  }}</strong>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <hr />
-    <h4>Total: {{ getTotal() | currency : "INR" }}</h4>
-    <div class="d-flex justify-content-end mb-5">
-      <button class="btn btn-success">Checkout</button>
-    </div>
   </div>
+
+  <!-- Empty Cart Message -->
   <ng-template #emptyCart>
-    <div class="alert alert-warning">Your cart is empty!</div>
-  </ng-template>
-</div> -->
-
-<div class="container mt-5">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a>Home</a></li>
-      <li class="breadcrumb-item"><a>poducts</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Cart</li>
-    </ol>
-  </nav>
-  <h2 class="mb-4 text-center">Cart</h2>
-  <table class="table table-borderless align-middle text-center">
-    <thead class="border-bottom">
-      <tr>
-        <th scope="col">Product</th>
-        <th scope="col">Name</th>
-        <th scope="col">Price</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Total</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of cartItems">
-        <!-- Product Details -->
-        <td>
-          <div class="d-flex align-items-center">
-            <img
-              [src]="item.image"
-              alt="{{ item.pname }}"
-              class="cart-product-img me-3"
-            />
-          </div>
-        </td>
-        <td>{{ item.pname }}</td>
-
-        <!-- Price -->
-        <td>{{ item.psp | currency : "INR" }}</td>
-
-        <!-- Quantity -->
-        <td>
-          <input
-            type="number"
-            class="form-control cart-quantity-input"
-            [(ngModel)]="item.quantity"
-            min="1"
-          />
-        </td>
-
-        <!-- Subtotal -->
-        <td>{{ item.psp * item.quantity | currency : "INR" }}</td>
-        <td>
-          <button class="btn btn-danger" (click)="removeItem(item.id)">
-            <i class="bi bi-trash"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <ng-template #emptyCart>
-    <div class="alert alert-warning">Your cart is empty!</div>
+    <div class="alert alert-warning text-center">Your cart is empty!</div>
   </ng-template>
 </div>

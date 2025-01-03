@@ -27,22 +27,33 @@
       <li *ngIf="isLoggedIn()" class="nav-link" (click)="logout()">Logout</li>
     </ul>
     <ul class="nav-links">
-      <button class="icon-btn me-3 text-light" title="Wishlist">
+      <button
+        class="icon-btn me-3 text-light"
+        title="Wishlist"
+        routerLink="wishlist"
+      >
         <i class="bi bi-heart"></i>
-        
+        <span
+          *ngIf="wishlistCount > 0"
+          class="position-absolute top-1 start-85 translate-middle badge rounded-pill bg-danger"
+          style="margin-top: -2px"
+        >
+          {{ wishlistCount }}
+        </span>
       </button>
       <button
-      class="icon-btn me-3 position-relative text-light"
-      title="Compare"
-      routerLink="compare"
-    >
-      <i class="fa-solid fa-code-compare"></i>
-      <span *ngIf="compareCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-        {{ compareCount }}
-      </span>
-      
-    </button>
-    
+        class="icon-btn me-3 position-relative text-light"
+        title="Compare"
+        routerLink="compare"
+      >
+        <i class="fa-solid fa-code-compare"></i>
+        <span
+          *ngIf="compareCount > 0"
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+        >
+          {{ compareCount }}
+        </span>
+      </button>
 
       <button
         class="icon-btn me-3 position-relative text-light"
@@ -62,10 +73,11 @@
 </div>
 
 <nav class="navbar navbar-expand-lg shadow-sm">
-  <a class="navbar-brand" routerLink=""
-    ><span class="text-light">Mobile</span
-    ><span class="text-warning">Shopee</span></a
-  >
+  <a class="navbar-brand" routerLink="">
+    <span class="text-warning">GB</span>
+    <span class="text-light ms-1">Mobile</span>
+    <!-- <span class="text-warning">Shopee</span> -->
+  </a>
 
   <!-- <button
     class="navbar-toggler"
@@ -119,21 +131,29 @@
     </form>
 
     <div class="d-flex justify-content-center">
-      <button class="icon-btn me-3" title="Wishlist">
+      <button class="icon-btn me-3" title="Wishlist" routerLink="wishlist">
         <i class="bi bi-heart"></i>
-       
+        <span
+          *ngIf="wishlistCount > 0"
+          class="position-absolute top-0 start-85 translate-middle badge rounded-pill bg-danger"
+          style="margin-top: 27px"
+        >
+          {{ wishlistCount }}
+        </span>
       </button>
       <button
-      class="icon-btn me-3 position-relative"
-      title="Compare"
-      routerLink="compare"
-    >
-    <i class="fa fa-code-compare"></i>
-      <span *ngIf="compareCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-        {{ compareCount }}
-      </span>
-      
-    </button>
+        class="icon-btn me-3 position-relative"
+        title="Compare"
+        routerLink="compare"
+      >
+        <i class="fa fa-code-compare"></i>
+        <span
+          *ngIf="compareCount > 0"
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+        >
+          {{ compareCount }}
+        </span>
+      </button>
       <button
         class="icon-btn me-3 position-relative"
         title="Cart"

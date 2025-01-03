@@ -1,16 +1,14 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { DummyService } from './dummy.service';
 import { AuthService } from './auth/auth.service';
 
 export const roleGuard: CanActivateFn = (route, state) => {
-  const dummyService = inject(DummyService);
   const authService = inject(AuthService);
   const router = inject(Router);
 
   // Retrieve expected roles from route data
   const expectedRoles: string[] = route.data?.['role'] || [];
-  const userRole = dummyService.getRole();
+  const userRole = authService.getRole();
 
   // Check if the user is logged in and their role matches any expected role
   if (!authService.isLoggedIn()) {

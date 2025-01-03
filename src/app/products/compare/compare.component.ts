@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CompareService } from '../../core/services/compare.service';
+import { CompareService } from '../../core/services/compare/compare.service';
 import { CommonModule, ViewportScroller } from '@angular/common';
 
 @Component({

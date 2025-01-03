@@ -1,19 +1,21 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component } from '@angular/core';
-import { CompareService } from '../../core/services/compare.service';
+import { CompareService } from '../../core/services/compare/compare.service';
+import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 
 @Component({
   selector: 'app-wishlist',
   imports: [CommonModule],
   templateUrl: './wishlist.component.html',
-  styleUrl: './wishlist.component.css'
+  styleUrl: './wishlist.component.css',
 })
 export class WishlistComponent {
- wishlistItems: any[] = [];
+  wishlistItems: any[] = [];
 
   constructor(
     private compareService: CompareService,
-    private scroller: ViewportScroller
+    private scroller: ViewportScroller,
+    private wishlistService: WishlistService
   ) {}
 
   ngOnInit(): void {
@@ -23,7 +25,7 @@ export class WishlistComponent {
 
   // Get all products in the compare list
   getWishlistItems(): void {
-    this.compareService.getWishlistItems().subscribe({
+    this.wishlistService.getWishlistItems().subscribe({
       next: (res) => {
         this.wishlistItems = res;
         console.log('Wishlist items:', res);
@@ -41,7 +43,7 @@ export class WishlistComponent {
         'Are you sure you want to delete this product from the wish-list?'
       )
     ) {
-      this.compareService.removeFromWishlist(id).subscribe({
+      this.wishlistService.removeFromWishlist(id).subscribe({
         next: () => {
           this.getWishlistItems(); // Refresh compare list
           alert('Product removed from wishlist!');

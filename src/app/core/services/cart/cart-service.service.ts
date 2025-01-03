@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   private readonly apiUrl = 'http://localhost:3000/cart';
+  private readonly apiUrlcart = 'http://localhost:3000';
   private cartSubject = new BehaviorSubject<any[]>([]);
 
   constructor(private http: HttpClient) {
@@ -71,14 +72,15 @@ export class CartService {
   }
 
   clearCart(): Observable<any> {
-    this.cartSubject.next([]);
-    return this.http.delete(`${this.apiUrl}`).pipe(
-      catchError((error) => {
-        console.error('Failed to clear cart:', error);
-        throw error;
-      })
+    return this.http.get<any[]>(`${this.apiUrlcart}/cart`).pipe(
+      switchMap((cartItems) =>
+        forkJoin(cartItems.map((item) => this.http.delete(`${this.apiUrlcart}/cart/${item.id}`)))
+      )
     );
   }
+  
+  
+  
 
   getCartObservable(): Observable<any[]> {
     return this.cartSubject.asObservable();

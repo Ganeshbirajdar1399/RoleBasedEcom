@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DummyService } from '../../core/services/dummy.service';
+
 import {
   FormBuilder,
   FormGroup,
@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchProductPipe } from '../../shared/pipes/search-product.pipe';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -48,7 +49,7 @@ export class AdminDashboardComponent {
     private getProducts: GetProductService,
     private fb: FormBuilder,
     private http: HttpClient,
-    private dummyService: DummyService
+    private authService: AuthService
   ) {
     this.myForm = this.fb.group({
       pname: ['', [Validators.required]],
@@ -179,6 +180,6 @@ export class AdminDashboardComponent {
   }
 
   logout(): void {
-    this.dummyService.logout();
+    this.authService.logout();
   }
 }
