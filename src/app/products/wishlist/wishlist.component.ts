@@ -2,6 +2,7 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component } from '@angular/core';
 import { CompareService } from '../../core/services/compare/compare.service';
 import { WishlistService } from '../../core/services/wishlist/wishlist.service';
+import { GlobalService } from '../../core/services/global.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -13,9 +14,10 @@ export class WishlistComponent {
   wishlistItems: any[] = [];
 
   constructor(
-    private compareService: CompareService,
+    // private compareService: CompareService,
     private scroller: ViewportScroller,
-    private wishlistService: WishlistService
+    // private wishlistService: WishlistService,
+    private globalService: GlobalService
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +27,7 @@ export class WishlistComponent {
 
   // Get all products in the compare list
   getWishlistItems(): void {
-    this.wishlistService.getWishlistItems().subscribe({
+    this.globalService.getWishlistItems().subscribe({
       next: (res) => {
         this.wishlistItems = res;
         console.log('Wishlist items:', res);
@@ -43,7 +45,7 @@ export class WishlistComponent {
         'Are you sure you want to delete this product from the wish-list?'
       )
     ) {
-      this.wishlistService.removeFromWishlist(id).subscribe({
+      this.globalService.removeFromWishlist(id).subscribe({
         next: () => {
           this.getWishlistItems(); // Refresh compare list
           alert('Product removed from wishlist!');
@@ -59,7 +61,7 @@ export class WishlistComponent {
 
   // Clear all comparison items (optional feature)
   clearComparison(): void {
-    this.compareService.clearCompare();
+    this.globalService.clearCompare();
     this.wishlistItems = []; // Optionally clear the local comparison list as well
   }
 }

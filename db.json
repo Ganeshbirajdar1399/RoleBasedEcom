@@ -355,58 +355,30 @@
   "cart": [],
   "compare": [
     {
-      "id": "bc23d1f5-4220-439c-817e-529162002ad8",
-      "pname": "Samsung A057 A05S 6/128 GB Light Green",
-      "brand": "Samsung",
-      "description": "1. 8 GB RAM | 128 GB ROM\n    2. 17.02 cm (6.7 inch) Full HD+ Display\n    3. 50MP + 8MP + 2MP | 32MP Front Camera\n    4. 5200 mAh Battery\n    5. Snapdragon 7s Gen2 Processor",
-      "color": " Light Green",
-      "disksize": "128 GB",
-      "ram": "8 GB",
-      "psp": 13500,
-      "pop": 14500,
-      "image": "http://localhost:3001/uploads/1735808957643.webp",
-      "quantity": 2
-    },
-    {
-      "id": "6bd8b548-4617-4810-979c-589b138f7fn9",
-      "pname": "Xiomi A055 A05 4/64 GB Black",
-      "brand": "Redmi",
+      "id": "6bd8b542-4617-4810-979c-589b138f7fc5",
+      "pname": "Lava A055 A05 4/64 GB Black",
+      "brand": "Lava",
       "description": "1.    4 GB RAM | 64 GB ROM | Expandable Upto 1 TB\n2.   17.02 cm (6.7 inch) Full HD+ Display\n3.    50MP + 5MP | 8MP Front Camera\n4.    5000 mAh Battery\n5.    MediaTek Helio G85 Processor",
       "color": "Black",
       "disksize": "64 GB",
       "ram": "4 GB",
       "psp": 7999,
       "pop": 8500,
-      "image": "http://localhost:3001/uploads/1734977422502.webp",
-      "quantity": 1
+      "image": "http://localhost:3001/uploads/1734976516925.webp"
     }
   ],
   "wishlist": [
     {
-      "id": "6bd8b548-4617-4810-979c-589b138f7fc7",
-      "pname": "Samsung A055 A05 4/64 GB Black",
-      "brand": "Samsung",
-      "description": "1.    4 GB RAM | 64 GB ROM | Expandable Upto 1 TB\n2.   17.02 cm (6.7 inch) Full HD+ Display\n3.    50MP + 5MP | 8MP Front Camera\n4.    5000 mAh Battery\n5.    MediaTek Helio G85 Processor",
-      "color": "Cobalt Blue",
-      "disksize": "128 GB",
-      "ram": "4 GB",
-      "psp": 7899,
-      "pop": 8500,
-      "image": "http://localhost:3001/uploads/1734976451705.webp",
-      "quantity": 1
-    },
-    {
       "id": "bc23d1f5-4220-439c-817e-529162002ad3",
-      "pname": "Realme A057 A05S 6/128 GB Light Green",
-      "brand": "Realme",
+      "pname": "OnePlus A057 A05S 6/128 GB Light Green",
+      "brand": "OnePlus",
       "description": "1. 8 GB RAM | 128 GB ROM\n    2. 17.02 cm (6.7 inch) Full HD+ Display\n    3. 50MP + 8MP + 2MP | 32MP Front Camera\n    4. 5200 mAh Battery\n    5. Snapdragon 7s Gen2 Processor",
       "color": " Light Green",
       "disksize": "128 GB",
       "ram": "8 GB",
       "psp": 13500,
       "pop": 14500,
-      "image": "http://localhost:3001/uploads/1734975660382.webp",
-      "quantity": 1
+      "image": "http://localhost:3001/uploads/1734975660382.webp"
     }
   ]
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { GetProductService } from '../../core/services/product/get-product.service';
 import { CartService } from '../../core/services/cart/cart-service.service';
+import { GlobalService } from '../../core/services/global.service';
 
 @Component({
   selector: 'app-product-details',
@@ -17,8 +18,9 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: GetProductService,
-    private cartService: CartService,
-    private scroller: ViewportScroller
+    // private cartService: CartService,
+    private scroller: ViewportScroller,
+    private globalService: GlobalService
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +46,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(product: any) {
-    this.cartService.addToCart(product).subscribe({
+    this.globalService.addToCart(product).subscribe({
       next: (response) => {
         console.log('Product added successfully:', response);
       },

@@ -72,15 +72,18 @@ export class CartService {
   }
 
   clearCart(): Observable<any> {
-    return this.http.get<any[]>(`${this.apiUrlcart}/cart`).pipe(
-      switchMap((cartItems) =>
-        forkJoin(cartItems.map((item) => this.http.delete(`${this.apiUrlcart}/cart/${item.id}`)))
-      )
-    );
+    return this.http
+      .get<any[]>(`${this.apiUrlcart}/cart`)
+      .pipe(
+        switchMap((cartItems) =>
+          forkJoin(
+            cartItems.map((item) =>
+              this.http.delete(`${this.apiUrlcart}/cart/${item.id}`)
+            )
+          )
+        )
+      );
   }
-  
-  
-  
 
   getCartObservable(): Observable<any[]> {
     return this.cartSubject.asObservable();

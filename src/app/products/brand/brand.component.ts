@@ -13,6 +13,7 @@ import { CompareService } from '../../core/services/compare/compare.service';
 import { LimitWordsPipe } from '../../shared/pipes/limit-words.pipe';
 import { CartService } from '../../core/services/cart/cart-service.service';
 import { WishlistService } from '../../core/services/wishlist/wishlist.service';
+import { GlobalService } from '../../core/services/global.service';
 
 @Component({
   selector: 'app-brand',
@@ -36,9 +37,10 @@ export class BrandComponent implements OnInit {
     private productUtils: ProductUtilsService,
     private scroller: ViewportScroller,
     private router: Router,
-    private cartService: CartService,
-    private compareService: CompareService,
-    private wishlistService: WishlistService
+    // private cartService: CartService,
+    // private compareService: CompareService,
+    // private wishlistService: WishlistService,
+    private globalService: GlobalService
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +52,7 @@ export class BrandComponent implements OnInit {
   }
 
   addToCart(product: any) {
-    this.cartService.addToCart(product).subscribe({
+    this.globalService.addToCart(product).subscribe({
       next: (response) => {
         console.log('Product added successfully:', response);
       },
@@ -72,7 +74,7 @@ export class BrandComponent implements OnInit {
       return;
     }
 
-    this.compareService.addToCompare(product).subscribe({
+    this.globalService.addToCompare(product).subscribe({
       next: () => {
         alert('Product added to compare!');
         this.getCompareItems(); // Refresh compare list
@@ -96,7 +98,7 @@ export class BrandComponent implements OnInit {
       return;
     }
 
-    this.wishlistService.addToWishlist(product).subscribe({
+    this.globalService.addToWishlist(product).subscribe({
       next: () => {
         alert('Product added to Wish-list!');
         this.getWishlistItems(); // Refresh Wish-list list
@@ -109,7 +111,7 @@ export class BrandComponent implements OnInit {
 
   // Get all products in the compare list
   getCompareItems() {
-    this.compareService.getCompareItems().subscribe({
+    this.globalService.getCompareItems().subscribe({
       next: (res) => {
         this.compareItems = res;
       },
@@ -121,7 +123,7 @@ export class BrandComponent implements OnInit {
 
   // Get all products in the compare list
   getWishlistItems() {
-    this.wishlistService.getWishlistItems().subscribe({
+    this.globalService.getWishlistItems().subscribe({
       next: (res) => {
         this.wishlistItems = res;
       },

@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { MainComponent } from './home/main/main.component';
 import { BrandComponent } from './products/brand/brand.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
-import { CartComponent } from './cart/cart/cart.component';
+import { CartComponent } from './products/cart/cart.component';
 import { NotFoundComponentComponent } from './core/components/not-found-component/not-found-component.component';
 import { LoginComponent } from './auth/login/login/login.component';
 import { RegisterComponent } from './auth/signup/register/register.component';

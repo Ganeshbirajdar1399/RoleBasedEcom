@@ -3,6 +3,7 @@ import { CartService } from '../../core/services/cart/cart-service.service';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { GlobalService } from '../../core/services/global.service';
 
 @Component({
   selector: 'app-cart',
@@ -15,8 +16,9 @@ export class CartComponent implements OnInit {
   emptyCart = '';
 
   constructor(
-    public cartService: CartService,
-    private viewportScroller: ViewportScroller
+    // public cartService: CartService,
+    private viewportScroller: ViewportScroller,
+    private globalService: GlobalService
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +27,7 @@ export class CartComponent implements OnInit {
   }
 
   getCartItem(): void {
-    this.cartService.getCartItem().subscribe({
+    this.globalService.getCartItems().subscribe({
       next: (res) => {
         this.cartItems = res.map((item) => ({
           ...item,
@@ -38,12 +40,12 @@ export class CartComponent implements OnInit {
 
   removeItem(id: string): void {
     if (confirm('Are you sure you want to delete this product?')) {
-      this.cartService.removeItem(id).subscribe(() => this.getCartItem());
+      this.globalService.removeFromCart(id).subscribe(() => this.getCartItem());
     }
   }
   clearCart() {
     if (confirm('Are you sure you want to delete this product?')) {
-      this.cartService.clearCart().subscribe({
+      this.globalService.clearCart().subscribe({
         next: () => this.getCartItem(), // Refresh cart items
         error: (err) => console.error('Failed to clear cart:', err), // Log any errors
       });
