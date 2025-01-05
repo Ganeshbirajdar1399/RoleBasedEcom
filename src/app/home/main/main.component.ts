@@ -8,6 +8,7 @@ import { CartService } from '../../core/services/cart/cart-service.service';
 import { CompareService } from '../../core/services/compare/compare.service';
 import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 import { GlobalService } from '../../core/services/global.service';
+import { Webdata } from '../../core/services/product/webdata';
 
 @Component({
   selector: 'app-main',
@@ -21,6 +22,8 @@ export class MainComponent implements OnInit {
   cartItems: any[] = [];
   compareItems: any[] = [];
   wishlistItems: any[] = [];
+
+  webdatas: Webdata[] = [];
 
   constructor(
     private productService: GetProductService,
@@ -37,6 +40,14 @@ export class MainComponent implements OnInit {
     this.loadProducts();
     // console.log('All brands',this.productUtils.getBrands(this.groupedProducts));
     // console.log('group products',this.productUtils.getBrands(this.groupedProducts));
+    this.fetchwebdata();
+  }
+
+  fetchwebdata(): void {
+    this.productService.fetchWebData().subscribe((res) => {
+      this.webdatas = res;
+      console.log('All data', res);
+    });
   }
 
   addToCart(product: any) {

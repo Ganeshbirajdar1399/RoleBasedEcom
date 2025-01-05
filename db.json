@@ -380,5 +380,27 @@
       "pop": 14500,
       "image": "http://localhost:3001/uploads/1734975660382.webp"
     }
+  ],
+  "otherinfo": [
+    {
+      "id": "eee85bf5-771b-4797-848b-6d4c3d6c9fe7",
+      "about": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore sit cumque a temporibus ducimus officiis voluptatum cum aliquid laudantium nihil expedita adipisci, sed eius pariatur eos magni nemo ea quibusdam. ",
+      "location": "1234 Market Street, San Francisco, CA",
+      "contactNo": "+91 9999999999",
+      "email": "abc12@gmail.com",
+      "wbrand": "www.gbmobileshopee.com",
+      "facebook": "facebook.com",
+      "twitter": "x.com",
+      "instagram": "instagram.com",
+      "youtube": "youtube.com",
+      "cc": "© 2024 MobileShopee. All Rights Reserved. ",
+      "image": [
+        "http://localhost:3001/multiple-uploads/1736093402074.jpg",
+        "http://localhost:3001/multiple-uploads/1736093406762.jpg",
+        "http://localhost:3001/multiple-uploads/1736093410211.jpg",
+        "http://localhost:3001/multiple-uploads/1736093413518.jpg",
+        "http://localhost:3001/multiple-uploads/1736093420214.jpg"
+      ]
+    }
   ]
 }

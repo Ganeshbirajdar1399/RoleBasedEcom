@@ -1,18 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { GetProductService } from '../../services/product/get-product.service';
 import { ProductUtilsService } from '../../services/utils/product-utils.service';
 import { CartService } from '../../services/cart/cart-service.service';
+import { Webdata } from '../../services/product/webdata';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, FormsModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
   cartCount: number = 0;
+
+  webdatas: Webdata[] = [];
 
   constructor(
     private cartService: CartService,
@@ -36,6 +40,14 @@ export class FooterComponent {
 
   ngOnInit(): void {
     this.fetchData();
+    this.fetchWebData();
+  }
+
+  fetchWebData(): void {
+    this.productService.fetchWebData().subscribe((res) => {
+      this.webdatas = res || []; // Fallback to empty array if `res` is null/undefined
+      console.log('result', res);
+    });
   }
 
   fetchData(): void {

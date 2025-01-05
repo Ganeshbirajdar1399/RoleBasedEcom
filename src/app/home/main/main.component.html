@@ -1,59 +1,46 @@
 <!-- Hero Section -->
 <div class="container mb-5" style="margin-top: 65px">
   <div
-    id="carouselExample"
-    class="carousel slide w-100"
+    *ngFor="let info of webdatas; let idx = index"
+    id="carouselExample{{ idx }}"
+    class="carousel slide w-100 mb-5"
     data-bs-ride="carousel"
     data-bs-interval="3000"
   >
+    <!-- Carousel Indicators -->
     <div class="carousel-indicators">
       <button
+        *ngFor="let img of info.image; let i = index"
         type="button"
-        data-bs-target="#carouselExample"
-        data-bs-slide-to="0"
-        class="active"
-      ></button>
-      <button
-        type="button"
-        data-bs-target="#carouselExample"
-        data-bs-slide-to="1"
-      ></button>
-      <button
-        type="button"
-        data-bs-target="#carouselExample"
-        data-bs-slide-to="2"
+        [attr.data-bs-target]="'#carouselExample' + idx"
+        [attr.data-bs-slide-to]="i"
+        [class.active]="i === 0"
+        [attr.aria-current]="i === 0 ? 'true' : null"
+        [attr.aria-label]="'Slide ' + (i + 1)"
       ></button>
     </div>
+
+    <!-- Carousel Inner -->
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      <div
+        *ngFor="let img of info.image; let i = index"
+        [ngClass]="{ 'carousel-item': true, active: i === 0 }"
+      >
         <img
+          [src]="img"
           class="d-block w-100"
-          src="\courosel\D119951047_WLD_5Grevamp_March2024_1400x800_14._CB539119306_.jpg"
+          alt="Image for {{ info.about }}"
+          loading="lazy"
           sizes="(max-width: 768px) 100vw, 50vw"
-          alt="First slide"
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          class="d-block w-100"
-          src="\courosel\D138805427_WLD_OnePlus_NordCE4Lite_NewLaunch_1400x800_2_1._CB538174726_.jpg"
-          sizes="(max-width: 768px) 100vw, 50vw"
-          alt="Second slide"
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          class="d-block w-100"
-          src="\courosel\D155866635_WLD_realme_70Turbo_New_Launch_catpage_1400x800_2._CB538129870_.jpg"
-          sizes="(max-width: 768px) 100vw, 50vw"
-          alt="Third slide"
         />
       </div>
     </div>
+
+    <!-- Carousel Controls -->
     <button
       class="carousel-control-prev"
-      data-bs-target="#carouselExample"
       type="button"
+      [attr.data-bs-target]="'#carouselExample' + idx"
       data-bs-slide="prev"
     >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -61,8 +48,8 @@
     </button>
     <button
       class="carousel-control-next"
-      data-bs-target="#carouselExample"
       type="button"
+      [attr.data-bs-target]="'#carouselExample' + idx"
       data-bs-slide="next"
     >
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -95,7 +82,7 @@
                   <!-- Image with routerLink -->
                   <a [routerLink]="['/product', product.id]">
                     <img
-                      [src]="product.image"
+                      [src]="product?.image"
                       class="card-img-top"
                       [alt]="product.pname"
                     />
@@ -109,7 +96,7 @@
                       <h5 class="card-title">{{ product.pname }}</h5>
                     </a> -->
                     <p class="text-decoration-none text-dark">
-                      {{ product.psp | currency : "INR" : true }}
+                      {{ product?.psp | currency : "INR" : "₹" }}
                     </p>
                   </div>
                   <div class="product-hover-icons">

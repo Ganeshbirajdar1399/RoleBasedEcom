@@ -68,6 +68,10 @@ export class AdminDashboardComponent {
     this.fetchProducts();
   }
 
+  updateCancel() {
+    this.myForm.reset();
+  }
+
   fetchProducts(): void {
     this.getProducts.fetchData().subscribe((res) => {
       this.products = res;

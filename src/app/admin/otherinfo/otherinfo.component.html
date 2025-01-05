@@ -1,0 +1,424 @@
+<!-- <div class="container m-4">
+  <div class="card">
+    <div class="card-header text-center">
+      <h4>Other Website Data</h4>
+    </div>
+    <div class="card-body">
+      <div class="container">
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-4">
+              <h4>Carousel Images</h4>
+              <hr />
+              <div
+                *ngFor="let image of [1, 2, 3, 4, 5]; let i = index"
+                class="mb-3"
+              >
+                <label class="form-label">Carousel Image {{ i + 1 }}</label>
+                <input type="file" (change)="onFileChange($event)" multiple />
+              </div>
+            </div>
+            <div class="col-4">
+              <h4>Footer Content</h4>
+              <hr />
+              <div class="mb-3">
+                <label class="form-label">About</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="about"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Location</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="location"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Contact No.</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="contactNo"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  required
+                  formControlName="email"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Website Brand</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="wbrand"
+                />
+              </div>
+            </div>
+            <div class="col-4">
+              <h4>Social Media Links</h4>
+              <hr />
+              <div class="mb-3">
+                <label class="form-label">Facebook</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="facebook"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Twitter</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="twitter"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Instagram</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="instagram"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Youtube</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="youtube"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Copyright Content</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="cc"
+                />
+              </div>
+            </div>
+            
+            <div class="d-flex justify-content-center align-content-center">
+              <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Add Data</button>
+              <button
+                type="submit"
+                class="btn btn-primary ms-2"
+                (click)="updateCancel()"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+          <div
+            *ngIf="isAdded"
+            class="text-bg-success text-light p-3 border-1 border-success mt-2"
+          >
+            <p>Data Added Successfully</p>
+          </div>
+          <div
+            *ngIf="isUpdated"
+            class="text-bg-success text-light p-1 border-1 border-success mt-2"
+          >
+            <p>Data Update Successfully</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-fluid m-4">
+  <div class="card">
+    <div class="card-header text-center">
+      <h4>Other Website Data</h4>
+    </div>
+    <div class="card-body">
+      <div class="container">
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <!-- Carousel Images Section -->
+            <div class="col-12 col-md-4 mb-4">
+              <h4>Carousel Images</h4>
+              <hr />
+              <div
+                *ngFor="let image of [1, 2, 3, 4, 5]; let i = index"
+                class="mb-3"
+              >
+                <label class="form-label">Carousel Image {{ i + 1 }}</label>
+                <input
+                  type="file"
+                  (change)="onFileChange($event)"
+                  multiple
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <!-- Footer Content Section -->
+            <div class="col-12 col-md-4 mb-4">
+              <h4>Footer Content</h4>
+              <hr />
+              <div class="mb-3">
+                <label class="form-label">About</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="about"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Location</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="location"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Contact No.</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="contactNo"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  required
+                  formControlName="email"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Website Brand</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="wbrand"
+                />
+              </div>
+            </div>
+
+            <!-- Social Media Links Section -->
+            <div class="col-12 col-md-4 mb-4">
+              <h4>Social Media Links</h4>
+              <hr />
+              <div class="mb-3">
+                <label class="form-label">Facebook</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="facebook"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Twitter</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="twitter"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Instagram</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="instagram"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Youtube</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="youtube"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Copyright Content</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  formControlName="cc"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Buttons -->
+          <div class="d-flex justify-content-center align-content-center mt-3">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="myForm.invalid"
+            >
+              Add Data
+            </button>
+            <button
+              type="submit"
+              class="btn btn-secondary ms-2"
+              (click)="updateCancel()"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+
+        <!-- Success/Error Messages -->
+        <div
+          *ngIf="isAdded"
+          class="text-bg-success text-light p-3 border-1 border-success mt-2"
+        >
+          <p>Data Added Successfully</p>
+        </div>
+        <div
+          *ngIf="isUpdated"
+          class="text-bg-success text-light p-1 border-1 border-success mt-2"
+        >
+          <p>Data Update Successfully</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h2>All Website Data</h2>
+
+  <div class="container table-responsive">
+    <table class="product-table table-bordered">
+      <thead>
+        <tr>
+          <th>Sr.No.</th>
+          <th>About</th>
+          <th>Location</th>
+          <th>Contact No.</th>
+          <th>Email</th>
+          <th>Website Brand</th>
+          <th class="d-none d-sm-table-cell">Facebook</th>
+          <th class="d-none d-sm-table-cell">Twitter</th>
+          <th class="d-none d-sm-table-cell">Instagram</th>
+          <th class="d-none d-sm-table-cell">YouTube</th>
+          <th class="d-none d-sm-table-cell">Images</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let webdata of webdatas; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ webdata.about }}</td>
+          <td>{{ webdata.location }}</td>
+          <td>{{ webdata.contactNo }}</td>
+          <td>{{ webdata.email }}</td>
+          <td>{{ webdata.wbrand }}</td>
+          <td class="d-none d-sm-table-cell">{{ webdata.facebook }}</td>
+          <td class="d-none d-sm-table-cell">{{ webdata.twitter }}</td>
+          <td class="d-none d-sm-table-cell">{{ webdata.instagram }}</td>
+          <td class="d-none d-sm-table-cell">{{ webdata.youtube }}</td>
+          <td class="d-none d-sm-table-cell">
+            <ng-container *ngIf="webdata.image && webdata.image.length > 0">
+              <img
+                *ngFor="let img of webdata.image"
+                [src]="img"
+                alt="Product Image"
+                class="product-img img-fluid"
+              />
+            </ng-container>
+          </td>
+          <td>
+            <div class="d-flex justify-content-between">
+              <button
+                class="btn btn-sm btn-primary"
+                (click)="editProduct(webdata)"
+              >
+                <i class="bi bi-pencil-square"></i>
+              </button>
+              <!-- Optional Delete Button -->
+              <!--
+              <button
+                class="btn btn-sm btn-danger ms-2"
+                (click)="deleteProduct(product.id)"
+              >
+                <i class="bi bi-trash"></i>
+              </button>
+              -->
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Mobile-friendly cards for small screens -->
+  <div class="product-cards">
+    <div *ngFor="let webdata of webdatas" class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ webdata.about }}</h5>
+        <p class="card-text"><strong>Brand:</strong> {{ webdata.location }}</p>
+        <p class="card-text">
+          <strong>Description:</strong> {{ webdata.contactNo }}
+        </p>
+        <p class="card-text"><strong>Color:</strong> {{ webdata.email }}</p>
+        <p class="card-text">
+          <strong>Disk Size:</strong> {{ webdata.facebook }}
+        </p>
+        <p class="card-text">
+          <strong>Disk Size:</strong> {{ webdata.wbrand }}
+        </p>
+        <p class="card-text">
+          <strong>Disk Size:</strong> {{ webdata.instagram }}
+        </p>
+        <p class="card-text"><strong>Disk Size:</strong> {{ webdata.cc }}</p>
+        <p class="card-text"><strong>RAM:</strong> {{ webdata.twitter }}</p>
+        <p class="card-text"><strong>Price:</strong> {{ webdata.youtube }}</p>
+        <td>
+          <ng-container *ngIf="webdata.image && webdata.image.length > 0">
+            <img
+              *ngFor="let img of webdata.image"
+              [src]="img"
+              alt="Product Image"
+              class="product-img"
+            />
+          </ng-container>
+        </td>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-sm btn-primary" (click)="editProduct(webdata)">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

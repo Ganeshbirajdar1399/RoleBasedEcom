@@ -2,18 +2,29 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { Product } from '../utils/product';
+import { Webdata } from './webdata';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GetProductService {
   apiUrl = 'http://localhost:3000/products';
+  webDataUrl = 'http://localhost:3000/otherinfo';
 
   constructor(private http: HttpClient) {}
 
   // Fetch all products
   fetchData(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl).pipe(
+      catchError((error) => {
+        console.error('Error fetching products:', error);
+        return of([]); // Return an empty array in case of error
+      })
+    );
+  }
+  // Fetch all products
+  fetchWebData(): Observable<Webdata[]> {
+    return this.http.get<Webdata[]>(this.webDataUrl).pipe(
       catchError((error) => {
         console.error('Error fetching products:', error);
         return of([]); // Return an empty array in case of error
@@ -30,6 +41,24 @@ export class GetProductService {
     );
   }
 
+  addWebData(webdata: Webdata): Observable<Webdata> {
+    return this.http.post<Webdata>(this.webDataUrl, webdata).pipe(
+      catchError((error) => {
+        console.error('Error adding product:', error);
+        return of(null as unknown as Webdata); // Return null in case of error
+      })
+    );
+  }
+
+  updateWebData(id: string, webdata: any): Observable<any> {
+    const url = `${this.webDataUrl}/${id}`;
+    return this.http.put<any>(url, webdata).pipe(
+      catchError((error) => {
+        console.error('Error updating webdata:', error);
+        return throwError(() => new Error(error));
+      })
+    );
+  }
   updateData(id: string, product: any): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.put<any>(url, product).pipe(

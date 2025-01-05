@@ -13,6 +13,7 @@ import { UpdateprofileComponent } from './profile/updateprofile/updateprofile.co
 import { CompareComponent } from './products/compare/compare.component';
 import { WishlistComponent } from './products/wishlist/wishlist.component';
 import { authGuard } from './guard/auth.guard';
+import { OtherinfoComponent } from './admin/otherinfo/otherinfo.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
@@ -32,6 +33,12 @@ export const routes: Routes = [
   {
     path: 'crudproducts',
     component: AdminDashboardComponent,
+    canActivate: [roleGuard],
+    data: { role: 'admin' },
+  },
+  {
+    path: 'otherinfo',
+    component: OtherinfoComponent,
     canActivate: [roleGuard],
     data: { role: 'admin' },
   },
