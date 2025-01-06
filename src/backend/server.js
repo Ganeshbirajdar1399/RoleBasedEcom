@@ -84,7 +84,6 @@ const fs = require("fs");
 
 const app = express();
 
-// Enable CORS globally
 
 // Configure CORS
 app.use(cors({
