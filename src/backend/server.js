@@ -87,7 +87,7 @@ const app = express();
 // Enable CORS globally
 app.use(
   cors({
-    origin: "http://localhost:4200/", // You can replace '*' with the specific origin if you want to restrict access
+    origin: "https://gbmobile.onrender.com/", // You can replace '*' with the specific origin if you want to restrict access
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
