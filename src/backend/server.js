@@ -87,7 +87,8 @@ const app = express();
 
 // Configure CORS
 app.use(cors({
-  origin: 'https://gbmobile.onrender.com', // Replace with your frontend URL
+  origin: 'http://localhost:4200', // Replace with your frontend URL
+  // origin: 'https://gbmobile.onrender.com', // Replace with your frontend URL
   methods: 'GET,POST,PUT,DELETE',
   allowedHeaders: 'Content-Type, Authorization',
   credentials: true // Include if your request requires cookies
@@ -157,6 +158,10 @@ app.post("/multiple-upload", multipleUpload.array("images"), (req, res) => {
   );
 
   res.status(200).json({ filePaths });
+});
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send({ message: "An internal server error occurred" });
 });
 
 // Start the server
