@@ -87,11 +87,17 @@ const app = express();
 // Enable CORS globally
 app.use(
   cors({
-    origin: "*", // You can replace '*' with the specific origin if you want to restrict access
+    origin: "http://localhost:4200/", // You can replace '*' with the specific origin if you want to restrict access
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+// app.use(cors({
+//   origin: ['https://your-frontend-url.com'],
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true
+// }));
 
 // Serve static files with CORS headers for multiple-uploads and uploads
 app.use("/uploads", cors(), express.static(path.join(__dirname, "uploads")));
