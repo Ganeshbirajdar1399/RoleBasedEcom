@@ -8,10 +8,11 @@ import { AuthService } from '../../services/auth/auth.service';
 import { CompareService } from '../../services/compare/compare.service';
 import { WishlistService } from '../../services/wishlist/wishlist.service';
 import { GlobalService } from '../../services/global.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, FormsModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
@@ -22,6 +23,8 @@ export class HeaderComponent implements OnInit {
   wishlistCount: number = 0;
   groupedProducts: { [brand: string]: any[] } = {};
   loggedInUser: any = null;
+
+  searchQuery: string = '';
 
   constructor(
     private router: Router,
@@ -63,6 +66,14 @@ export class HeaderComponent implements OnInit {
 
     // Fetch initial product data
     this.fetchData();
+  }
+
+  onSearch() {
+    if (this.searchQuery.trim()) {
+      this.router.navigate(['/search'], {
+        queryParams: { q: this.searchQuery },
+      });
+    }
   }
 
   isLoggedIn(): boolean {

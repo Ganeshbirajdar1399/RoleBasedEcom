@@ -279,22 +279,40 @@
 
           <!-- Submit Buttons -->
           <div class="d-flex justify-content-center align-content-center mt-3">
+            
+            <ng-container *ngIf="isEditing; else elseTemplate">
+              <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="myForm.invalid"
+            >
+              Update Data
+            </button>
             <button
+            type="submit"
+            class="btn btn-secondary ms-2"
+            (click)="updateCancel()"
+          >
+            Cancel
+          </button>
+              
+            </ng-container>
+            <ng-template #elseTemplate>
+              <!-- <button
               type="submit"
               class="btn btn-primary"
               [disabled]="myForm.invalid"
             >
               Add Data
-            </button>
-            <button
-              type="submit"
-              class="btn btn-secondary ms-2"
-              (click)="updateCancel()"
-            >
-              Cancel
-            </button>
+            </button> -->
+              
+            </ng-template>
+            
+            
+           
           </div>
         </form>
+        <p class="small text-danger">Note:- you only update this information</p>
 
         <!-- Success/Error Messages -->
         <div
@@ -353,7 +371,7 @@
                 *ngFor="let img of webdata.image"
                 [src]="img"
                 alt="Product Image"
-                class="product-img img-fluid"
+                class="img-fluid"
               />
             </ng-container>
           </td>

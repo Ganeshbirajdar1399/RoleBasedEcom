@@ -73,6 +73,7 @@ export class OtherinfoComponent {
   updateCancel() {
     this.myForm.reset(); // Clears all inputs
     this.carouselImages = []; // Reset carousel images
+    this.isEditing = false;
   }
 
   fetchwebdata(): void {

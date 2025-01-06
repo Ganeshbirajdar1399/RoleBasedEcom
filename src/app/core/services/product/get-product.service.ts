@@ -22,7 +22,21 @@ export class GetProductService {
       })
     );
   }
-  // Fetch all products
+
+  //search products
+  searchProducts(query: string): Observable<any[]> {
+    return this.http
+      .get<any[]>(this.apiUrl)
+      .pipe(
+        map((products) =>
+          products.filter((product) =>
+            product.pname.toLowerCase().includes(query.toLowerCase())
+          )
+        )
+      );
+  }
+
+  // Fetch all webdatas
   fetchWebData(): Observable<Webdata[]> {
     return this.http.get<Webdata[]>(this.webDataUrl).pipe(
       catchError((error) => {

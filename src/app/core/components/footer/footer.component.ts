@@ -17,6 +17,7 @@ export class FooterComponent implements OnInit {
   cartCount: number = 0;
 
   webdatas: Webdata[] = [];
+  groupedProducts: { [brand: string]: any[] } = {};
 
   constructor(
     private cartService: CartService,
@@ -31,12 +32,8 @@ export class FooterComponent implements OnInit {
   }
 
   goToCart() {
-    // Navigate to the cart page
-    // Use Angular Router here if necessary
     this.router.navigate(['/cart']);
   }
-
-  groupedProducts: { [brand: string]: any[] } = {};
 
   ngOnInit(): void {
     this.fetchData();
@@ -45,7 +42,7 @@ export class FooterComponent implements OnInit {
 
   fetchWebData(): void {
     this.productService.fetchWebData().subscribe((res) => {
-      this.webdatas = res || []; // Fallback to empty array if `res` is null/undefined
+      this.webdatas = res; // Fallback to empty array if `res` is null/undefined
       console.log('result', res);
     });
   }

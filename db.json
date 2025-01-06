@@ -352,7 +352,20 @@
       "role": "admin"
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": "6bd8b548-4617-4810-979c-589b138f7fc4",
+      "pname": "Lava A055 A05 4/64 GB Black",
+      "brand": "Lava",
+      "description": "1.    4 GB RAM | 64 GB ROM | Expandable Upto 1 TB\n2.   17.02 cm (6.7 inch) Full HD+ Display\n3.    50MP + 5MP | 8MP Front Camera\n4.    5000 mAh Battery\n5.    MediaTek Helio G85 Processor",
+      "color": "Cobalt Blue",
+      "disksize": "128 GB",
+      "ram": "4 GB",
+      "psp": 7899,
+      "pop": 8500,
+      "image": "http://localhost:3001/uploads/1734976538430.webp"
+    }
+  ],
   "compare": [
     {
       "id": "6bd8b542-4617-4810-979c-589b138f7fc5",
@@ -365,6 +378,18 @@
       "psp": 7999,
       "pop": 8500,
       "image": "http://localhost:3001/uploads/1734976516925.webp"
+    },
+    {
+      "id": "6bd8b548-4617-4810-979c-589b138f7fc4",
+      "pname": "Lava A055 A05 4/64 GB Black",
+      "brand": "Lava",
+      "description": "1.    4 GB RAM | 64 GB ROM | Expandable Upto 1 TB\n2.   17.02 cm (6.7 inch) Full HD+ Display\n3.    50MP + 5MP | 8MP Front Camera\n4.    5000 mAh Battery\n5.    MediaTek Helio G85 Processor",
+      "color": "Cobalt Blue",
+      "disksize": "128 GB",
+      "ram": "4 GB",
+      "psp": 7899,
+      "pop": 8500,
+      "image": "http://localhost:3001/uploads/1734976538430.webp"
     }
   ],
   "wishlist": [
@@ -389,10 +414,10 @@
       "contactNo": "+91 9999999999",
       "email": "abc12@gmail.com",
       "wbrand": "www.gbmobileshopee.com",
-      "facebook": "facebook.com",
-      "twitter": "x.com",
-      "instagram": "instagram.com",
-      "youtube": "youtube.com",
+      "facebook": "https://www.facebook.com/",
+      "twitter": "https://x.com/",
+      "instagram": "https://www.instagram.com/",
+      "youtube": "https://www.youtube.com/",
       "cc": "© 2024 MobileShopee. All Rights Reserved. ",
       "image": [
         "http://localhost:3001/multiple-uploads/1736093402074.jpg",

@@ -14,6 +14,7 @@ import { CompareComponent } from './products/compare/compare.component';
 import { WishlistComponent } from './products/wishlist/wishlist.component';
 import { authGuard } from './guard/auth.guard';
 import { OtherinfoComponent } from './admin/otherinfo/otherinfo.component';
+import { ProductsearchComponent } from './products/productsearch/productsearch.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
@@ -43,6 +44,7 @@ export const routes: Routes = [
     data: { role: 'admin' },
   },
   { path: 'brand/:brandName', component: BrandComponent },
+  { path: 'search', component: ProductsearchComponent },
   {
     path: 'admin',
     component: AdminDashboardComponent,

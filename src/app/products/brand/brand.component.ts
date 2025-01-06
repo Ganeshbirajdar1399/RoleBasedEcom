@@ -23,7 +23,7 @@ import { GlobalService } from '../../core/services/global.service';
 })
 export class BrandComponent implements OnInit {
   brandName: string = '';
-  products: any[] = []; // All products fetched from the service
+  // products: any[] = []; // All products fetched from the service
   groupedProducts: { [brand: string]: any[] } = {}; // Products grouped by brand
   filteredProducts: any[] = []; // Products filtered by the selected brand
 
