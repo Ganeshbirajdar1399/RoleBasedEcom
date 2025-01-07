@@ -37,8 +37,8 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-// Generate UUID for the new user
-this.users.id = uuidv4(); // Assign UUID to the user's id field
+    // Generate UUID for the new user
+    this.users.id = uuidv4(); // Assign UUID to the user's id field
 
     this.authService.register(this.users).subscribe((res) => {
       console.log('User Register successfully', res);

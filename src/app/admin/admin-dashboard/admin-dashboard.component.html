@@ -138,19 +138,19 @@
             </div>
             <div class="d-flex justify-content-center align-content-center">
               <button
-              type="submit"
-              class="btn btn-primary"
-              [disabled]="myForm.invalid"
-            >
-              Add Product
-            </button>
-            <button
-            type="submit"
-            class="btn btn-primary ms-2"
-            (click)="updateCancel()"
-          >
-            Cancel
-          </button>
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="myForm.invalid"
+              >
+                Add Product
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary ms-2"
+                (click)="updateCancel()"
+              >
+                Cancel
+              </button>
             </div>
           </div>
           <div
@@ -287,7 +287,10 @@
           <button class="btn btn-sm btn-primary" (click)="editProduct(product)">
             <i class="bi bi-pencil-square"></i>
           </button>
-          <button class="btn btn-sm btn-danger ms-2" (click)="deleteProduct(product.id)">
+          <button
+            class="btn btn-sm btn-danger ms-2"
+            (click)="deleteProduct(product.id)"
+          >
             <i class="bi bi-trash"></i>
           </button>
         </div>

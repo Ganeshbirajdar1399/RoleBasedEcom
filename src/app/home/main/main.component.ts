@@ -50,6 +50,12 @@ export class MainComponent implements OnInit {
     });
   }
 
+  getResponsiveSrcset(imageUrl: string): string {
+    const baseUrl = imageUrl.substring(0, imageUrl.lastIndexOf('.'));
+    const extension = imageUrl.substring(imageUrl.lastIndexOf('.'));
+    return `${baseUrl}-small${extension} 480w, ${baseUrl}-medium${extension} 768w, ${baseUrl}-large${extension} 1200w`;
+  }
+
   addToCart(product: any) {
     this.globalService.addToCart(product).subscribe({
       next: (response) => {

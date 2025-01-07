@@ -10,7 +10,7 @@
             <!-- <span class="text-warning">Shopee</span> -->
           </a>
         </h5>
-        <p>
+        <p *ngIf="webdatas.length > 0">
           {{ webdatas[0].about }}
         </p>
       </div>
@@ -33,11 +33,15 @@
       <!-- Contact Us Section -->
       <div class="col-md-3">
         <h5 class="text-uppercase fw-bold">Contact Us</h5>
-        <p><i class="bi bi-geo-alt-fill me-2"></i>{{ webdatas[0].location }}</p>
-        <p>
+        <p *ngIf="webdatas.length > 0">
+          <i class="bi bi-geo-alt-fill me-2"></i>{{ webdatas[0].location }}
+        </p>
+        <p *ngIf="webdatas.length > 0">
           <i class="bi bi-telephone-fill me-2"></i>{{ webdatas[0].contactNo }}
         </p>
-        <p><i class="bi bi-envelope-fill me-2"></i>{{ webdatas[0].email }}</p>
+        <p *ngIf="webdatas.length > 0">
+          <i class="bi bi-envelope-fill me-2"></i>{{ webdatas[0].email }}
+        </p>
       </div>
 
       <!-- Newsletter Section -->
@@ -55,25 +59,31 @@
         <div class="mt-3">
           <!-- Social Media Icons -->
           <a
+            *ngIf="webdatas.length > 0"
             [href]="webdatas[0].facebook"
             target="_blank"
             class="text-light me-3"
             ><i class="bi bi-facebook"></i
           ></a>
           <a
-            *ngIf="webdatas && webdatas.length > 0"
+            *ngIf="webdatas.length > 0"
             [href]="webdatas[0].twitter"
             target="_blank"
             class="text-light me-3"
             ><i class="bi bi-twitter"></i
           ></a>
           <a
+            *ngIf="webdatas.length > 0"
             [href]="webdatas[0].instagram"
             target="_blank"
             class="text-light me-3"
             ><i class="bi bi-instagram"></i
           ></a>
-          <a [href]="webdatas[0].youtube" target="_blank" class="text-light"
+          <a
+            *ngIf="webdatas.length > 0"
+            [href]="webdatas[0].youtube"
+            target="_blank"
+            class="text-light"
             ><i class="bi bi-youtube"></i
           ></a>
         </div>
@@ -81,7 +91,7 @@
     </div>
     <hr class="border-light" />
     <div class="text-center">
-      <p class="mb-0">
+      <p class="mb-0" *ngIf="webdatas.length > 0">
         {{ webdatas[0].cc }}
         <!-- © 2024 <span class="text-light">Mobile</span
         ><span class="text-warning">Shopee</span>. All Rights Reserved. -->
