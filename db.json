@@ -364,6 +364,18 @@
       "psp": 7899,
       "pop": 8500,
       "image": "http://localhost:3001/uploads/1734976538430.webp"
+    },
+    {
+      "id": "6bd8b548-4617-4810-979c-589b138f7fc0",
+      "pname": "Vivo A055 A05 4/64 GB Black",
+      "brand": "Vivo",
+      "description": "1.    4 GB RAM | 64 GB ROM | Expandable Upto 1 TB\n2.   17.02 cm (6.7 inch) Full HD+ Display\n3.    50MP + 5MP | 8MP Front Camera\n4.    5000 mAh Battery\n5.    MediaTek Helio G85 Processor",
+      "color": "Cobalt Blue",
+      "disksize": "128 GB",
+      "ram": "4 GB",
+      "psp": 7899,
+      "pop": 8500,
+      "image": "http://localhost:3001/uploads/1734975499443.webp"
     }
   ],
   "compare": [
