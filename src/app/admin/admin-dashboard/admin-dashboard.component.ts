@@ -141,7 +141,7 @@ export class AdminDashboardComponent {
       formData.append('image', file);
 
       // Upload to the backend
-      this.http.post('http://localhost:3001/upload', formData).subscribe({
+      this.http.post('https://uploadimages-yjt5.onrender.com/upload', formData).subscribe({
         next: (response: any) => {
           console.log('File uploaded successfully:', response);
 

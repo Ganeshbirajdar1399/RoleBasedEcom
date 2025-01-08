@@ -180,7 +180,7 @@ import { catchError, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class GlobalService {
-  private readonly apiUrl = 'http://localhost:3000';
+  private readonly apiUrl = 'https://json-server-9gwz.onrender.com';
   private readonly MAX_ITEMS = 4;
 
   private cartSubject = new BehaviorSubject<any[]>([]);
