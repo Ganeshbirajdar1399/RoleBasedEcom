@@ -7,8 +7,8 @@ import { catchError, switchMap, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class CartService {
-  private readonly apiUrl = 'https://json-server-9gwz.onrender.com/cart';
-  private readonly apiUrlcart = 'https://json-server-9gwz.onrender.com';
+  private readonly apiUrl = 'http://localhost:3000/cart';
+  private readonly apiUrlcart = 'http://localhost:3000';
   private cartSubject = new BehaviorSubject<any[]>([]);
 
   constructor(private http: HttpClient) {
