@@ -146,7 +146,7 @@ export class OtherinfoComponent {
       formData.append('images', file);
     });
 
-    this.http.post('http://localhost:3001/multiple-upload', formData).subscribe(
+    this.http.post('https://ecomserver-ckjo.onrender.com/multiple-upload', formData).subscribe(
       (response: any) => {
         console.log('Files uploaded successfully:', response);
         if (response.filePaths) {

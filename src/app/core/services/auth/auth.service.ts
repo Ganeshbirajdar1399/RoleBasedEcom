@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly apiUrl = 'http://localhost:3000/users'; // Base API URL
+  private readonly apiUrl = 'https://ecom-db-json.onrender.com/users'; // Base API URL
 
   private userSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
     this.getUser()
