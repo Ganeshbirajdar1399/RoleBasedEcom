@@ -96,11 +96,7 @@ app.use(cors({
 
 // Serve static files with CORS headers for multiple-uploads and uploads
 app.use("/uploads", cors(), express.static(path.join(__dirname, "uploads")));
-app.use(
-  "/multiple-uploads",
-  cors(),
-  express.static(path.join(__dirname, "multiple-uploads"))
-);
+app.use("/multiple-uploads", cors(), express.static(path.join(__dirname, "multiple-uploads")));
 
 // JSON body parsing
 app.use(express.json());
