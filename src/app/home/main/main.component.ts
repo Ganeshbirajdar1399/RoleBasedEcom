@@ -57,12 +57,30 @@ export class MainComponent implements OnInit {
   }
 
   addToCart(product: any) {
+    if (this.cartItems.some((item) => item.id === product.id)) {
+      alert('This product is already in the cart list!');
+      return;
+    }
+
     this.globalService.addToCart(product).subscribe({
-      next: (response) => {
-        console.log('Product added successfully:', response);
+      next: () => {
+        alert('Product added to Cart!');
+        this.getCartItems(); // Refresh compare list
       },
-      error: (error) => {
-        console.error('Error adding product to cart:', error);
+      error: (err) => {
+        console.error('Error adding to cart:', err);
+      },
+    });
+  }
+
+  // Get all products in the cart list
+  getCartItems() {
+    this.globalService.getCartItems().subscribe({
+      next: (res) => {
+        this.cartItems = res;
+      },
+      error: (err) => {
+        console.error('Error fetching cart items:', err);
       },
     });
   }
@@ -90,6 +108,18 @@ export class MainComponent implements OnInit {
     });
   }
 
+  // Get all products in the compare list
+  getCompareItems() {
+    this.globalService.getCompareItems().subscribe({
+      next: (res) => {
+        this.compareItems = res;
+      },
+      error: (err) => {
+        console.error('Error fetching compare items:', err);
+      },
+    });
+  }
+
   addToWishlist(product: any) {
     if (this.wishlistItems.some((item) => item.id === product.id)) {
       alert('This product is already in the Wish-list!');
@@ -110,18 +140,6 @@ export class MainComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error adding to Wish-list:', err);
-      },
-    });
-  }
-
-  // Get all products in the compare list
-  getCompareItems() {
-    this.globalService.getCompareItems().subscribe({
-      next: (res) => {
-        this.compareItems = res;
-      },
-      error: (err) => {
-        console.error('Error fetching compare items:', err);
       },
     });
   }

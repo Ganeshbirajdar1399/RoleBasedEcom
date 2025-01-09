@@ -84,19 +84,24 @@ const fs = require("fs");
 
 const app = express();
 
-
 // Configure CORS
-app.use(cors({
-  // origin: 'http://localhost:4200', // Replace with your frontend URL
-  origin: 'https://gbmobile.onrender.com', // Replace with your frontend URL
-  methods: 'GET,POST,PUT,DELETE',
-  allowedHeaders: 'Content-Type, Authorization',
-  credentials: true // Include if your request requires cookies
-}));
+app.use(
+  cors({
+    // origin: 'http://localhost:4200', // Replace with your frontend URL
+    origin: "https://gbmobile.onrender.com", // Replace with your frontend URL
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type, Authorization",
+    credentials: true, // Include if your request requires cookies
+  })
+);
 
 // Serve static files with CORS headers for multiple-uploads and uploads
 app.use("/uploads", cors(), express.static(path.join(__dirname, "uploads")));
-app.use("/multiple-uploads", cors(), express.static(path.join(__dirname, "multiple-uploads")));
+app.use(
+  "/multiple-uploads",
+  cors(),
+  express.static(path.join(__dirname, "multiple-uploads"))
+);
 
 // JSON body parsing
 app.use(express.json());
@@ -138,7 +143,7 @@ app.post("/upload", singleUpload.single("image"), (req, res) => {
     return res.status(400).send({ message: "No file uploaded" });
   }
 
-  const filePath = `https://ecomserver-ckjo.onrender.com/uploads/${req.file.filename}`;
+  const filePath = `http://localhost:3001/uploads/${req.file.filename}`;
   res.status(200).json({ filePath });
 });
 
@@ -150,7 +155,7 @@ app.post("/multiple-upload", multipleUpload.array("images"), (req, res) => {
 
   // Map each uploaded file to its accessible URL
   const filePaths = req.files.map(
-    (file) => `https://ecomserver-ckjo.onrender.com/multiple-uploads/${file.filename}`
+    (file) => `http://localhost:3001/multiple-uploads/${file.filename}`
   );
 
   res.status(200).json({ filePaths });

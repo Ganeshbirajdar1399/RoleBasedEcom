@@ -14,6 +14,7 @@ import { GlobalService } from '../../core/services/global.service';
 export class ProductDetailsComponent implements OnInit {
   product: any; // Assuming this is fetched from your product service
   showPopup: boolean = false; // Control the popup visibility
+  cartItems: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -46,12 +47,28 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(product: any) {
+    if (this.cartItems.some((item) => item.id === product.id)) {
+      alert('This product is already in the cart list!');
+      return;
+    }
+
     this.globalService.addToCart(product).subscribe({
-      next: (response) => {
-        console.log('Product added successfully:', response);
+      next: () => {
+        alert('Product added to Cart!');
+        this.getCartItems(); // Refresh compare list
       },
-      error: (error) => {
-        console.error('Error adding product to cart:', error);
+      error: (err) => {
+        console.error('Error adding to cart:', err);
+      },
+    });
+  }
+  getCartItems() {
+    this.globalService.getCartItems().subscribe({
+      next: (res) => {
+        this.cartItems = res;
+      },
+      error: (err) => {
+        console.error('Error fetching cart items:', err);
       },
     });
   }
