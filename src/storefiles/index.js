@@ -49,7 +49,8 @@ app.post("/otherinfo", (req, res) => {
 
     // Save updated data back to db.json
     fs.writeFile("db.json", JSON.stringify(db, null, 2), (writeErr) => {
-      if (writeErr) return res.status(500).json({ error: "Failed to save data" });
+      if (writeErr)
+        return res.status(500).json({ error: "Failed to save data" });
       res.json({ message: "Data added successfully", data: newData });
     });
   });

@@ -53,15 +53,15 @@ export class GetProductService {
       })
     );
   }
-    // Fetch all webdatas
-    fetchWebData(): Observable<Webdata[]> {
-      return this.http.get<Webdata[]>(this.webDataUrl).pipe(
-        catchError((error) => {
-          console.error('Error fetching products:', error);
-          return of([]); // Return an empty array in case of error
-        })
-      );
-    }
+  // Fetch all webdatas
+  fetchWebData(): Observable<Webdata[]> {
+    return this.http.get<Webdata[]>(this.webDataUrl).pipe(
+      catchError((error) => {
+        console.error('Error fetching products:', error);
+        return of([]); // Return an empty array in case of error
+      })
+    );
+  }
 
   updateWebData(id: string, webdata: any): Observable<any> {
     const url = `${this.webDataUrl}/${id}`;

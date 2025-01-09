@@ -198,7 +198,6 @@ export class OtherinfoComponent {
   //   this.authService.logout();
   // }
 
-
   isAdded = false;
   isUpdated = false;
 

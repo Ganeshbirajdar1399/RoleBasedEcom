@@ -139,13 +139,20 @@
             <div class="d-flex justify-content-center align-content-center">
               <button
                 type="submit"
+                [disabled]="!myForm.valid || !imageUrl"
                 class="btn btn-primary"
-                [disabled]="myForm.invalid"
               >
                 Add Product
               </button>
+              <div *ngIf="!myForm.valid">
+                <p>Form is invalid</p>
+              </div>
+              <div *ngIf="!imageUrl">
+                <p>Image URL is missing</p>
+              </div>
+
               <button
-                type="submit"
+                type="button"
                 class="btn btn-primary ms-2"
                 (click)="updateCancel()"
               >

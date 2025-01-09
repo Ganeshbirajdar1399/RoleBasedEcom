@@ -279,23 +279,21 @@
 
           <!-- Submit Buttons -->
           <div class="d-flex justify-content-center align-content-center mt-3">
-            
             <ng-container *ngIf="isEditing; else elseTemplate">
               <button
-              type="submit"
-              class="btn btn-primary"
-              [disabled]="myForm.invalid"
-            >
-              Update Data
-            </button>
-            <button
-            type="submit"
-            class="btn btn-secondary ms-2"
-            (click)="updateCancel()"
-          >
-            Cancel
-          </button>
-              
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="myForm.invalid"
+              >
+                Update Data
+              </button>
+              <button
+                type="submit"
+                class="btn btn-secondary ms-2"
+                (click)="updateCancel()"
+              >
+                Cancel
+              </button>
             </ng-container>
             <ng-template #elseTemplate>
               <!-- <button
@@ -305,11 +303,7 @@
             >
               Add Data
             </button> -->
-              
             </ng-template>
-            
-            
-           
           </div>
         </form>
         <p class="small text-danger">Note:- you only update this information</p>
