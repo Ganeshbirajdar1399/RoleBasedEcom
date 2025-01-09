@@ -8,8 +8,8 @@ import { Webdata } from './webdata';
   providedIn: 'root',
 })
 export class GetProductService {
-  apiUrl = 'https://ecom-db-json.onrender.com/products';
-  webDataUrl = 'https://ecom-db-json.onrender.com/otherinfo';
+  apiUrl = 'http://localhost:3000/products';
+  webDataUrl = 'http://localhost:3000/otherinfo';
 
   constructor(private http: HttpClient) {}
 
@@ -36,16 +36,6 @@ export class GetProductService {
       );
   }
 
-  // Fetch all webdatas
-  fetchWebData(): Observable<Webdata[]> {
-    return this.http.get<Webdata[]>(this.webDataUrl).pipe(
-      catchError((error) => {
-        console.error('Error fetching products:', error);
-        return of([]); // Return an empty array in case of error
-      })
-    );
-  }
-
   addData(product: Product): Observable<Product> {
     return this.http.post<Product>(this.apiUrl, product).pipe(
       catchError((error) => {
@@ -63,6 +53,15 @@ export class GetProductService {
       })
     );
   }
+    // Fetch all webdatas
+    fetchWebData(): Observable<Webdata[]> {
+      return this.http.get<Webdata[]>(this.webDataUrl).pipe(
+        catchError((error) => {
+          console.error('Error fetching products:', error);
+          return of([]); // Return an empty array in case of error
+        })
+      );
+    }
 
   updateWebData(id: string, webdata: any): Observable<any> {
     const url = `${this.webDataUrl}/${id}`;

@@ -169,8 +169,6 @@
 //   }
 // }
 
-
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, EMPTY, forkJoin, Observable, throwError } from 'rxjs';
@@ -180,7 +178,8 @@ import { catchError, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class GlobalService {
-  private readonly apiUrl = 'https://ecom-db-json.onrender.com';
+  private readonly apiUrl = 'http://localhost:3000';
+  private readonly apiOrders = 'http://localhost:3000/orders';
   private readonly MAX_ITEMS = 20;
 
   private cartSubject = new BehaviorSubject<any[]>([]);
@@ -276,7 +275,9 @@ export class GlobalService {
 
     return this.http.post<any>(`${this.apiUrl}/${endpoint}`, product).pipe(
       tap(() => subject.next([...list, product])),
-      catchError((error) => this.handleError(error, `Failed to add item to ${endpoint}`))
+      catchError((error) =>
+        this.handleError(error, `Failed to add item to ${endpoint}`)
+      )
     );
   }
 
@@ -288,11 +289,13 @@ export class GlobalService {
     const updatedList = subject.getValue().filter((item) => item.id !== id);
     subject.next(updatedList);
 
-    return this.http.delete(`${this.apiUrl}/${endpoint}/${id}`).pipe(
-      catchError((error) =>
-        this.handleError(error, `Failed to remove item from ${endpoint}`)
-      )
-    );
+    return this.http
+      .delete(`${this.apiUrl}/${endpoint}/${id}`)
+      .pipe(
+        catchError((error) =>
+          this.handleError(error, `Failed to remove item from ${endpoint}`)
+        )
+      );
   }
 
   private clearItems(
@@ -325,9 +328,32 @@ export class GlobalService {
       .subscribe();
   }
 
+  // Add this method to your GlobalService
+  placeOrder(orderData: any): Observable<any> {
+    return this.http
+      .post<any>(`${this.apiUrl}/orders`, orderData)
+      .pipe(
+        catchError((error) => this.handleError(error, 'Failed to place order'))
+      );
+  }
+  getTotal(): number {
+    return this.cartSubject.getValue().reduce((total, item) => {
+      const price = item.psp || 0; // Default to 0 if price is missing
+      const quantity = item.quantity || 1; // Default to 1 if quantity is missing
+
+      return total + price * quantity;
+    }, 0);
+  }
+
+  fetchOrders(): Observable<any> {
+    return this.http.get(this.apiOrders);
+  }
+  deleteOrder(id: string): Observable<any> {
+    return this.http.delete(`${this.apiOrders}/${id}`);
+  }
+
   private handleError(error: any, message: string): Observable<never> {
     console.error(message, error);
     return throwError(() => new Error(message));
   }
 }
-

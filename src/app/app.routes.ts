@@ -15,11 +15,11 @@ import { WishlistComponent } from './products/wishlist/wishlist.component';
 import { authGuard } from './guard/auth.guard';
 import { OtherinfoComponent } from './admin/otherinfo/otherinfo.component';
 import { ProductsearchComponent } from './products/productsearch/productsearch.component';
+import { CheckoutComponent } from './products/checkout/checkout.component';
+import { OrdersComponent } from './admin/orders/orders.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
-  { path: 'product/:id', component: ProductDetailsComponent }, // Dynamic route for product details
-  { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent, canActivate: [authGuard] }, // Fixed duplicate path
   {
     path: 'register',
@@ -27,24 +27,18 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'updateuserprofile',
-    component: UpdateprofileComponent,
-    canActivate: [authGuard],
-  },
-  {
-    path: 'crudproducts',
-    component: AdminDashboardComponent,
+    path: 'profile',
+    component: UserProfileComponent,
     canActivate: [roleGuard],
-    data: { role: 'admin' },
+    data: { role: ['user', 'admin'] },
   },
-  {
-    path: 'otherinfo',
-    component: OtherinfoComponent,
-    canActivate: [roleGuard],
-    data: { role: 'admin' },
-  },
-  { path: 'brand/:brandName', component: BrandComponent },
   { path: 'search', component: ProductsearchComponent },
+  { path: 'brand/:brandName', component: BrandComponent },
+  { path: 'product/:id', component: ProductDetailsComponent }, // Dynamic route for product details
+  { path: 'cart', component: CartComponent },
+  { path: 'checkout', component: CheckoutComponent },
+  { path: 'compare', component: CompareComponent },
+  { path: 'wishlist', component: WishlistComponent },
   {
     path: 'admin',
     component: AdminDashboardComponent,
@@ -57,14 +51,29 @@ export const routes: Routes = [
     canActivate: [roleGuard],
     data: { role: 'user' },
   },
-  { path: 'compare', component: CompareComponent },
-  { path: 'wishlist', component: WishlistComponent },
+
   {
-    path: 'profile',
-    component: UserProfileComponent,
+    path: 'updateuserprofile',
+    component: UpdateprofileComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'crudproducts',
+    component: AdminDashboardComponent,
+    canActivate: [roleGuard],
+    data: { role: 'admin' },
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent,
     canActivate: [roleGuard],
     data: { role: ['user', 'admin'] },
   },
-
+  {
+    path: 'otherinfo',
+    component: OtherinfoComponent,
+    canActivate: [roleGuard],
+    data: { role: 'admin' },
+  },
   { path: '**', component: NotFoundComponentComponent },
 ];

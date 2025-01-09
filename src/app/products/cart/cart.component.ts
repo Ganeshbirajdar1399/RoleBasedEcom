@@ -1,24 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CartService } from '../../core/services/cart/cart-service.service';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { GlobalService } from '../../core/services/global.service';
 
 @Component({
   selector: 'app-cart',
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, RouterModule],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
   cartItems: any[] = [];
   emptyCart = '';
+  totalAmount: number = 0;
 
   constructor(
     // public cartService: CartService,
     private viewportScroller: ViewportScroller,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private router: Router,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +36,7 @@ export class CartComponent implements OnInit {
           ...item,
           quantity: item.quantity ?? 1,
         }));
+        this.recalculateTotal(); // Calculate total after loading items
       },
       error: (err) => console.error('Error fetching cart items:', err),
     });
@@ -53,19 +57,23 @@ export class CartComponent implements OnInit {
   }
 
   getTotal(): number {
-    return this.cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
+    return this.globalService.getTotal(); // Get total from GlobalService
+  }
+  onQuantityChange(item: any): void {
+    if (item.quantity < 1) {
+      item.quantity = 1; // Ensure the quantity does not go below 1
+    }
+    this.recalculateTotal(); // Manually update the total
+  }
+
+  recalculateTotal(): void {
+    this.totalAmount = this.cartItems.reduce(
+      (total, item) => total + item.psp * item.quantity,
       0
     );
   }
-
-  increaseQuantity(item: any): void {
-    item.quantity++;
-  }
-
-  decreaseQuantity(item: any): void {
-    if (item.quantity > 1) {
-      item.quantity--;
-    }
+  goToCheckout(): void {
+    this.cartService.setCartItems(this.cartItems, this.totalAmount); // Store cart data in CartService
+    this.router.navigate(['/checkout']); // Navigate to checkout page
   }
 }

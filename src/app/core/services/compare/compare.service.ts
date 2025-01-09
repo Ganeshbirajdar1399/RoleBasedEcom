@@ -13,7 +13,7 @@ import {
   providedIn: 'root',
 })
 export class CompareService {
-  private readonly compareUrl = 'https://ecom-db-json.onrender.com/compare';
+  private readonly compareUrl = 'http://localhost:3000/compare';
   private readonly MAX_ITEMS = 4; // Maximum allowed items in the list
 
   private compareList: any[] = [];

@@ -21,6 +21,13 @@
         Products
       </li>
       <li
+        class="nav-link"
+        routerLink="orders"
+        *ngIf="loggedInUser?.role === 'admin'"
+      >
+        Orders
+      </li>
+      <li
         *ngIf="loggedInUser?.role === 'admin'"
         class="nav-link"
         routerLink="otherinfo"
@@ -197,6 +204,9 @@
             <button class="dropdown-item" routerLink="crudproducts">
               Products
             </button>
+          </li>
+          <li>
+            <button class="dropdown-item" routerLink="orders">Orders</button>
           </li>
           <li *ngIf="loggedInUser?.role === 'admin'">
             <button class="dropdown-item" routerLink="otherinfo">
