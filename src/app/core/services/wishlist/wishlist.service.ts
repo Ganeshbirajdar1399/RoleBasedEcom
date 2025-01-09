@@ -13,7 +13,7 @@ import {
   providedIn: 'root',
 })
 export class WishlistService {
-  private readonly wishlistUrl = 'http://localhost:3000/wishlist';
+  private readonly wishlistUrl = 'https://ecom-db-json.onrender.com/wishlist';
   private readonly MAX_ITEMS = 4; // Maximum allowed items in the list
 
   private wishList: any[] = [];
