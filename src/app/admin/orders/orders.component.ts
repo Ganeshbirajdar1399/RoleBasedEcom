@@ -44,6 +44,8 @@ export class OrdersComponent {
 
   ngOnInit(): void {
     this.fetchOrders();
+    this.loggedInUser = this.authService.getUser(); // Fetch user data
+    // console.log('loggedin user',this.loggedInUser);
   }
 
   fetchOrders(): void {

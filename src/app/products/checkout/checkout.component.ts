@@ -4,6 +4,9 @@ import { GlobalService } from '../../core/services/global.service';
 import { CartService } from '../../core/services/cart/cart-service.service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Required for Toastr
+import { ToastrService } from 'ngx-toastr';
 interface Product {
   id: string;
   pname: string;
@@ -37,7 +40,8 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private globalService: GlobalService,
-    private cartService: CartService
+    private cartService: CartService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -65,6 +69,7 @@ export class CheckoutComponent implements OnInit {
     // Send order data to GlobalService to place the order
     this.globalService.placeOrder(orderData).subscribe(
       (response) => {
+        this.toastr.success('Your order was placed successfully!', 'Success');
         console.log('Order placed successfully:', response);
         this.clearForm();
 

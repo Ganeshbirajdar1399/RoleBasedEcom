@@ -36,6 +36,7 @@ export class UserProfileComponent implements OnInit {
     this.scroller.scrollToPosition([0, 0]);
     this.loggedInUser = this.authService.getUser(); // Fetch user data
     this.fetchUsers();
+    // console.log('loggedin user',this.loggedInUser);
   }
 
   onSubmit() {
