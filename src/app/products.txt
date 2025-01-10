@@ -1,282 +1,122 @@
-// app.module.ts
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { UserComponent } from './components/user/user.component';
-import { RegisterUserComponent } from './components/register-user/register-user.component';
-import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    DashboardComponent,
-    AdminComponent,
-    UserComponent,
-    RegisterUserComponent,
-    RegisterAdminComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
-
-// app-routing.module.ts
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { UserComponent } from './components/user/user.component';
-import { RegisterUserComponent } from './components/register-user/register-user.component';
-import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
-import { AuthGuard } from './guards/auth.guard';
-
-const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
-  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
-  { path: 'register-user', component: RegisterUserComponent },
-  { path: 'register-admin', component: RegisterAdminComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}
-
-// auth.service.ts
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-
-@Injectable({
-  providedIn: 'root',
-})
-export class AuthService {
-  private apiUrl = 'http://localhost:3000/users';
-  private isLoggedInSubject = new BehaviorSubject<boolean>(false);
-
-  constructor(private http: HttpClient, private router: Router) {}
-
-  login(username: string, password: string) {
-    return this.http.get<any[]>(`${this.apiUrl}?username=${username}&password=${password}`);
+[
+  {
+    "id": "ad6edaa5-d7c4-4abd-9620-779d6354fdaa",
+    "pname": "One Plus Nord 4 12/256 Obsidian Midnight",
+    "brand": "OnePlus",
+    "description": "1.    12 GB RAM | 256 GB ROM\n2.    17.12 cm (6.74 inch) Display\n3.    50MP Rear Camera\n4.    5500 mAh Battery",
+    "color": "Obsidian Midnight",
+    "disksize": "256 GB",
+    "ram": "12 GB",
+    "psp": 32599,
+    "pop": 32999,
+    "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736494370/uploads/qpcsrjs9khvmp2gnc7mx.webp"
+  },
+  {
+    "id": "a50e6973-e22e-491c-8d54-23c0bcc6063d",
+    "pname": "Oneplus 12 16/512 GB Flowy Emerald",
+    "brand": "OnePlus",
+    "description": "1.    16 GB RAM | 512 GB ROM\n2.    17.32 cm (6.82 inch) Display\n3.    64MP Rear Camera\n4.    5400 mAh Battery",
+    "color": "Flowy Emerald",
+    "disksize": "512 GB",
+    "ram": "12 GB",
+    "psp": 69799,
+    "pop": 69999,
+    "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736494567/uploads/ho3t9mv86m8ptzxgmgth.webp"
+  },
+  {
+    "id": "16134257-10b4-43d7-8de0-a912b72d6660",
+    "pname": "Oneplus 12R 16/256 GB Iron Gray",
+    "brand": "OnePlus",
+    "description": "1.    16 GB RAM | 256 GB ROM\n2.    17.22 cm (6.78 inch) Display\n3.    50MP Rear Camera\n4.    5500 mAh Battery",
+    "color": "Iron Gray",
+    "disksize": "256 GB",
+    "ram": "16 GB",
+    "psp": 45799,
+    "pop": 45999,
+    "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736494772/uploads/ydocvhkpksrcx0qssq9o.webp"
+  },
+  {
+    "id": "79620719-7867-4a67-a994-c11e42352425",
+    "pname": "Oneplus Nord 4 8/128 GB Oasis Green",
+    "brand": "OnePlus",
+    "description": "1.    8 GB RAM | 128 GB ROM\n2.    17.12 cm (6.74 inch) Display\n3.    50MP Rear Camera\n4.    5500 mAh Battery",
+    "color": "Oasis Green",
+    "disksize": "128 GB",
+    "ram": "8 GB",
+    "psp": 27599,
+    "pop": 27999,
+    "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736494907/uploads/piru823ywbdo1mfcatpi.webp"
+  },
+  {
+    "id": "e0f0354a-ee0d-4729-ba09-e317130f7c13",
+    "pname": "Oneplus Nord Ce 4 Lite 8/256 GB Mega Blue",
+    "brand": "OnePlus",
+    "description": "1.    8 GB RAM | 256 GB ROM\n2.    16.94 cm (6.67 inch) Display\n3.    50MP Rear Camera\n4.   5500 mAh Battery",
+    "color": "Mega Blue",
+    "disksize": "256 GB",
+    "ram": "8 GB",
+    "psp": 20599,
+    "pop": 20999,
+    "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736495021/uploads/idlooixdvlsojn7vwoeh.webp"
+  },
+  {
+    "id": "edad0acd-a265-4dd9-af4a-c92dcf604bb6",
+    "pname": "Realme Rmx 3990 13 Pro 5G 8/128 GB Green",
+    "brand": "Realme",
+    "description": "1.    8 GB RAM | 128 GB ROM\n2.    17.02 cm (6.7 inch) Full HD+ Display\n3.    50MP + 8MP + 2MP | 32MP Front Camera\n4.    5200 mAh Battery\n5.   Snapdragon 7s Gen2 Processor",
+    "color": "GB Green",
+    "disksize": "128 GB",
+    "ram": "8 GB",
+    "psp": 23599,
+    "pop": 23999,
+    "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736495211/uploads/zyy1lbxxhdujxabgrr15.webp"
+  },
+  {
+    "id": "0c553908-3712-4aae-90d8-af6f9ffddea2",
+    "pname": "Realme Rmx 3990 13 Pro 5G 8/256 GB Monet Purple",
+    "brand": "Realme",
+    "description": "1. 8 GB RAM | 256 GB ROM\n2. 17.02 cm (6.7 inch) Full HD+ Display\n3. 50MP + 8MP + 2MP | 32MP Front Camera\n4. 5200 mAh Battery\n5. Snapdragon 7s Gen2 Processor",
+    "color": "Monet Purple",
+    "disksize": "256 GB",
+    "ram": "8 GB",
+    "psp": 28999,
+    "pop": 29499,
+    "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736495380/uploads/eezvifwjtmccv701mjrc.webp"
+  },
+  {
+    "id": "9d77aab8-5d79-4f54-b0a9-6a37a417734c",
+    "pname": "Realme RMX3782 C67 5G 6/128 GB Dark Purple",
+    "brand": "Realme",
+    "description": "1. 6 GB RAM | 128 GB ROM | Expandable Upto 2 TB\n2.17.07 cm (6.72 inch) Full HD+ Display\n3.50MP + 2MP | 8MP Front Camera\n4. 5000 mAh Battery\n5. Dimensity 6100+ Processor",
+    "color": "Dark Purple",
+    "disksize": "128 GB",
+    "ram": "6 GB",
+    "psp": 14099,
+    "pop": 14599,
+    "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736495595/uploads/cwewnbdidxojxvaxgltk.webp"
+  },
+  {
+    "id": "fea6bced-b32c-498c-b60f-e454dd328518",
+    "pname": "Realme RMX3830 C51 4/64 GB Carbon Black",
+    "brand": "Realme",
+    "description": "1. 4 GB RAM | 64 GB ROM | Expandable Upto 2 TB\n2. 17.12 cm (6.74 inch) HD Display\n3. 50MP + 0.08MP | 5MP Front Camera\n4. 5000 mAh Battery\n5. T612 Processor\n",
+    "color": "Carbon Black",
+    "disksize": "64 GB",
+    "ram": "4 GB",
+    "psp": 7899,
+    "pop": 8499,
+    "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736495767/uploads/ja2okor6zsgejwwki9s5.webp"
+  },
+  {
+    "id": "7ec46a89-291a-43a8-a3e9-1ad70664bbce",
+    "pname": "Realme RMX3840 12 Pro+ 12/256 GB Navigator Beige",
+    "brand": "Realme",
+    "description": "1. 12 GB RAM | 256 GB ROM\n2. 17.02 cm (6.7 inch) Full HD+ Display\n3. 50MP + 8MP + 64MP | 32MP Front Camera\n4. 5000 mAh Battery\n5. Snapdragon 7s Gen 2 Processor",
+    "color": "Navigator Beige",
+    "disksize": "256 GB",
+    "ram": "12 GB",
+    "psp": 30999,
+    "pop": 31499,
+    "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736495920/uploads/hzypfpqqgqtybc5qesds.webp"
   }
-
-  register(user: any) {
-    return this.http.post(this.apiUrl, user);
-  }
-
-  logout() {
-    this.isLoggedInSubject.next(false);
-    localStorage.removeItem('role');
-    this.router.navigate(['/login']);
-  }
-
-  setRole(role: string) {
-    localStorage.setItem('role', role);
-  }
-
-  getRole() {
-    return localStorage.getItem('role');
-  }
-
-  isLoggedIn() {
-    return this.isLoggedInSubject.asObservable();
-  }
-
-  setLoginStatus(status: boolean) {
-    this.isLoggedInSubject.next(status);
-  }
-}
-
-// auth.guard.ts
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-
-@Injectable({
-  providedIn: 'root',
-})
-export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
-
-  canActivate(): boolean {
-    const role = this.authService.getRole();
-    if (role) {
-      return true;
-    }
-    this.router.navigate(['/login']);
-    return false;
-  }
-}
-
-// login.component.ts
-import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
-
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-})
-export class LoginComponent {
-  username: string = '';
-  password: string = '';
-  errorMessage: string = '';
-
-  constructor(private authService: AuthService, private router: Router) {}
-
-  login() {
-    this.authService.login(this.username, this.password).subscribe(
-      (users) => {
-        if (users.length > 0) {
-          const user = users[0];
-          this.authService.setRole(user.role);
-          this.authService.setLoginStatus(true);
-          if (user.role === 'admin') {
-            this.router.navigate(['/admin']);
-          } else {
-            this.router.navigate(['/user']);
-          }
-        } else {
-          this.errorMessage = 'Invalid credentials!';
-        }
-      },
-      (error) => {
-        console.error('Login error:', error);
-      }
-    );
-  }
-}
-
-// register-user.component.ts
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
-
-@Component({
-  selector: 'app-register-user',
-  templateUrl: './register-user.component.html',
-  styleUrls: ['./register-user.component.css'],
-})
-export class RegisterUserComponent {
-  userForm: FormGroup;
-  message: string = '';
-
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
-    this.userForm = this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
-  }
-
-  register() {
-    if (this.userForm.valid) {
-      const newUser = {
-        ...this.userForm.value,
-        role: 'user',
-      };
-      this.authService.register(newUser).subscribe(() => {
-        this.message = 'Registration successful! Please login.';
-        this.router.navigate(['/login']);
-      });
-    }
-  }
-}
-
-// register-admin.component.ts
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
-
-@Component({
-  selector: 'app-register-admin',
-  templateUrl: './register-admin.component.html',
-  styleUrls: ['./register-admin.component.css'],
-})
-export class RegisterAdminComponent {
-  adminForm: FormGroup;
-  message: string = '';
-
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
-    this.adminForm = this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-    });
-  }
-
-  register() {
-    if (this.adminForm.valid) {
-      const newAdmin = {
-        ...this.adminForm.value,
-        role: 'admin',
-      };
-      this.authService.register(newAdmin).subscribe(() => {
-        this.message = 'Admin registration successful!';
-        this.router.navigate(['/login']);
-      });
-    }
-  }
-}
-
-// db.json (JSON Server)
-{
-  "users": [
-    { "id": 1, "username": "admin", "password": "admin123", "role": "admin" },
-    { "id": 2, "username": "user", "password": "user123", "role": "user" }
-  ]
-}
-
-
-
-
-
-
-
-
-
-
-
-// export const routes: Routes = [
-//   { path: '', component: MainComponent },
-//   { path: 'product/:id', component: ProductDetailsComponent }, // Dynamic route for product details
-//   { path: 'cart', component: CartComponent },
-//   // { path: 'login', component: LoginComponent },
-//   { path: 'register', component: RegisterComponent },
-//   { path: 'add-products', component: AddProductsComponent },
-//   { path: 'view-products', component: ViewProductsComponent },
-//   { path: 'brand/:brandName', component: BrandComponent },
-//   { path: 'login', component: LoginComponent,canActivate: [dummyAuthGuard] },
-//   { path: 'dashboard', component: HomeComponent },
-//   {path: 'admin',component: AdminDashboardComponent,canActivate: [roleGuard],data: { role: 'admin' },},
-//   {path: 'user',component: HomeComponent,canActivate: [roleGuard],data: { role: 'user' },},
-//   { path: '**', component: NotFoundComponentComponent },
-// ];
+]
