@@ -8,8 +8,8 @@ import { Webdata } from './webdata';
   providedIn: 'root',
 })
 export class GetProductService {
-  apiUrl = 'https://ecom-db-json.onrender.com/products';
-  webDataUrl = 'https://ecom-db-json.onrender.com/otherinfo';
+  apiUrl = 'http://localhost:3000/products';
+  webDataUrl = 'http://localhost:3000/otherinfo';
 
   constructor(private http: HttpClient) {}
 

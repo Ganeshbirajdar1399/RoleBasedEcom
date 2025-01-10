@@ -178,8 +178,8 @@ import { catchError, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class GlobalService {
-  private readonly apiUrl = 'https://ecom-db-json.onrender.com';
-  private readonly apiOrders = 'https://ecom-db-json.onrender.com/orders';
+  private readonly apiUrl = 'http://localhost:3000';
+  private readonly apiOrders = 'http://localhost:3000/orders';
   private readonly MAX_ITEMS = 20;
 
   private cartSubject = new BehaviorSubject<any[]>([]);
