@@ -363,9 +363,6 @@
   ],
   "users": [
     {
-      "id": "bcb3"
-    },
-    {
       "id": "1736601841653",
       "firstName": "Ram",
       "lastName": "Kumar",
@@ -416,9 +413,6 @@
       "role": "user"
     }
   ],
-  "cart": [],
-  "compare": [],
-  "wishlist": [],
   "otherinfo": [
     {
       "id": "eee85bf5-771b-4797-848b-6d4c3d6c9fe7",
