@@ -49,15 +49,30 @@
             let i = index
           "
         >
-          <td>{{ order.id }}</td>
-          <td>{{ order.customer.name }}</td>
-          <td>{{ order.customer.email }}</td>
-          <td>{{ order.customer.contactNo }}</td>
-          <td>{{ order.customer.address }}</td>
-          <td>{{ order.customer.billingAddress }}</td>
-          <td>{{ order.orderDate | date : "short" }}</td>
-          <td>{{ order.totalAmount | currency : "INR" }}</td>
-          <td>
+          <!-- Display only if order.userId matches logged-in user's ID -->
+          <td *ngIf="order.userId === loggedInUser?.id">{{ order.id }}</td>
+          <td *ngIf="order.userId === loggedInUser?.id">
+            {{ order.customer.name }}
+          </td>
+          <td *ngIf="order.userId === loggedInUser?.id">
+            {{ order.customer.email }}
+          </td>
+          <td *ngIf="order.userId === loggedInUser?.id">
+            {{ order.customer.contactNo }}
+          </td>
+          <td *ngIf="order.userId === loggedInUser?.id">
+            {{ order.customer.address }}
+          </td>
+          <td *ngIf="order.userId === loggedInUser?.id">
+            {{ order.customer.billingAddress }}
+          </td>
+          <td *ngIf="order.userId === loggedInUser?.id">
+            {{ order.orderDate | date : "short" }}
+          </td>
+          <td *ngIf="order.userId === loggedInUser?.id">
+            {{ order.totalAmount | currency : "INR" }}
+          </td>
+          <td *ngIf="order.userId === loggedInUser?.id">
             <ul>
               <li *ngFor="let item of order.items">
                 {{ item.pname }} ({{ item.ram }}, {{ item.disksize }}) x
@@ -65,11 +80,9 @@
               </li>
             </ul>
           </td>
-          <td>
+          <td *ngIf="order.userId === loggedInUser?.id">
             <div class="d-flex justify-content-between">
-              <!-- <button class="btn btn-sm btn-primary" (click)="editOrder(order)">
-                <i class="bi bi-pencil-square"></i>
-              </button> -->
+              <!-- Delete button is visible only for admins -->
               <button
                 *ngIf="loggedInUser?.role === 'admin'"
                 class="btn btn-sm btn-danger ms-2"
@@ -89,44 +102,51 @@
 
   <!-- Mobile-friendly cards for small screens -->
   <div class="product-cards">
-    <div class="card">
-      <div class="card-body" *ngFor="let order of allOrders">
-        <h5 class="card-title">Customer Name: {{ order.customer.name }}</h5>
-        <p class="card-text">
-          <strong>Customer Number:</strong> {{ order.customer.contactNo }}
-        </p>
-        <p class="card-text">
-          <strong>Customer Email:</strong> {{ order.customer.email }}
-        </p>
-        <p class="card-text">
-          <strong>Order Date: </strong> {{ order.orderDate | date : "short" }}
-        </p>
-        <p class="card-text">
-          <strong>Order Amount: </strong>
-          {{ order.totalAmount | currency : "INR" }}
-        </p>
+    <div class="card" *ngFor="let order of allOrders">
+      <div class="card-body">
+        <!-- Display order only if userId matches logged-in user -->
+        <div *ngIf="order.userId === loggedInUser?.id">
+          <h5 class="card-title">Customer Name: {{ order.customer.name }}</h5>
+          <p class="card-text">
+            <strong>Customer Number:</strong> {{ order.customer.contactNo }}
+          </p>
+          <p class="card-text">
+            <strong>Customer Email:</strong> {{ order.customer.email }}
+          </p>
+          <p class="card-text">
+            <strong>Order Date: </strong> {{ order.orderDate | date : "short" }}
+          </p>
+          <p class="card-text">
+            <strong>Order Amount: </strong>
+            {{ order.totalAmount | currency : "INR" }}
+          </p>
 
-        <p class="card-text">
-          <strong>Shipping Address: </strong> {{ order.customer.address }}
-        </p>
-        <p class="card-text">
-          <strong>Billing Address: </strong> {{ order.customer.billingAddress }}
-        </p>
-        <li *ngFor="let item of order.items">
-          {{ item.pname }} ({{ item.ram }}, {{ item.disksize }}) x
-          {{ item.quantity }} - {{ item.psp | currency : "INR" }}
-        </li>
-        <div class="d-flex justify-content-center">
-          <!-- <button class="btn btn-sm btn-primary" (click)="editOrder(order)">
-            <i class="bi bi-pencil-square"></i>
-          </button> -->
-          <button
-            class="btn btn-sm btn-danger ms-2"
-            *ngIf="loggedInUser?.role === 'admin'"
-            (click)="deleteOrders(order.id)"
-          >
-            <i class="bi bi-trash"></i>
-          </button>
+          <p class="card-text">
+            <strong>Shipping Address: </strong> {{ order.customer.address }}
+          </p>
+          <p class="card-text">
+            <strong>Billing Address: </strong>
+            {{ order.customer.billingAddress }}
+          </p>
+
+          <!-- Loop through items in the order -->
+          <ul>
+            <li *ngFor="let item of order.items">
+              {{ item.pname }} ({{ item.ram }}, {{ item.disksize }}) x
+              {{ item.quantity }} - {{ item.psp | currency : "INR" }}
+            </li>
+          </ul>
+
+          <!-- Display delete button only for admin -->
+          <div class="d-flex justify-content-center">
+            <button
+              class="btn btn-sm btn-danger ms-2"
+              *ngIf="loggedInUser?.role === 'admin'"
+              (click)="deleteOrders(order.id)"
+            >
+              <i class="bi bi-trash"></i> Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>

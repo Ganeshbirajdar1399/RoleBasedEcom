@@ -363,96 +363,62 @@
   ],
   "users": [
     {
-      "id": "0c44",
-      "firstName": "Shyam",
-      "lastName": "Kumar",
-      "email": "sk1@gmail.com",
-      "mobile": "9090098765",
-      "address": "Pune",
-      "role": "user"
+      "id": "bcb3"
     },
     {
-      "id": "0c44",
-      "firstName": "Shyam",
-      "lastName": "Kumar",
-      "email": "sk1@gmail.com",
-      "mobile": "9090098765",
-      "password": "12345678",
-      "address": "Pune",
-      "role": "user"
-    },
-    {
-      "id": "32b719ee-7b80-4c8e-976f-d2c8804338c9",
-      "firstName": "Aman test",
-      "lastName": "Deep",
-      "password": "12121212",
-      "email": "ad1@gmail.com",
-      "mobile": "9900889977",
-      "address": "Pune",
-      "role": "user"
-    },
-    {
-      "id": "5111",
+      "id": "1736601841653",
       "firstName": "Ram",
       "lastName": "Kumar",
-      "password": "11221122",
       "email": "rk1@gmail.com",
-      "mobile": "8877889900",
-      "address": "Satara",
+      "mobile": "00000000",
+      "password": "$2b$10$gLP4BIXNH9mc9pqnoc5jc.zq9NDpy2c6Vmj2dus9BDEwjIQT3hF3.",
+      "address": "Pune",
       "role": "admin"
     },
     {
-      "id": "",
+      "id": "1736601982241",
+      "firstName": "Shyam",
+      "lastName": "kumar",
+      "email": "sk1@gmail.com",
+      "mobile": "9900990099",
+      "password": "$2b$10$iZWUIywsmVP2ilKvNyzGK.DOiAvH54ke9anzQ9qrTXHwuWWm9./7a",
+      "address": "Pune",
+      "role": "user"
+    },
+    {
+      "id": "1736604156509",
+      "firstName": "user",
+      "lastName": "user",
+      "email": "user1@gmail.com",
+      "mobile": "99009900",
+      "password": "$2b$10$7gyglV5fvV5mTGDP.OT1Fu/QdFVQDzuRyRHIJ/JZucveVmHxH/Ojm",
+      "address": "user",
+      "role": "user"
+    },
+    {
+      "id": "1736606392664",
+      "firstName": "admin",
+      "lastName": "admin",
+      "email": "admin1@gmail.com",
+      "mobile": "99009900",
+      "password": "$2b$10$6kVdTm6qCllt.3Ay7EKf8ePzB0sHiGqygMb5tkNrnbo2gPl95JbWq",
+      "address": "Pune",
+      "role": "admin"
+    },
+    {
+      "id": "1736618026302",
       "firstName": "Aman",
       "lastName": "Chopda",
       "email": "ac1@gmail.com",
-      "mobile": "8877889900",
-      "password": "12345678",
+      "mobile": "0099009900",
+      "password": "$2b$10$D8cJV/9WY31FOZdsssWFsebbRzWJhOJ6sdbRXZO0AzXrqdVDLzaXq",
       "address": "Pune",
-      "role": "admin"
+      "role": "user"
     }
   ],
   "cart": [],
-  "compare": [
-    {
-      "id": "6bd8b542-4617-4810-979c-589b138f7fc5",
-      "pname": "Lava A055 A05 4/64 GB Black",
-      "brand": "Lava",
-      "description": "1.    4 GB RAM | 64 GB ROM | Expandable Upto 1 TB\n2.   17.02 cm (6.7 inch) Full HD+ Display\n3.    50MP + 5MP | 8MP Front Camera\n4.    5000 mAh Battery\n5.    MediaTek Helio G85 Processor",
-      "color": "Black",
-      "disksize": "64 GB",
-      "ram": "4 GB",
-      "psp": 7999,
-      "pop": 8500,
-      "image": "http://localhost:3001/uploads/1734976516925.webp"
-    },
-    {
-      "id": "6bd8b548-4617-4810-979c-589b138f7fc4",
-      "pname": "Lava A055 A05 4/64 GB Black",
-      "brand": "Lava",
-      "description": "1.    4 GB RAM | 64 GB ROM | Expandable Upto 1 TB\n2.   17.02 cm (6.7 inch) Full HD+ Display\n3.    50MP + 5MP | 8MP Front Camera\n4.    5000 mAh Battery\n5.    MediaTek Helio G85 Processor",
-      "color": "Cobalt Blue",
-      "disksize": "128 GB",
-      "ram": "4 GB",
-      "psp": 7899,
-      "pop": 8500,
-      "image": "http://localhost:3001/uploads/1734976538430.webp"
-    }
-  ],
-  "wishlist": [
-    {
-      "id": "bc23d1f5-4220-439c-817e-529162002ad3",
-      "pname": "OnePlus A057 A05S 6/128 GB Light Green",
-      "brand": "OnePlus",
-      "description": "1. 8 GB RAM | 128 GB ROM\n    2. 17.02 cm (6.7 inch) Full HD+ Display\n    3. 50MP + 8MP + 2MP | 32MP Front Camera\n    4. 5200 mAh Battery\n    5. Snapdragon 7s Gen2 Processor",
-      "color": " Light Green",
-      "disksize": "128 GB",
-      "ram": "8 GB",
-      "psp": 13500,
-      "pop": 14500,
-      "image": "http://localhost:3001/uploads/1734975660382.webp"
-    }
-  ],
+  "compare": [],
+  "wishlist": [],
   "otherinfo": [
     {
       "id": "eee85bf5-771b-4797-848b-6d4c3d6c9fe7",
@@ -477,53 +443,92 @@
   ],
   "orders": [
     {
-      "id": "e56f",
+      "id": "2cd2",
       "customer": {
-        "name": "Anand Kumar",
+        "name": "Shyam kumar",
         "contactNo": "9900990099",
-        "email": "ak1@gmail.com",
+        "email": "sk1@gmail.com",
         "address": "Pune",
-        "billingAddress": "Pune"
+        "billingAddress": "Mumbai"
       },
+      "userId": "1736601982241",
       "items": [
         {
-          "pname": "Samsung A057 A05S 6/128 GB Light Green",
-          "psp": 13500,
+          "pname": "Oneplus Nord 4 8/128 GB Oasis Green",
+          "psp": 27599,
           "quantity": 1,
           "ram": "8 GB",
           "disksize": "128 GB"
-        },
-        {
-          "pname": "Samsung A055 A05 4/64 GB Black",
-          "psp": 7899,
-          "quantity": 1,
-          "ram": "4 GB",
-          "disksize": "128 GB"
         }
       ],
-      "totalAmount": 21399,
-      "orderDate": "2025-01-09T10:28:42.590Z"
+      "totalAmount": 27599,
+      "orderDate": "2025-01-11T17:41:35.679Z"
     },
     {
-      "id": "9861",
+      "id": "e670",
       "customer": {
-        "name": "aaaa",
-        "contactNo": "6666",
-        "email": "dd@dddd",
-        "address": "ddd",
-        "billingAddress": "ddd"
+        "name": "Shyam kumar",
+        "contactNo": "9900990099",
+        "email": "sk1@gmail.com",
+        "address": "Satara",
+        "billingAddress": "Pune"
       },
+      "userId": "1736601982241",
       "items": [
         {
-          "pname": "Realme RMX3840 12 Pro+ 12/256 GB Navigator Beige",
-          "psp": 30999,
+          "pname": "Oneplus 12 16/512 GB Flowy Emerald",
+          "psp": 69799,
           "quantity": 1,
           "ram": "12 GB",
+          "disksize": "512 GB"
+        }
+      ],
+      "totalAmount": 69799,
+      "orderDate": "2025-01-11T17:48:41.267Z"
+    },
+    {
+      "id": "d9dd",
+      "customer": {
+        "name": "Aman Chopda",
+        "contactNo": "0099009900",
+        "email": "ac1@gmail.com",
+        "address": "Pune",
+        "billingAddress": "Pune"
+      },
+      "userId": "1736618026302",
+      "items": [
+        {
+          "pname": "Oneplus 12R 16/256 GB Iron Gray",
+          "psp": 45799,
+          "quantity": 1,
+          "ram": "16 GB",
           "disksize": "256 GB"
         }
       ],
-      "totalAmount": 30999,
-      "orderDate": "2025-01-10T11:04:27.556Z"
+      "totalAmount": 45799,
+      "orderDate": "2025-01-11T17:54:23.418Z"
+    },
+    {
+      "id": "0f1c",
+      "customer": {
+        "name": "Aman Chopda",
+        "contactNo": "0099009900",
+        "email": "ac1@gmail.com",
+        "address": "Pune",
+        "billingAddress": "Mumbai"
+      },
+      "userId": "1736618026302",
+      "items": [
+        {
+          "pname": "Realme Rmx 3990 13 Pro 5G 8/128 GB Green",
+          "psp": 23599,
+          "quantity": 1,
+          "ram": "8 GB",
+          "disksize": "128 GB"
+        }
+      ],
+      "totalAmount": 23599,
+      "orderDate": "2025-01-11T17:54:58.097Z"
     }
   ]
 }

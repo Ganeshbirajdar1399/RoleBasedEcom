@@ -3,6 +3,7 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/auth/auth.service';
+import { v4 as uuidv4 } from 'uuid'; // Import uuidv4 for generating UUIDs
 
 @Component({
   selector: 'app-user-profile',
@@ -40,6 +41,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   onSubmit() {
+    this.users.id = uuidv4(); // Assign UUID to the user's id field
     this.authService.register(this.users).subscribe((res) => {
       console.log('admin added successfully', res);
       this.isRegister = true;

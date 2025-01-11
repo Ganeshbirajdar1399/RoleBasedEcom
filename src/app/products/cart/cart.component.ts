@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { GlobalService } from '../../core/services/global.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -23,7 +25,9 @@ export class CartComponent implements OnInit {
     private globalService: GlobalService,
     private router: Router,
     private cartService: CartService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private snackBar: MatSnackBar, // Inject MatSnackBar for toast
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -151,8 +155,19 @@ export class CartComponent implements OnInit {
       0
     );
   }
+
   goToCheckout(): void {
-    this.cartService.setCartItems(this.cartItems, this.totalAmount); // Store cart data in CartService
-    this.router.navigate(['/checkout']); // Navigate to checkout page
+    if (this.authService.isLoggedIn()) {
+      this.cartService.setCartItems(this.cartItems, this.totalAmount); // Store cart data in CartService
+      this.router.navigate(['/checkout']); // Navigate to checkout page
+    } else {
+      // User is not logged in, show toast and redirect to login page
+      this.snackBar.open('Please log in to proceed to checkout', 'Close', {
+        duration: 3000,
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+      });
+      this.router.navigate(['/login']); // Redirect to login component
+    }
   }
 }

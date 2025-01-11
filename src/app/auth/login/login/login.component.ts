@@ -11,6 +11,7 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { validate } from 'uuid';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../core/services/auth/auth.service';
+import * as CryptoJS from 'crypto-js'; // Import CryptoJS for password hashing
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,6 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 export class LoginComponent implements OnInit {
   myForm: FormGroup;
   error = '';
-
   hide = true;
 
   constructor(
@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
+
   ngOnInit(): void {
     this.scroller.scrollToPosition([0, 0]);
   }
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
       (user) => {
         if (user) {
           this.authService.setUser(user);
-          this.router.navigate([user.role]);
+          this.router.navigate([user.role]); // Navigate based on user role
         }
       },
       () => {
@@ -56,6 +57,6 @@ export class LoginComponent implements OnInit {
   }
 
   toggleHide() {
-    this.hide = !this.hide;
+    this.hide = !this.hide; // Toggle password visibility
   }
 }

@@ -13,6 +13,8 @@ import { v4 as uuidv4 } from 'uuid'; // Import uuidv4 for generating UUIDs
 })
 export class RegisterComponent implements OnInit {
   isRegister = false;
+  error = ''; // To store any error messages
+
   users = {
     id: '', // Add id field to store UUID
     firstName: '',
@@ -23,8 +25,6 @@ export class RegisterComponent implements OnInit {
     address: '',
     role: 'user',
   };
-
-  usersData: any[] = [];
 
   constructor(
     private authService: AuthService,
@@ -40,16 +40,23 @@ export class RegisterComponent implements OnInit {
     // Generate UUID for the new user
     this.users.id = uuidv4(); // Assign UUID to the user's id field
 
-    this.authService.register(this.users).subscribe((res) => {
-      console.log('User Register successfully', res);
-      alert('Register successfully');
-      this.isRegister = true;
-      setTimeout(() => {
-        this.isRegister = false;
-      }, 2000);
-      this.formEmpty();
-      this.router.navigate(['/login']);
-    });
+    // Register the user with the backend (password will be hashed there)
+    this.authService.register(this.users).subscribe(
+      (res) => {
+        console.log('User registered successfully', res);
+        alert('Register successfully');
+        this.isRegister = true;
+        setTimeout(() => {
+          this.isRegister = false;
+        }, 2000);
+        this.formEmpty();
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        console.error('Error registering user', error);
+        this.error = 'Registration failed. Please try again.'; // Show error message
+      }
+    );
   }
 
   formEmpty() {
@@ -61,7 +68,7 @@ export class RegisterComponent implements OnInit {
       mobile: '',
       password: '',
       address: '',
-      role: '',
+      role: '', // Reset role if needed
     };
   }
 }

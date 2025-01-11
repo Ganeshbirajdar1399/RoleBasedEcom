@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Webdata } from '../../core/services/product/webdata';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-otherinfo',
   imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule],
@@ -217,7 +218,8 @@ export class OtherinfoComponent {
     private getProducts: GetProductService,
     private fb: FormBuilder,
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {
     this.myForm = this.fb.group({
       about: ['', [Validators.required]],
@@ -349,6 +351,7 @@ export class OtherinfoComponent {
 
         this.getProducts.addWebData(webInfo).subscribe({
           next: (response) => {
+            this.toastr.success('Data added successfully', 'Success');
             console.log('Data added successfully:', response);
             this.isAdded = true;
             setTimeout(() => {
