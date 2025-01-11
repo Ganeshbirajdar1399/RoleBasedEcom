@@ -8,14 +8,15 @@ import { Webdata } from './webdata';
   providedIn: 'root',
 })
 export class GetProductService {
-  apiUrl = 'https://ecom-db-json.onrender.com/products';
-  webDataUrl = 'https://ecom-db-json.onrender.com/otherinfo';
+  private readonly baseUrl = 'https://ecom-db-json.onrender.com'; // Fixed base URL
+  private readonly productsUrl = `${this.baseUrl}/products`; // Products endpoint
+  private readonly webDataUrl = `${this.baseUrl}/otherinfo`; // Web data endpoint
 
   constructor(private http: HttpClient) {}
 
   // Fetch all products
   fetchData(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl).pipe(
+    return this.http.get<Product[]>(this.productsUrl).pipe(
       catchError((error) => {
         console.error('Error fetching products:', error);
         return of([]); // Return an empty array in case of error
@@ -23,21 +24,20 @@ export class GetProductService {
     );
   }
 
-  //search products
+  // Search products
   searchProducts(query: string): Observable<any[]> {
-    return this.http
-      .get<any[]>(this.apiUrl)
-      .pipe(
-        map((products) =>
-          products.filter((product) =>
-            product.pname.toLowerCase().includes(query.toLowerCase())
-          )
+    return this.http.get<any[]>(this.productsUrl).pipe(
+      map((products) =>
+        products.filter((product) =>
+          product.pname.toLowerCase().includes(query.toLowerCase())
         )
-      );
+      )
+    );
   }
 
+  // Add product
   addData(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.apiUrl, product).pipe(
+    return this.http.post<Product>(this.productsUrl, product).pipe(
       catchError((error) => {
         console.error('Error adding product:', error);
         return of(null as unknown as Product); // Return null in case of error
@@ -45,35 +45,40 @@ export class GetProductService {
     );
   }
 
+  // Add web data
   addWebData(webdata: Webdata): Observable<Webdata> {
     return this.http.post<Webdata>(this.webDataUrl, webdata).pipe(
       catchError((error) => {
-        console.error('Error adding product:', error);
+        console.error('Error adding web data:', error);
         return of(null as unknown as Webdata); // Return null in case of error
       })
     );
   }
-  // Fetch all webdatas
+
+  // Fetch all web data
   fetchWebData(): Observable<Webdata[]> {
     return this.http.get<Webdata[]>(this.webDataUrl).pipe(
       catchError((error) => {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching web data:', error);
         return of([]); // Return an empty array in case of error
       })
     );
   }
 
+  // Update web data
   updateWebData(id: string, webdata: any): Observable<any> {
     const url = `${this.webDataUrl}/${id}`;
     return this.http.put<any>(url, webdata).pipe(
       catchError((error) => {
-        console.error('Error updating webdata:', error);
+        console.error('Error updating web data:', error);
         return throwError(() => new Error(error));
       })
     );
   }
+
+  // Update product data
   updateData(id: string, product: any): Observable<any> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.productsUrl}/${id}`;
     return this.http.put<any>(url, product).pipe(
       catchError((error) => {
         console.error('Error updating product:', error);
@@ -82,11 +87,12 @@ export class GetProductService {
     );
   }
 
-  deleteData(id: string) {
-    return this.http.delete<Product>(`${this.apiUrl}/${id}`).pipe(
+  // Delete product
+  deleteData(id: string): Observable<Product> {
+    return this.http.delete<Product>(`${this.productsUrl}/${id}`).pipe(
       catchError((error) => {
         console.error('Error in delete product:', error);
-        return of(null as unknown as Product);
+        return of(null as unknown as Product); // Return null in case of error
       })
     );
   }

@@ -7,8 +7,8 @@ import { catchError, switchMap, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class CartService {
-  private readonly apiUrl = 'https://ecom-db-json.onrender.com/cart';
-  private readonly apiUrlcart = 'https://ecom-db-json.onrender.com/';
+  private readonly baseUrl = 'https://ecom-db-json.onrender.com'; // Base URL
+  private readonly cartEndpoint = `${this.baseUrl}/cart`; // Cart endpoint
 
   private cartItems: any[] = [];
   private totalAmount: number = 0;
@@ -23,6 +23,7 @@ export class CartService {
     this.cartItems = cartItems;
     this.totalAmount = totalAmount;
   }
+
   getCartItems(): any[] {
     return this.cartItems;
   }
@@ -32,14 +33,14 @@ export class CartService {
   }
 
   private loadCartFromServer(): void {
-    this.http.get<any[]>(this.apiUrl).subscribe({
+    this.http.get<any[]>(this.cartEndpoint).subscribe({
       next: (cartItems) => this.cartSubject.next(cartItems),
       error: (error) => console.error('Failed to load cart:', error),
     });
   }
 
   getCartItem(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
+    return this.http.get<any[]>(this.cartEndpoint).pipe(
       tap((response) => this.cartSubject.next(response)),
       catchError((error) => {
         console.error('Error in getCartItem:', error);
@@ -55,7 +56,7 @@ export class CartService {
     if (existingItem) {
       existingItem.quantity += 1;
       return this.http
-        .put<any>(`${this.apiUrl}/${existingItem.id}`, existingItem)
+        .put<any>(`${this.cartEndpoint}/${existingItem.id}`, existingItem)
         .pipe(
           tap(() => this.cartSubject.next([...cart])),
           catchError((error) => {
@@ -65,7 +66,7 @@ export class CartService {
         );
     } else {
       const newProduct = { ...product, quantity: 1 };
-      return this.http.post<any>(this.apiUrl, newProduct).pipe(
+      return this.http.post<any>(this.cartEndpoint, newProduct).pipe(
         tap(() => this.cartSubject.next([...cart, newProduct])),
         catchError((error) => {
           console.error('Failed to add to cart:', error);
@@ -79,7 +80,7 @@ export class CartService {
     const cart = this.cartSubject.getValue().filter((item) => item.id !== id);
     this.cartSubject.next(cart);
 
-    return this.http.delete(`${this.apiUrl}/${id}`).pipe(
+    return this.http.delete(`${this.cartEndpoint}/${id}`).pipe(
       catchError((error) => {
         console.error('Failed to remove item:', error);
         throw error;
@@ -88,17 +89,20 @@ export class CartService {
   }
 
   clearCart(): Observable<any> {
-    return this.http
-      .get<any[]>(`${this.apiUrlcart}/cart`)
-      .pipe(
-        switchMap((cartItems) =>
-          forkJoin(
-            cartItems.map((item) =>
-              this.http.delete(`${this.apiUrlcart}/cart/${item.id}`)
-            )
+    return this.http.get<any[]>(this.cartEndpoint).pipe(
+      switchMap((cartItems) =>
+        forkJoin(
+          cartItems.map((item) =>
+            this.http.delete(`${this.cartEndpoint}/${item.id}`)
           )
         )
-      );
+      ),
+      tap(() => this.cartSubject.next([])),
+      catchError((error) => {
+        console.error('Failed to clear cart:', error);
+        throw error;
+      })
+    );
   }
 
   getCartObservable(): Observable<any[]> {

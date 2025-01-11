@@ -9,6 +9,7 @@ import { CompareService } from '../../core/services/compare/compare.service';
 import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 import { GlobalService } from '../../core/services/global.service';
 import { Webdata } from '../../core/services/product/webdata';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-main',
@@ -32,7 +33,8 @@ export class MainComponent implements OnInit {
     // private cartService: CartService,
     // private compareService: CompareService,
     // private wishlistService: WishlistService,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,17 @@ export class MainComponent implements OnInit {
     // console.log('All brands',this.productUtils.getBrands(this.groupedProducts));
     // console.log('group products',this.productUtils.getBrands(this.groupedProducts));
     this.fetchwebdata();
+  }
+  calculateDiscount(psp: number, pop: number): number {
+    const discount = ((pop - psp) / pop) * 100;
+    return Math.round(discount); // Round to the nearest whole number
+  }
+  getRandomProducts(products: any[], count: number = 6): any[] {
+    if (!products || products.length <= count) {
+      return products; // If there are fewer products, return them all
+    }
+    const shuffled = [...products].sort(() => 0.5 - Math.random()); // Shuffle the array
+    return shuffled.slice(0, count); // Select the first `count` items
   }
 
   fetchwebdata(): void {
@@ -58,13 +71,13 @@ export class MainComponent implements OnInit {
 
   addToCart(product: any) {
     if (this.cartItems.some((item) => item.id === product.id)) {
-      alert('This product is already in the cart list!');
+      this.toastr.warning('This product is already in the list!', 'Warning');
       return;
     }
 
     this.globalService.addToCart(product).subscribe({
       next: () => {
-        alert('Product added to Cart!');
+        this.toastr.success(`${product?.pname} added to compare`, 'Success');
         this.getCartItems(); // Refresh compare list
       },
       error: (err) => {
@@ -88,18 +101,18 @@ export class MainComponent implements OnInit {
   // Add product to compare list
   addToCompare(product: any) {
     if (this.compareItems.some((item) => item.id === product.id)) {
-      alert('This product is already in the compare list!');
+      this.toastr.warning('This product is already in the list!', 'Warning');
       return;
     }
 
-    if (this.compareItems.length >= 4) {
-      alert('Compare section is full! You can only compare up to 4 products.');
-      return;
-    }
+    // if (this.compareItems.length >= 4) {
+    //   this.toastr.warning('Compare section is full! You can only compare up to 4 products.', 'Warning');
+    //   return;
+    // }
 
     this.globalService.addToCompare(product).subscribe({
       next: () => {
-        alert('Product added to compare!');
+        this.toastr.success(`${product?.pname} added to compare`, 'Success');
         this.getCompareItems(); // Refresh compare list
       },
       error: (err) => {
@@ -122,20 +135,20 @@ export class MainComponent implements OnInit {
 
   addToWishlist(product: any) {
     if (this.wishlistItems.some((item) => item.id === product.id)) {
-      alert('This product is already in the Wish-list!');
+      this.toastr.warning('This product is already in the list!', 'Warning');
       return;
     }
 
-    if (this.wishlistItems.length >= 4) {
-      alert(
-        'Compare section is full! You can only Wish-list up to 4 products.'
-      );
-      return;
-    }
+    // if (this.wishlistItems.length >= 4) {
+    //   alert(
+    //     'Compare section is full! You can only Wish-list up to 4 products.'
+    //   );
+    //   return;
+    // }
 
     this.globalService.addToWishlist(product).subscribe({
       next: () => {
-        alert('Product added to Wish-list!');
+        this.toastr.success(`${product?.pname} added to wishlist`, 'Success');
         this.getWishlistItems(); // Refresh Wish-list list
       },
       error: (err) => {

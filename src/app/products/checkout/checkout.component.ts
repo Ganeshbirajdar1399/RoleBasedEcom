@@ -70,7 +70,7 @@ export class CheckoutComponent implements OnInit {
     this.globalService.placeOrder(orderData).subscribe(
       (response) => {
         this.toastr.success('Your order was placed successfully!', 'Success');
-        console.log('Order placed successfully:', response);
+        // console.log('Order placed successfully:', response);
         this.clearForm();
 
         // Clear the cart after placing the order

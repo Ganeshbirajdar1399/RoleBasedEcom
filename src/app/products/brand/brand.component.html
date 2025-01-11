@@ -1,17 +1,17 @@
 <div class="container mt-5">
   <div class="row" style="margin-top: 100px">
     <!-- Sidebar -->
-    <div class="col-md-3">
-      <h4 class="text-center text-light border- mb-4" style="background-color: #6f42c1;">Shop by Brands</h4>
-      <ul class="list-group shadow-sm">
+    <div class="col-md-3 shop-by-brands">
+      <h4 class="brand-header">Shop by Brands</h4>
+      <ul class="list-group brand-list">
         <li
-          class="list-group-item d-flex justify-content-between align-items-center"
+          class="list-group-item brand-item"
           *ngFor="let brand of getBrands()"
           (click)="navigateToBrand(brand)"
           [class.active]="brand === brandName"
         >
           {{ brand | titlecase }}
-          <span class="badge rounded-pill" style="background-color: #6f42c1;">
+          <span class="badge rounded-pill product-count">
             {{ groupedProducts[brand].length || 0 }}
           </span>
         </li>
@@ -34,14 +34,25 @@
                 class="card-title text-truncate"
                 [routerLink]="['/product', product.id]"
               >
-                {{ product.pname }}
+                {{ product.pname | limitWords : 10 }}
               </h5>
-              <p class="card-text text-muted small">
+              <!-- <p class="card-text text-muted small">
                 {{ product.description | limitWords : 15 }}
-              </p>
+              </p> -->
               <div class="d-flex justify-content-between align-items-center">
-                <span class="text-success fw-bold">
-                  {{ product.psp | currency : 'INR' }}
+                {{ product?.psp | currency : "INR" : "₹" }}
+
+                <small class="text-dark">
+                  <s>{{ product?.pop | currency : "INR" : "₹" }}</s>
+                </small>
+
+                <span
+                  *ngIf="
+                    product?.psp && product?.pop && product.pop > product.psp
+                  "
+                  class="badge rounded-pill bg-danger ms-2"
+                >
+                  {{ calculateDiscount(product.psp, product.pop) }}% OFF
                 </span>
               </div>
               <div class="text-center mt-3">

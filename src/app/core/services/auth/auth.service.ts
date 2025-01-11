@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly apiUrl = 'https://ecom-db-json.onrender.com/users'; // Base API URL
+  private readonly apiUrl = 'https://ecom-db-json.onrender.com'; // Base API URL
 
   private userSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
     this.getUser()
@@ -26,7 +26,7 @@ export class AuthService {
 
   login(email: string, password: string): Observable<any> {
     const queryParams = `?email=${email}&password=${password}`;
-    return this.http.get<any[]>(`${this.apiUrl}${queryParams}`).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}/users${queryParams}`).pipe(
       map(([user]) => {
         if (user) {
           this.setUser(user);
@@ -36,7 +36,7 @@ export class AuthService {
         }
         throw new Error('Invalid credentials');
       }),
-      catchError((error) => {
+      catchError(() => {
         alert('Login failed');
         return throwError(() => new Error('Login failed'));
       })
@@ -44,19 +44,20 @@ export class AuthService {
   }
 
   register(user: Users): Observable<Users> {
-    return this.http.post<Users>(this.apiUrl, user).pipe(
+    return this.http.post<Users>(`${this.apiUrl}/users`, user).pipe(
       catchError((error) => {
         console.log('Error in adding users', error);
         return of(null as unknown as Users);
       })
     );
   }
+
   updateUser(updatedDetails: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${updatedDetails.id}`, updatedDetails);
+    return this.http.put(`${this.apiUrl}/users/${updatedDetails.id}`, updatedDetails);
   }
 
   DeletetData(id: string): Observable<Users> {
-    return this.http.delete<Users>(`${this.apiUrl}/${id}`);
+    return this.http.delete<Users>(`${this.apiUrl}/users/${id}`);
   }
 
   setUser(user: any): void {
@@ -96,7 +97,7 @@ export class AuthService {
   }
 
   fetchUsers(): Observable<Users[]> {
-    return this.http.get<Users[]>(this.apiUrl).pipe(
+    return this.http.get<Users[]>(`${this.apiUrl}/users`).pipe(
       catchError((error) => {
         console.log('Error fetching users:', error);
         return of([]);

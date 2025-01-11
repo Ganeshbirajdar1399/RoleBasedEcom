@@ -7,13 +7,13 @@ import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),  // Configures routing
-    provideAnimationsAsync(),  // Provides animations for the app
-    provideHttpClient(withFetch()),  // Configures HTTP client
+    provideRouter(routes), // Configures routing
+    provideAnimationsAsync(), // Provides animations for the app
+    provideHttpClient(withFetch()), // Configures HTTP client
     provideToastr({
-      timeOut: 3000, // Toast duration
+      timeOut: 1000, // Toast duration
       positionClass: 'toast-top-right', // Toast position
       preventDuplicates: true, // Prevent duplicate messages
-    }),  // Configures Toastr
-  ]
+    }), // Configures Toastr
+  ],
 };

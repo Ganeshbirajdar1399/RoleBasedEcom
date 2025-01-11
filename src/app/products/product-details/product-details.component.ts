@@ -4,6 +4,8 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { GetProductService } from '../../core/services/product/get-product.service';
 import { CartService } from '../../core/services/cart/cart-service.service';
 import { GlobalService } from '../../core/services/global.service';
+import { MagnifierComponent } from '../magnifier/magnifier.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-details',
@@ -21,7 +23,8 @@ export class ProductDetailsComponent implements OnInit {
     private productService: GetProductService,
     // private cartService: CartService,
     private scroller: ViewportScroller,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +32,11 @@ export class ProductDetailsComponent implements OnInit {
     const productId = this.route.snapshot.paramMap.get('id'); // Get product ID from route
     this.loadProduct(productId!);
     console.log('Product ID from route:', productId);
+  }
+
+  calculateDiscount(psp: number, pop: number): number {
+    const discount = ((pop - psp) / pop) * 100;
+    return Math.round(discount); // Round to the nearest whole number
   }
 
   loadProduct(productId: string): void {
@@ -48,13 +56,17 @@ export class ProductDetailsComponent implements OnInit {
 
   addToCart(product: any) {
     if (this.cartItems.some((item) => item.id === product.id)) {
-      alert('This product is already in the cart list!');
+      this.toastr.warning(
+        'This product is already in the cart list!',
+        'Warning'
+      );
       return;
     }
 
     this.globalService.addToCart(product).subscribe({
       next: () => {
-        alert('Product added to Cart!');
+        // Show toast notification
+        this.toastr.success(`${product?.pname} added to cart`, 'Success');
         this.getCartItems(); // Refresh compare list
       },
       error: (err) => {

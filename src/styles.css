@@ -81,3 +81,33 @@ body {
   }
 }
 
+/* tostr*/
+.toast-success {
+  background-color: #28a745 !important;
+  /* Success background */
+  color: #fff !important;
+  /* Text color */
+}
+
+.toast-warning {
+  background-color: #ffc107 !important;
+  /* Yellow background for warnings */
+  color: #000 !important;
+}
+
+.toast-success {
+  background-color: #28a745 !important;
+  /* Green background for success */
+  color: #fff !important;
+}
+
+.toast-error {
+  background-color: #dc3545 !important;
+  /* Error background */
+  color: #fff !important;
+}
+
+.toast-top-right {
+  top: 12px;
+  right: 12px;
+}

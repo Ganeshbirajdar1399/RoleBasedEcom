@@ -19,6 +19,6 @@ const storage = new CloudinaryStorage({
 });
 
 const upload = multer({ storage }).single("image");
-const uploadMultiple = multer({ storage }).array("images", 100); // Allows up to 10 images
+const uploadMultiple = multer({ storage }).array("images", 100); // Allows up to 100 images
 
 module.exports = { upload, uploadMultiple };

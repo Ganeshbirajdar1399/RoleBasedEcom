@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompareService } from '../../core/services/compare/compare.service';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { GlobalService } from '../../core/services/global.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-compare',
@@ -15,7 +16,8 @@ export class CompareComponent implements OnInit {
   constructor(
     // private compareService: CompareService,
     private scroller: ViewportScroller,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -36,30 +38,84 @@ export class CompareComponent implements OnInit {
     });
   }
 
-  // Remove product from the compare list
+  // Remove single product from the compare list
   removeFromCompare(id: string): void {
-    if (
-      confirm(
-        'Are you sure you want to delete this product from the compare list?'
+    this.toastr
+      .info(
+        'Are you sure you want to delete this product into compare?',
+        'Confirm Deletion',
+        {
+          closeButton: true,
+          progressBar: true,
+          tapToDismiss: true,
+          positionClass: 'toast-top-center',
+          timeOut: 0, // Make the toast persistent until the user interacts with it
+          extendedTimeOut: 0, // Keep the toast open until action
+        }
       )
-    ) {
-      this.globalService.removeFromCompare(id).subscribe({
+      .onTap.pipe
+      // Handle confirmation
+      ()
+      .subscribe({
         next: () => {
-          this.getCompareItems(); // Refresh compare list
-          alert('Product removed from compare!');
+          // Proceed with deletion
+          this.globalService.removeFromCompare(id).subscribe({
+            next: () => {
+              this.toastr.success('Product removed from compare!', 'Success');
+              this.getCompareItems(); // Refresh the cart
+            },
+            error: (err) => {
+              console.error('Error removing product:', err);
+              this.toastr.error(
+                'Failed to remove product from compare',
+                'Error'
+              );
+            },
+          });
         },
-        error: (err) => {
-          console.error('Error removing from compare:', err);
+        error: () => {
+          // Handle cancellation or interaction
+          this.toastr.info('Product deletion canceled', 'Info');
         },
       });
-    } else {
-      console.log('Product removal canceled');
-    }
   }
 
-  // Clear all comparison items (optional feature)
-  clearComparison(): void {
-    this.globalService.clearCompare();
-    this.compareItems = []; // Optionally clear the local comparison list as well
+  //remove all products in compare section
+  clearComparison() {
+    this.toastr
+      .info(
+        'Are you sure you want to clear the entire compare section?',
+        'Confirm Clear Compare',
+        {
+          closeButton: true,
+          progressBar: true,
+          tapToDismiss: true,
+          positionClass: 'toast-top-center',
+          timeOut: 0,
+          extendedTimeOut: 0,
+        }
+      )
+      .onTap.pipe
+      // Handle confirmation
+      ()
+      .subscribe({
+        next: () => {
+          // Proceed with clearing the cart
+          this.globalService.clearCompare().subscribe({
+            next: () => {
+              this.toastr.success('Compare has been cleared!', 'Success');
+              this.getCompareItems(); // Refresh the cart
+            },
+            error: (err) => {
+              console.error('Error clearing compare:', err);
+              this.toastr.error('Failed to clear the compare', 'Error');
+            },
+          });
+        },
+        error: () => {
+          // Handle cancellation or interaction
+          this.toastr.info('Compare clearing canceled', 'Info');
+        },
+      });
   }
 }

@@ -13,93 +13,82 @@ import {
   providedIn: 'root',
 })
 export class CompareService {
-  private readonly compareUrl = 'https://ecom-db-json.onrender.com/compare';
-  private readonly MAX_ITEMS = 4; // Maximum allowed items in the list
+  private readonly baseUrl = 'https://ecom-db-json.onrender.com'; // Fixed base URL
+  private readonly compareEndpoint = `${this.baseUrl}/compare`; // Full compare endpoint
+  private readonly MAX_ITEMS = 4; // Maximum allowed items in the compare list
 
-  private compareList: any[] = [];
-
-  private compareSubject = new BehaviorSubject<any[]>(this.compareList);
-  private compareCountSubject = new BehaviorSubject<number>(0);
+  private compareSubject = new BehaviorSubject<any[]>([]); // BehaviorSubject for compare list
+  private compareCountSubject = new BehaviorSubject<number>(0); // BehaviorSubject for item count
 
   constructor(private http: HttpClient) {
-    // Initialize compare list
+    // Initialize compare list by fetching items from the server
+    this.fetchCompareItems();
+  }
+
+  /**
+   * Fetch and update the compare list and its count
+   */
+  private fetchCompareItems(): void {
     this.getCompareItems().subscribe({
-      next: (items) =>
-        this.updateList(items, this.compareSubject, this.compareCountSubject),
+      next: (items) => this.updateList(items),
       error: (err) => console.error('Error fetching compare items:', err),
     });
   }
 
-  // Generic method to update list and its count
-  private updateList(
-    items: any[],
-    subject: BehaviorSubject<any[]>,
-    countSubject: BehaviorSubject<number>
-  ): void {
-    subject.next(items);
-    countSubject.next(items.length);
+  /**
+   * Update the compare list and count subjects
+   */
+  private updateList(items: any[]): void {
+    this.compareSubject.next(items);
+    this.compareCountSubject.next(items.length);
   }
 
-  // Add product to compare list
+  /**
+   * Add a product to the compare list
+   */
   addToCompare(product: any): Observable<any> {
-    const compare = this.compareSubject.getValue();
-    const existingItem = compare.find((item) => item.id === product.id);
-    if (this.compareList.length >= this.MAX_ITEMS) {
-      alert(
-        `Compare list is full! You can only add up to ${this.MAX_ITEMS} items.`
-      );
+    const compareList = this.compareSubject.getValue();
+
+    if (compareList.length >= this.MAX_ITEMS) {
+      alert(`Compare list is full! You can only add up to ${this.MAX_ITEMS} items.`);
       return EMPTY;
     }
 
-    if (this.compareList.some((item) => item.id === product.id)) {
+    if (compareList.some((item) => item.id === product.id)) {
       alert('Product is already in the compare list!');
       return EMPTY;
     }
 
-    if (existingItem) {
-      existingItem.quantity += 1;
-      return this.http
-        .put<any>(`${this.compareUrl}/${existingItem.id}`, existingItem)
-        .pipe(
-          tap(() => this.compareSubject.next([...compare])),
-          catchError((error) => {
-            console.error('Failed to compare:', error);
-            throw error;
-          })
-        );
-    } else {
-      const newProduct = { ...product, quantity: 1 };
-      return this.http.post<any>(this.compareUrl, newProduct).pipe(
-        tap(() => this.compareSubject.next([...compare, newProduct])),
-        catchError((error) => {
-          console.error('Failed to add to cart:', error);
-          throw error;
-        })
-      );
-    }
-  }
-
-  getCompareObservable(): Observable<any[]> {
-    return this.compareSubject.asObservable();
-  }
-
-  removeFromCompare(id: string): Observable<any> {
-    const compare = this.compareSubject
-      .getValue()
-      .filter((item) => item.id !== id);
-    this.compareSubject.next(compare);
-
-    return this.http.delete(`${this.compareUrl}/${id}`).pipe(
+    const newProduct = { ...product, quantity: 1 };
+    return this.http.post<any>(this.compareEndpoint, newProduct).pipe(
+      tap(() => this.updateList([...compareList, newProduct])),
       catchError((error) => {
-        console.error('Failed to remove item:', error);
-        throw error;
+        console.error('Failed to add to compare list:', error);
+        return throwError(() => new Error('Failed to add to compare list'));
       })
     );
   }
 
-  // Fetch all compare items from the server
+  /**
+   * Remove a product from the compare list
+   */
+  removeFromCompare(id: string): Observable<any> {
+    const updatedList = this.compareSubject.getValue().filter((item) => item.id !== id);
+
+    return this.http.delete(`${this.compareEndpoint}/${id}`).pipe(
+      tap(() => this.updateList(updatedList)),
+      catchError((error) => {
+        console.error('Failed to remove item from compare list:', error);
+        return throwError(() => new Error('Failed to remove item'));
+      })
+    );
+  }
+
+  /**
+   * Fetch all compare items from the server
+   */
   getCompareItems(): Observable<any[]> {
-    return this.http.get<any[]>(this.compareUrl).pipe(
+    return this.http.get<any[]>(this.compareEndpoint).pipe(
       catchError((error) => {
         console.error('Failed to fetch compare items:', error);
         return throwError(() => new Error('Failed to fetch compare items'));
@@ -107,17 +96,24 @@ export class CompareService {
     );
   }
 
-  getCompareCountObservable(): Observable<number> {
-    return this.compareCountSubject.asObservable();
+  /**
+   * Clear the compare list
+   */
+  clearCompare(): void {
+    this.updateList([]);
   }
 
-  // Clear the compare list
-  clearCompare(): void {
-    this.compareList = [];
-    this.updateList(
-      this.compareList,
-      this.compareSubject,
-      this.compareCountSubject
-    );
+  /**
+   * Get compare list as an observable
+   */
+  getCompareObservable(): Observable<any[]> {
+    return this.compareSubject.asObservable();
+  }
+
+  /**
+   * Get compare count as an observable
+   */
+  getCompareCountObservable(): Observable<number> {
+    return this.compareCountSubject.asObservable();
   }
 }

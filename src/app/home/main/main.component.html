@@ -57,84 +57,105 @@
   </div>
 </div>
 
-<div class="main-card container my-5">
-  <div class="card shadow-lg">
-    <div
-      class="card-header text-white text-center"
-      style="background-color: #6f42c1"
-    >
-      <h3>Our Product Collections</h3>
-    </div>
-    <div class="card-body bg-light">
-      <div class="container">
-        <div *ngFor="let brand of getBrands(); let idx = index" class="mb-5">
-          <div class="brand-card shadow-lg" [ngClass]="'brand-card-' + idx">
-            <h2 class="text-start mb-4 brand-title">
-              {{ brand | titlecase }} Mobiles
-            </h2>
-            <div class="row g-4">
-              <div
-                class="col-md-2"
-                *ngFor="let product of groupedProducts[brand]; let i = index"
-              >
-                <div class="card product-card">
-                  <!-- Image with routerLink -->
-                  <a [routerLink]="['/product', product.id]">
-                    <img
-                      [src]="product?.image"
-                      class="card-img-top"
-                      [alt]="product.pname"
-                    />
-                  </a>
+<!-- <div class="main-card container-lg my-5"> -->
+<!-- <div class="card shadow-lg"> -->
+<div
+  class="card-header text-white text-center"
+  style="background-color: #6f42c1"
+>
+  <h3>Our Product Collections</h3>
+</div>
+<div class="card-body bg-light">
+  <div class="container-lg-fluid">
+    <div *ngFor="let brand of getBrands(); let idx = index" class="mb-5">
+      <div class="brand-card shadow-lg" [ngClass]="'brand-card-' + idx">
+        <h2 class="text-start mb-4 brand-title">
+          {{ brand | titlecase }} Mobiles
+        </h2>
+        <div class="row g-4">
+          <div
+            class="col-md-2"
+            *ngFor="let product of getRandomProducts(groupedProducts[brand], 6); let i = index"
+          >
+            <div class="card product-card">
+              <!-- Image with routerLink -->
+              <a [routerLink]="['/product', product.id]">
+                <img
+                  [src]="product?.image"
+                  class="card-img-top"
+                  [alt]="product.pname"
+                />
+              </a>
 
-                  <div class="card-body text-center">
-                    <!-- <a
-                      [routerLink]="['/product', product.id]"
-                      class="text-decoration-none text-light"
-                    >
-                      <h5 class="card-title">{{ product.pname }}</h5>
-                    </a> -->
-                    <p class="text-decoration-none text-dark">
-                      {{ product?.psp | currency : "INR" : "₹" }}
-                    </p>
-                  </div>
-                  <div class="product-hover-icons">
-                    <button
-                      class="icon-btn wishlist-btn"
-                      title="Add to Wishlist"
-                      (click)="addToWishlist(product)"
-                    >
-                      <i class="fa-solid fa-heart"></i>
-                    </button>
-                    <button
-                      class="icon-btn compare-btn"
-                      title="Add to Compare"
-                      (click)="addToCompare(product)"
-                    >
-                      <i class="fa-solid fa-code-compare"></i>
-                    </button>
-                    <button
-                      class="icon-btn me-3 position-relative text-light"
-                      title="Cart"
-                      (click)="addToCart(product)"
-                    >
-                      <i class="bi bi-cart"></i>
-                    </button>
-                  </div>
-                </div>
+              <div class="card-body text-center">
+                <a
+                  [routerLink]="['/product', product.id]"
+                  class="text-decoration-none"
+                >
+                  {{ product.pname }}
+                </a>
+                <p class="text-decoration-none text-dark">
+                  <!-- Display PSP (Product Selling Price) -->
+                  {{ product?.psp | currency : "INR" : "₹" }}
+
+                  <!-- Display POP (Product Original Price) -->
+                  <small class="text-dark">
+                    <s>{{ product?.pop | currency : "INR" : "₹" }}</s>
+                  </small>
+
+                  <!-- Display Discount Percentage in Bootstrap Pill -->
+                  <span
+                    *ngIf="
+                      product?.psp && product?.pop && product.pop > product.psp
+                    "
+                    class="badge rounded-pill bg-danger ms-2"
+                  >
+                    {{ calculateDiscount(product.psp, product.pop) }}% OFF
+                  </span>
+                </p>
               </div>
-              <!-- Hover Icons -->
-
-              <!-- <div class="d-flex justify-content-end">
-            <button class="btn btn-outline-primary">View All</button>
-          </div> -->
+              <div class="product-hover-icons">
+                <button
+                  class="icon-btn wishlist-btn"
+                  title="Add to Wishlist"
+                  (click)="addToWishlist(product)"
+                >
+                  <i class="fa-solid fa-heart"></i>
+                </button>
+                <button
+                  class="icon-btn compare-btn"
+                  title="Add to Compare"
+                  (click)="addToCompare(product)"
+                >
+                  <i class="fa-solid fa-code-compare"></i>
+                </button>
+                <button
+                  class="icon-btn me-3 position-relative text-light"
+                  title="Cart"
+                  (click)="addToCart(product)"
+                >
+                  <i class="bi bi-cart"></i>
+                </button>
+              </div>
             </div>
+          </div>
+          <!-- Hover Icons -->
+
+          <div class="d-flex justify-content-end">
+            <button
+              class="btn btn-outline-primary"
+              (click)="navigateToBrand(brand)"
+            >
+              View All <i class="bi bi-arrow-right"></i>
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<!-- </div> -->
+<!-- </div> -->
 
 <!-- Categories Section -->
 <!-- <section class="py-5">

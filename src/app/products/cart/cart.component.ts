@@ -4,6 +4,7 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { GlobalService } from '../../core/services/global.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -21,7 +22,8 @@ export class CartComponent implements OnInit {
     private viewportScroller: ViewportScroller,
     private globalService: GlobalService,
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -42,18 +44,95 @@ export class CartComponent implements OnInit {
     });
   }
 
+  // removeItem(id: string): void {
+  //   if (confirm('Are you sure you want to delete this product?')) {
+  //     this.globalService.removeFromCart(id).subscribe(() => this.getCartItem());
+  //   }
+  // }
+  // Remove a single item from the cart
   removeItem(id: string): void {
-    if (confirm('Are you sure you want to delete this product?')) {
-      this.globalService.removeFromCart(id).subscribe(() => this.getCartItem());
-    }
-  }
-  clearCart() {
-    if (confirm('Are you sure you want to delete this product?')) {
-      this.globalService.clearCart().subscribe({
-        next: () => this.getCartItem(), // Refresh cart items
-        error: (err) => console.error('Failed to clear cart:', err), // Log any errors
+    this.toastr
+      .info(
+        'Are you sure you want to delete this product?',
+        'Confirm Deletion',
+        {
+          closeButton: true,
+          progressBar: true,
+          tapToDismiss: true,
+          positionClass: 'toast-top-center',
+          timeOut: 0, // Make the toast persistent until the user interacts with it
+          extendedTimeOut: 0, // Keep the toast open until action
+        }
+      )
+      .onTap.pipe
+      // Handle confirmation
+      ()
+      .subscribe({
+        next: () => {
+          // Proceed with deletion
+          this.globalService.removeFromCart(id).subscribe({
+            next: () => {
+              this.toastr.success('Product removed from cart!', 'Success');
+              this.getCartItem(); // Refresh the cart
+            },
+            error: (err) => {
+              console.error('Error removing product:', err);
+              this.toastr.error('Failed to remove product from cart', 'Error');
+            },
+          });
+        },
+        error: () => {
+          // Handle cancellation or interaction
+          this.toastr.info('Product deletion canceled', 'Info');
+        },
       });
-    }
+  }
+  // clearCart() {
+  //   if (confirm('Are you sure you want to delete this product?')) {
+  //     this.globalService.clearCart().subscribe({
+  //       next: () => this.getCartItem(), // Refresh cart items
+  //       error: (err) => console.error('Failed to clear cart:', err), // Log any errors
+  //     });
+  //   }
+  // }
+
+  // Clear the entire cart
+  clearCart() {
+    this.toastr
+      .info(
+        'Are you sure you want to clear the entire cart?',
+        'Confirm Clear Cart',
+        {
+          closeButton: true,
+          progressBar: true,
+          tapToDismiss: true,
+          positionClass: 'toast-top-center',
+          timeOut: 0,
+          extendedTimeOut: 0,
+        }
+      )
+      .onTap.pipe
+      // Handle confirmation
+      ()
+      .subscribe({
+        next: () => {
+          // Proceed with clearing the cart
+          this.globalService.clearCart().subscribe({
+            next: () => {
+              this.toastr.success('Cart has been cleared!', 'Success');
+              this.getCartItem(); // Refresh the cart
+            },
+            error: (err) => {
+              console.error('Error clearing cart:', err);
+              this.toastr.error('Failed to clear the cart', 'Error');
+            },
+          });
+        },
+        error: () => {
+          // Handle cancellation or interaction
+          this.toastr.info('Cart clearing canceled', 'Info');
+        },
+      });
   }
 
   getTotal(): number {

@@ -52,9 +52,9 @@
   color: #e8e8e8;
 }
 
-.row {
+/* .row {
   gap: 1rem;
-}
+} */
 
 .brand-card {
   padding: 2rem;
@@ -184,8 +184,8 @@
 /* Icon positioning and visibility */
 .product-hover-icons {
   position: absolute;
-  top: 12%;
-  left: 70%;
+  top: 08%;
+  left: 54%;
   transform: translate(-50%, -50%);
   display: none;
   /* Hidden by default */
@@ -203,7 +203,7 @@
   background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
   border: none;
-  padding: 02px;
+  padding: 06px;
   border-radius: 50%;
   margin: 0 5px;
   cursor: pointer;

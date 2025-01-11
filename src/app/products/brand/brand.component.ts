@@ -14,6 +14,7 @@ import { LimitWordsPipe } from '../../shared/pipes/limit-words.pipe';
 import { CartService } from '../../core/services/cart/cart-service.service';
 import { WishlistService } from '../../core/services/wishlist/wishlist.service';
 import { GlobalService } from '../../core/services/global.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-brand',
@@ -40,7 +41,8 @@ export class BrandComponent implements OnInit {
     // private cartService: CartService,
     // private compareService: CompareService,
     // private wishlistService: WishlistService,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -49,6 +51,10 @@ export class BrandComponent implements OnInit {
       this.brandName = params['brandName'];
       this.loadProducts();
     });
+  }
+  calculateDiscount(psp: number, pop: number): number {
+    const discount = ((pop - psp) / pop) * 100;
+    return Math.round(discount); // Round to the nearest whole number
   }
 
   // addToCart(product: any) {
@@ -64,13 +70,13 @@ export class BrandComponent implements OnInit {
 
   addToCart(product: any) {
     if (this.cartItems.some((item) => item.id === product.id)) {
-      alert('This product is already in the cart list!');
+      this.toastr.warning('This product is already in the list!', 'Warning');
       return;
     }
 
     this.globalService.addToCart(product).subscribe({
       next: () => {
-        alert('Product added to Cart!');
+        this.toastr.success(`${product?.pname} added to cart`, 'Success');
         this.getCartItems(); // Refresh compare list
       },
       error: (err) => {
@@ -93,18 +99,18 @@ export class BrandComponent implements OnInit {
   // Add product to compare list
   addToCompare(product: any) {
     if (this.compareItems.some((item) => item.id === product.id)) {
-      alert('This product is already in the compare list!');
+      this.toastr.warning('This product is already in the list!', 'Warning');
       return;
     }
 
-    if (this.compareItems.length >= 4) {
-      alert('Compare section is full! You can only compare up to 4 products.');
-      return;
-    }
+    // if (this.compareItems.length >= 4) {
+    //   alert('Compare section is full! You can only compare up to 4 products.');
+    //   return;
+    // }
 
     this.globalService.addToCompare(product).subscribe({
       next: () => {
-        alert('Product added to compare!');
+        this.toastr.success(`${product?.pname} added to compare`, 'Success');
         this.getCompareItems(); // Refresh compare list
       },
       error: (err) => {
@@ -126,20 +132,20 @@ export class BrandComponent implements OnInit {
 
   addToWishlist(product: any) {
     if (this.wishlistItems.some((item) => item.id === product.id)) {
-      alert('This product is already in the Wish-list!');
+      this.toastr.warning('This product is already in the list!', 'Warning');
       return;
     }
 
-    if (this.wishlistItems.length >= 4) {
-      alert(
-        'Compare section is full! You can only Wish-list up to 4 products.'
-      );
-      return;
-    }
+    // if (this.wishlistItems.length >= 4) {
+    //   alert(
+    //     'Compare section is full! You can only Wish-list up to 4 products.'
+    //   );
+    //   return;
+    // }
 
     this.globalService.addToWishlist(product).subscribe({
       next: () => {
-        alert('Product added to Wish-list!');
+        this.toastr.success(`${product?.pname} added to wishlist`, 'Success');
         this.getWishlistItems(); // Refresh Wish-list list
       },
       error: (err) => {

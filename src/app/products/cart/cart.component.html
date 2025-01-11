@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <!-- Heading -->
-  <h2 class="mb-4 text-center">Your Cart</h2>
+  <h2 class="mb-4 text-center" style="color: #6f42c1;">Your Cart</h2>
 
   <!-- Delete All Button -->
   <div class="d-flex justify-content-end mb-3">
@@ -46,6 +46,7 @@
                   class="btn btn-danger btn-sm"
                   (click)="removeItem(item.id)"
                   aria-label="Remove item"
+                  title="Remove Item"
                 >
                   <i class="bi bi-trash"></i>
                 </button>
@@ -56,13 +57,6 @@
                 <!-- Quantity -->
                 <div>
                   <label class="form-label d-inline me-2 mb-0">Qty:</label>
-                  <!-- <input
-                    type="number"
-                    class="form-control d-inline"
-                    [(ngModel)]="item.quantity"
-                    min="1"
-                    style="width: 70px"
-                  /> -->
                   <input
                     type="number"
                     class="form-control d-inline"
@@ -92,7 +86,7 @@
   </div>
 
   <div class="d-flex justify-content-end align-items-end mb-3">
-    <button class="btn btn-success" (click)="goToCheckout()">Checkout</button>
+    <button class="btn btn-success" (click)="goToCheckout()">Checkout <i class="bi bi-arrow-right"></i></button>
   </div>
 
   <!-- Empty Cart Message -->
