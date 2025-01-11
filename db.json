@@ -363,6 +363,9 @@
   ],
   "users": [
     {
+      "id": "bcb3"
+    },
+    {
       "id": "1736601841653",
       "firstName": "Ram",
       "lastName": "Kumar",
@@ -524,5 +527,8 @@
       "totalAmount": 23599,
       "orderDate": "2025-01-11T17:54:58.097Z"
     }
-  ]
+  ],
+  "cart": [],
+  "compare":[],
+  "wishlist":[]
 }
