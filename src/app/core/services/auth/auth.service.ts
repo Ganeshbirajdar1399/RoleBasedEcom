@@ -18,7 +18,7 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly apiUrl = 'https://ecom-db-json.onrender.com/'; // Base API URL
+  private readonly apiUrl = 'https://ecom-db-json.onrender.com'; // Base API URL
 
   private userSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
     this.getUser()
