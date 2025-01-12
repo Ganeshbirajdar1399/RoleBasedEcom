@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { v4 as uuidv4 } from 'uuid'; // Import uuidv4 for generating UUIDs
@@ -17,7 +17,7 @@ export class UserProfileComponent implements OnInit {
   loggedInUser: any = null;
   usersData: any[] = [];
   isRegister = false;
-
+  isaAdmin: boolean = false;
   users = {
     id: '', // Add id field to store UUID
     firstName: '',
@@ -41,6 +41,18 @@ export class UserProfileComponent implements OnInit {
     this.loggedInUser = this.authService.getUser(); // Fetch user data
     this.fetchUsers();
     // console.log('loggedin user',this.loggedInUser);
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.checkAccess();
+      }
+    }); // Initial check
+    this.checkAccess();
+    
+  }
+  private checkAccess(): void {
+    const userRole = this.authService.getRole();
+    this.isaAdmin = userRole === 'admin';
+    // Reload any other admin-specific data or features
   }
 
   onSubmit() {
