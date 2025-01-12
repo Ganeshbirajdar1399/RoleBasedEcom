@@ -416,13 +416,13 @@
       "role": "user"
     },
     {
-      "id": "1736677239339",
-      "firstName": "demo",
-      "lastName": "demo",
-      "email": "demo1@gmail.com",
-      "mobile": "7788778899",
-      "password": "$2a$10$lxc/S38av9XD6akbkSdl2.RSe4X5TzgDVhhJNi9A7Nf2SxVIXgpXq",
-      "address": "demo",
+      "id": "1736678871265",
+      "firstName": "demos",
+      "lastName": "demos",
+      "email": "demos1@gmail.com",
+      "mobile": "99999999",
+      "password": "$2a$10$Ujfm6Yn4PNgj9Q1.MHVJuOuZwhdl/WXDzyGIVA7ifLqKGDjHadf3K",
+      "address": "demos",
       "role": "user"
     }
   ],

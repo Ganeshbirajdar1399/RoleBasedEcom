@@ -16,7 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly apiUrl = 'http://localhost:3001'; // Base API URL
+  private readonly apiUrl = 'https://rolebasedecom.onrender.com'; // Base API URL
 
   private userSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
     this.getUser()
