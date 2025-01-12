@@ -89,8 +89,8 @@ export const routes: Routes = [
   {
     path: 'admin',
     loadComponent: () =>
-      import('./profile/user-profile/user-profile.component').then(
-        (m) => m.UserProfileComponent
+      import('./admin/admin-dashboard/admin-dashboard.component').then(
+        (m) => m.AdminDashboardComponent
       ),
     canActivate: [roleGuard],
     data: { role: 'admin' },
