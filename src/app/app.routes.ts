@@ -89,11 +89,12 @@ export const routes: Routes = [
   {
     path: 'admin',
     loadComponent: () =>
-      import('./admin/admin-dashboard/admin-dashboard.component').then(
-        (m) => m.AdminDashboardComponent
+      import('./profile/user-profile/user-profile.component').then(
+        (m) => m.UserProfileComponent
       ),
     canActivate: [roleGuard],
     data: { role: 'admin' },
+    runGuardsAndResolvers: 'always', // Ensures guards and resolvers run on every navigation
   },
   {
     path: 'user',
@@ -103,6 +104,7 @@ export const routes: Routes = [
       ),
     canActivate: [roleGuard],
     data: { role: 'user' },
+    runGuardsAndResolvers: 'always', // Ensures guards and resolvers run on every navigation
   },
   {
     path: 'customers',
