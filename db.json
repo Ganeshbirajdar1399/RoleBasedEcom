@@ -414,6 +414,16 @@
       "password": "$2b$10$D8cJV/9WY31FOZdsssWFsebbRzWJhOJ6sdbRXZO0AzXrqdVDLzaXq",
       "address": "Pune",
       "role": "user"
+    },
+    {
+      "id": "1736677239339",
+      "firstName": "demo",
+      "lastName": "demo",
+      "email": "demo1@gmail.com",
+      "mobile": "7788778899",
+      "password": "$2a$10$lxc/S38av9XD6akbkSdl2.RSe4X5TzgDVhhJNi9A7Nf2SxVIXgpXq",
+      "address": "demo",
+      "role": "user"
     }
   ],
   "otherinfo": [
@@ -529,6 +539,6 @@
     }
   ],
   "cart": [],
-  "compare":[],
-  "wishlist":[]
+  "compare": [],
+  "wishlist": []
 }

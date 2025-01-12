@@ -142,12 +142,12 @@
 
 const express = require("express");
 const fs = require("fs");
-// const bcrypt = require('bcryptjs');
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcryptjs');
+// const bcrypt = require("bcrypt");
 const cors = require("cors"); // Import CORS
 
 const app = express();
-const dbPath = "../../db.json"; // Path to the database file
+const dbPath = "../db.json"; // Path to the database file
 const port = 3001; // Server port
 
 app.use(cors()); // Use CORS middleware to enable cross-origin requests
