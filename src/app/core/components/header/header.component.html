@@ -212,7 +212,7 @@
               Products
             </button>
           </li>
-          <li>
+          <li *ngIf="loggedInUser?.role === 'admin'">
             <button class="dropdown-item" routerLink="customers">
               Customers
             </button>
