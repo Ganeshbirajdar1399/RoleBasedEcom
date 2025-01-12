@@ -65,6 +65,7 @@ export class AuthService {
       .get<any[]>(`${this.apiUrl}/users?email=${email}`) // Fetch user by email
       .pipe(
         map((users) => {
+          this.userSubject.next(users);
           if (users.length === 0) {
             throw new Error('User not found'); // No user with the provided email
           }
