@@ -175,6 +175,7 @@ export class AuthService {
   setUser(user: any): void {
     try {
       sessionStorage.setItem('user', JSON.stringify(user));
+      this.userSubject.next(user); // Update the BehaviorSubject, notifying all subscribers
     } catch (error) {
       console.error('Error saving user data:', error);
     }

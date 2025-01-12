@@ -43,8 +43,8 @@ export class UserProfileComponent implements OnInit {
     this.loggedInUser = this.authService.getUser(); // Fetch user data
     this.fetchUsers();
     // console.log('loggedin user',this.loggedInUser);
-       // Subscribe to the user observable
-       this.authService.user$.subscribe((user) => {
+      // Subscribe to the user observable
+      this.authService.user$.subscribe((user) => {
         this.user = user;
         this.isaAdmin = user?.role === 'admin'; // Check if user is admin
       });
