@@ -4,6 +4,8 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { v4 as uuidv4 } from 'uuid'; // Import uuidv4 for generating UUIDs
+import { ToastrService } from 'ngx-toastr';
+import { switchMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -30,7 +32,8 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private scroller: ViewportScroller
+    private scroller: ViewportScroller,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +46,8 @@ export class UserProfileComponent implements OnInit {
   onSubmit() {
     this.users.id = uuidv4(); // Assign UUID to the user's id field
     this.authService.register(this.users).subscribe((res) => {
-      console.log('admin added successfully', res);
+      this.toastr.success('admin added successfully', 'Success');
+      // console.log('admin added successfully', res);
       this.isRegister = true;
       setTimeout(() => {
         this.isRegister = false;
@@ -53,13 +57,30 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  deleteUser(id: string) {
-    if (confirm('Are you sure you want to delete this item?')) {
-      this.authService.DeletetData(id).subscribe((res) => {
-        console.log('users deleted successfully');
-        this.fetchUsers();
+  deleteUser(id: string): void {
+    this.toastr
+      .info('Click to confirm deletion', 'Confirm Delete', {
+        closeButton: true,
+        progressBar: true,
+        tapToDismiss: true,
+        positionClass: 'toast-top-center',
+        timeOut: 0, // Persistent toast
+        extendedTimeOut: 0,
+      })
+      .onTap.pipe(take(1))
+      .subscribe({
+        next: () => {
+          this.authService.deleteUserData(id).subscribe({
+            next: () => {
+              this.toastr.success('Admin deleted successfully', 'Success');
+              this.fetchUsers(); // Refresh user list
+            },
+            error: () => {
+              this.toastr.error('Failed to delete user', 'Error');
+            },
+          });
+        },
       });
-    }
   }
 
   fetchUsers() {

@@ -363,67 +363,24 @@
   ],
   "users": [
     {
-      "id": "bcb3"
+      "id": "d5f0ff93-0ed6-4da9-bbad-c36cac0c374f",
+      "firstName": "Shyam",
+      "lastName": "Kumar",
+      "password": "11221122",
+      "email": "sk1@gmail.com",
+      "mobile": "9999999999",
+      "address": "Pune",
+      "role": "user"
     },
     {
-      "id": "1736601841653",
+      "id": "d5f0ff93-0ed6-4da9-bbad-c36cac0c375c",
       "firstName": "Ram",
       "lastName": "Kumar",
+      "password": "11111111",
       "email": "rk1@gmail.com",
-      "mobile": "00000000",
-      "password": "$2b$10$gLP4BIXNH9mc9pqnoc5jc.zq9NDpy2c6Vmj2dus9BDEwjIQT3hF3.",
+      "mobile": "9999999999",
       "address": "Pune",
       "role": "admin"
-    },
-    {
-      "id": "1736601982241",
-      "firstName": "Shyam",
-      "lastName": "kumar",
-      "email": "sk1@gmail.com",
-      "mobile": "9900990099",
-      "password": "$2b$10$iZWUIywsmVP2ilKvNyzGK.DOiAvH54ke9anzQ9qrTXHwuWWm9./7a",
-      "address": "Pune",
-      "role": "user"
-    },
-    {
-      "id": "1736604156509",
-      "firstName": "user",
-      "lastName": "user",
-      "email": "user1@gmail.com",
-      "mobile": "99009900",
-      "password": "$2b$10$7gyglV5fvV5mTGDP.OT1Fu/QdFVQDzuRyRHIJ/JZucveVmHxH/Ojm",
-      "address": "user",
-      "role": "user"
-    },
-    {
-      "id": "1736606392664",
-      "firstName": "admin",
-      "lastName": "admin",
-      "email": "admin1@gmail.com",
-      "mobile": "99009900",
-      "password": "$2b$10$6kVdTm6qCllt.3Ay7EKf8ePzB0sHiGqygMb5tkNrnbo2gPl95JbWq",
-      "address": "Pune",
-      "role": "admin"
-    },
-    {
-      "id": "1736618026302",
-      "firstName": "Aman",
-      "lastName": "Chopda",
-      "email": "ac1@gmail.com",
-      "mobile": "0099009900",
-      "password": "$2b$10$D8cJV/9WY31FOZdsssWFsebbRzWJhOJ6sdbRXZO0AzXrqdVDLzaXq",
-      "address": "Pune",
-      "role": "user"
-    },
-    {
-      "id": "1736678871265",
-      "firstName": "demos",
-      "lastName": "demos",
-      "email": "demos1@gmail.com",
-      "mobile": "99999999",
-      "password": "$2a$10$Ujfm6Yn4PNgj9Q1.MHVJuOuZwhdl/WXDzyGIVA7ifLqKGDjHadf3K",
-      "address": "demos",
-      "role": "user"
     }
   ],
   "otherinfo": [

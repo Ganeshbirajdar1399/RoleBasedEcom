@@ -4,6 +4,7 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { v4 as uuidv4 } from 'uuid'; // Import uuidv4 for generating UUIDs
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +30,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private scroller: ViewportScroller
+    private scroller: ViewportScroller,
+    private tostr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -43,8 +45,8 @@ export class RegisterComponent implements OnInit {
     // Register the user with the backend (password will be hashed there)
     this.authService.register(this.users).subscribe(
       (res) => {
+        this.tostr.success('User registered successfully', 'Success');
         console.log('User registered successfully', res);
-        alert('Register successfully');
         this.isRegister = true;
         setTimeout(() => {
           this.isRegister = false;
@@ -54,7 +56,7 @@ export class RegisterComponent implements OnInit {
       },
       (error) => {
         console.error('Error registering user', error);
-        this.error = 'Registration failed. Please try again.'; // Show error message
+        this.tostr.error('Registration failed. Please try again.'); // Show error message
       }
     );
   }

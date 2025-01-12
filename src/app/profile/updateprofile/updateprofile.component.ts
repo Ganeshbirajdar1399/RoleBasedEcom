@@ -3,6 +3,7 @@ import { AuthService } from '../../core/services/auth/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-updateprofile',
@@ -18,7 +19,8 @@ export class UpdateprofileComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private scroller: ViewportScroller
+    private scroller: ViewportScroller,
+    private toastr: ToastrService
   ) {}
   adminDetails = {
     id: 0,
@@ -38,34 +40,37 @@ export class UpdateprofileComponent {
 
     // Initialize adminDetails with loggedInUser data
     if (this.loggedInUser) {
-      this.adminDetails = {
-        id: this.loggedInUser.id,
-        firstName: this.loggedInUser.firstName,
-        lastName: this.loggedInUser.lastName,
-        password: this.loggedInUser.password,
-        email: this.loggedInUser.email,
-        mobile: this.loggedInUser.mobile,
-        address: this.loggedInUser.address || '',
-        role: this.loggedInUser.role,
-      };
+      // Fetch user details from the database to retrieve the password
+      this.authService.getUserById(this.loggedInUser.id).subscribe(
+        (userFromDb) => {
+          this.adminDetails = {
+            id: userFromDb.id,
+            firstName: userFromDb.firstName,
+            lastName: userFromDb.lastName,
+            password: userFromDb.password, // Assign the password from the database
+            email: userFromDb.email,
+            mobile: userFromDb.mobile,
+            address: userFromDb.address || '',
+            role: userFromDb.role,
+          };
+        },
+        (error) => {
+          console.error('Error fetching user details:', error);
+        }
+      );
     }
   }
 
-  updateAdminDetails() {
+  updateUserDetails() {
     if (!this.adminDetails.id) {
-      alert('User ID is missing. Please try again.');
+      this.toastr.warning('User ID is missing. Please try again.', 'Warning');
       return;
     }
 
     this.authService.updateUser(this.adminDetails).subscribe(
       (res) => {
-        console.log('Admin details updated successfully', res);
-
-        // Update session storage and local user
-        this.authService.setUser(this.adminDetails);
-        this.loggedInUser = { ...this.adminDetails };
-
-        alert('Profile updated successfully!');
+        // console.log('Admin details updated successfully', res);
+        this.toastr.success('Profile updated successfully!', 'Success');
         this.router.navigate(['/profile']);
       },
       (err) => {
@@ -77,7 +82,7 @@ export class UpdateprofileComponent {
 
   fetchUsers() {
     this.authService.fetchUsers().subscribe((res) => {
-      this.usersData = res;
+      // this.usersData = res;
     });
   }
 }

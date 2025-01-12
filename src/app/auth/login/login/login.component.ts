@@ -41,19 +41,25 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
-    const { email, password } = this.myForm.value;
+    if (this.myForm.valid) {
+      // Ensure the form is valid before proceeding
+      const { email, password } = this.myForm.value;
 
-    this.authService.login(email, password).subscribe(
-      (user) => {
-        if (user) {
-          this.authService.setUser(user);
-          this.router.navigate([user.role]); // Navigate based on user role
+      this.authService.login(email, password).subscribe(
+        (user) => {
+          if (user) {
+            // Navigate based on user role
+            this.router.navigate([user.role]);
+          }
+        },
+        (error) => {
+          console.error('Login failed:', error); // Log the actual error for debugging
+          this.error = 'Invalid email or password. Please try again.'; // Display error to user
         }
-      },
-      () => {
-        this.error = 'Invalid email or password. Please try again.'; // Set error message
-      }
-    );
+      );
+    } else {
+      this.error = 'Please fill out all fields correctly.'; // Handle invalid form case
+    }
   }
 
   toggleHide() {

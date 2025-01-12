@@ -11,7 +11,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(), // Provides animations for the app
     provideHttpClient(withFetch()), // Configures HTTP client
     provideToastr({
-      timeOut: 1000, // Toast duration
+      timeOut: 2000, // Toast duration
       positionClass: 'toast-top-right', // Toast position
       preventDuplicates: true, // Prevent duplicate messages
     }), // Configures Toastr

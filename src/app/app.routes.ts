@@ -104,7 +104,15 @@ export const routes: Routes = [
     canActivate: [roleGuard],
     data: { role: 'user' },
   },
-
+  {
+    path: 'customers',
+    loadComponent: () =>
+      import('./admin/customers/customers.component').then(
+        (m) => m.CustomersComponent
+      ),
+    canActivate: [roleGuard],
+    data: { role: 'admin' },
+  },
   {
     path: 'updateuserprofile',
     loadComponent: () =>
