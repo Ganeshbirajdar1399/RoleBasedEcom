@@ -1,17 +1,45 @@
 /* toggle password*/
-.toggle-password {
-  position: absolute;
-  top: 47%;
-  right: 12px;
-  background: transparent;
-  border: none;
-  font-size: 1.2rem;
-  color: #6c757d;
-  cursor: pointer;
+.password-container {
+  position: relative;
+
+  input {
+    width: 100%;
+    padding-right: 50px;
+  }
+
+  .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: -05px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #6c757d;
+    cursor: pointer;
+
+    &:hover {
+      color: #495057;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
-.toggle-password:hover {
-  color: #495057;
+
+@media (max-width: 576px) {
+  .password-container {
+    input {
+      font-size: 1rem;
+    }
+
+    .toggle-password {
+      font-size: 1rem;
+      right: 8px;
+    }
+  }
 }
 
 

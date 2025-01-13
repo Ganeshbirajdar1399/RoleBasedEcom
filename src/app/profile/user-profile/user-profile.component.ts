@@ -19,7 +19,7 @@ export class UserProfileComponent implements OnInit {
   isRegister = false;
   user: any = null;
   isaAdmin: boolean = false;
-
+  hide = true;
   users = {
     id: '', // Add id field to store UUID
     firstName: '',
@@ -49,7 +49,9 @@ export class UserProfileComponent implements OnInit {
       this.isaAdmin = user?.role === 'admin'; // Check if user is admin
     });
   }
-
+  toggleHide() {
+    this.hide = !this.hide; // Toggle password visibility
+  }
   onSubmit() {
     this.users.id = uuidv4(); // Assign UUID to the user's id field
     this.authService.register(this.users).subscribe((res) => {

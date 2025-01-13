@@ -163,6 +163,7 @@
                 class="form-control"
                 [(ngModel)]="users.firstName"
                 name="firstName"
+                placeholder="Enter your firstname"
                 required
                 minlength="2"
               />
@@ -189,6 +190,7 @@
                 class="form-control"
                 [(ngModel)]="users.lastName"
                 name="lastName"
+                placeholder="Enter your lastname"
                 required
                 minlength="2"
               />
@@ -215,6 +217,7 @@
                 class="form-control"
                 [(ngModel)]="users.email"
                 name="email"
+                placeholder="Enter your email address"
                 required
                 email
               />
@@ -245,6 +248,7 @@
                 class="form-control"
                 [(ngModel)]="users.mobile"
                 name="mobile"
+                placeholder="Enter your Mobile no"
                 required
                 pattern="^[0-9]{10}$"
               />
@@ -264,25 +268,32 @@
             <!-- Password -->
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input
-                [type]="hide ? 'password' : 'text'"
-                id="password"
-                #password="ngModel"
-                class="form-control"
-                [(ngModel)]="users.password"
-                name="password"
-                required
-                minlength="8"
-                pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-              />
-              <button
-                type="button"
-                class="btn toggle-password position-absolute"
-                (click)="toggleHide()"
-                aria-label="Toggle password visibility"
-              >
-                <i class="fas" [ngClass]="hide ? 'fa-eye-slash' : 'fa-eye'"></i>
-              </button>
+              <div class="password-container position-relative">
+                <input
+                  type="{{ hide ? 'password' : 'text' }}"
+                  class="form-control"
+                  placeholder="Enter your password"
+                  [(ngModel)]="users.password"
+                  id="password"
+                  #password="ngModel"
+                  name="password"
+                  required
+                  minlength="8"
+                  pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                />
+                <button
+                  type="button"
+                  class="btn toggle-password position-absolute"
+                  (click)="toggleHide()"
+                  aria-label="Toggle password visibility"
+                >
+                  <i
+                    class="fas"
+                    [ngClass]="hide ? 'fa-eye-slash' : 'fa-eye'"
+                  ></i>
+                </button>
+              </div>
+
               <small
                 class="text-danger"
                 *ngIf="password.touched && password.errors?.['required']"
@@ -313,6 +324,7 @@
                 class="form-control"
                 [(ngModel)]="users.address"
                 name="address"
+                placeholder="Enter your address"
                 required
                 minlength="5"
               />

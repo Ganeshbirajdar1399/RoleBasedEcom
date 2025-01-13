@@ -102,34 +102,3 @@
     /* Full-width button for search */
   }
 }
-
-.dropdown-menu {
-  min-width: 50px;
-  border-radius: 10px;
-  left: -15px;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-  /* Show dropdown on hover */
-  margin-top: 0;
-  /* Adjust margin for smooth hover */
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  /* Smooth dropdown effect */
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.dropdown-menu {
-  display: none;
-  /* Hide by default */
-  opacity: 0;
-  transform: translateY(10px);
-  /* Slide effect */
-}
-
-.dropdown-item:hover {
-  background-color: #f8f9fa;
-  /* Highlight effect on hover */
-  color: #495057;
-}

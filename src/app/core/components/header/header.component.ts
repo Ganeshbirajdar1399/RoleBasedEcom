@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   loggedInUser: any = null;
 
   searchQuery: string = '';
+  dropdownStates: { [key: string]: boolean } = {};
 
   constructor(
     private router: Router,
@@ -68,6 +69,14 @@ export class HeaderComponent implements OnInit {
     this.fetchData();
   }
 
+  toggleSidebar(): void {
+    this.sidebarOpen = !this.sidebarOpen;
+  }
+
+  closeSidebar() {
+    this.sidebarOpen = false;
+  }
+
   onSearch() {
     if (this.searchQuery.trim()) {
       this.router.navigate(['/search'], {
@@ -98,16 +107,12 @@ export class HeaderComponent implements OnInit {
     this.productUtils.navigateToBrand(brand);
   }
 
-  toggleSidebar(): void {
-    this.sidebarOpen = !this.sidebarOpen;
-  }
-
-  closeNavbar(): void {
-    const navbar = document.getElementById('navbarNav');
-    if (navbar?.classList.contains('show')) {
-      navbar.classList.remove('show');
-    }
-  }
+  // closeNavbar(): void {
+  //   const navbar = document.getElementById('navbarNav');
+  //   if (navbar?.classList.contains('show')) {
+  //     navbar.classList.remove('show');
+  //   }
+  // }
 
   logout(): void {
     this.authService.logout();

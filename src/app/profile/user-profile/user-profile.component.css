@@ -43,3 +43,48 @@
 .text-primary {
     color: #0056b3 !important;
 }
+
+
+/*password*/
+.password-container {
+    position: relative;
+
+    input {
+        width: 100%;
+        padding-right: 50px;
+    }
+
+    .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: -05px;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        color: #6c757d;
+        cursor: pointer;
+
+        &:hover {
+            color: #495057;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+
+@media (max-width: 576px) {
+    .password-container {
+        input {
+            font-size: 1rem;
+        }
+
+        .toggle-password {
+            font-size: 1rem;
+            right: 8px;
+        }
+    }
+}

@@ -1,6 +1,5 @@
 <!-- Sidebar -->
-<div class="navbar-container">
-  <!-- Sidebar -->
+<!-- <div class="navbar-container">
   <div class="sidebar" [ngClass]="{ active: sidebarOpen }">
     <ul class="nav-links" *ngFor="let brand of getBrands()">
       <li class="nav-link" (click)="navigateToBrand(brand)">
@@ -91,13 +90,201 @@
       </button>
     </ul>
   </div>
+</div> -->
+<!--<div class="navbar-container">
+  <div
+    class="sidebar"
+    [ngClass]="{ active: sidebarOpen }"
+    style="margin-top: 40px"
+  >
+    <ul class="nav-links">
+      <li class="nav-link" *ngFor="let brand of getBrands()">
+        <button class="dropdown-item" (click)="navigateToBrand(brand)">
+          View {{ brand | titlecase }}
+        </button>
+      </li>
+    </ul>
+    <ul class="nav-links user-section">
+      <li>
+        <i class="fas fa-user"></i>
+        <small
+          >{{ loggedInUser?.firstName }} {{ loggedInUser?.lastName }}</small
+        >
+      </li>
+      <li *ngIf="isLoggedIn()" class="nav-link" routerLink="profile">
+        Profile
+      </li>
+      <li
+        *ngIf="loggedInUser?.role === 'admin'"
+        class="nav-link"
+        routerLink="crudproducts"
+      >
+        Products
+      </li>
+      <li
+        *ngIf="loggedInUser?.role === 'admin'"
+        class="nav-link"
+        routerLink="customers"
+      >
+        Customers
+      </li>
+      <li
+        *ngIf="loggedInUser?.role === 'admin'"
+        class="nav-link"
+        routerLink="orders"
+      >
+        Orders
+      </li>
+      <li
+        *ngIf="loggedInUser?.role === 'admin'"
+        class="nav-link"
+        routerLink="otherinfo"
+      >
+        Website Info
+      </li>
+      <li *ngIf="!isLoggedIn()" class="nav-link" routerLink="login">Login</li>
+      <li *ngIf="!isLoggedIn()" class="nav-link" routerLink="register">
+        Register
+      </li>
+      <li *ngIf="isLoggedIn()" class="nav-link" (click)="logout()">Logout</li>
+    </ul>
+
+    <ul class="nav-links">
+      <button
+        class="icon-btn me-3 text-light"
+        title="Wishlist"
+        routerLink="wishlist"
+      >
+        <i class="bi bi-heart"></i>
+        <span *ngIf="wishlistCount > 0" class="badge rounded-pill bg-danger">
+          {{ wishlistCount }}
+        </span>
+      </button>
+      <button
+        class="icon-btn me-3 position-relative text-light"
+        title="Compare"
+        routerLink="compare"
+      >
+        <i class="fa-solid fa-code-compare"></i>
+        <span *ngIf="compareCount > 0" class="badge rounded-pill bg-danger">
+          {{ compareCount }}
+        </span>
+      </button>
+
+      <button
+        class="icon-btn me-3 position-relative text-light"
+        title="Cart"
+        (click)="goToCart()"
+      >
+        <i class="bi bi-cart"></i>
+        <span *ngIf="cartCount > 0" class="badge rounded-pill bg-danger">
+          {{ cartCount }}
+        </span>
+      </button>
+    </ul>
+  </div>
+</div> -->
+
+<div class="sidebar" [ngClass]="{ active: sidebarOpen }">
+  <ul class="nav-links">
+    <li class="nav-link" *ngFor="let brand of getBrands()">
+      <button class="dropdown-item" (click)="navigateToBrand(brand)">
+        {{ brand | titlecase }}
+      </button>
+    </li>
+  </ul>
+  <form class="d-flex me-3" role="search" (submit)="onSearch()">
+    <input
+      class="form-control me-2 search-input"
+      type="search"
+      placeholder="Search..."
+      [(ngModel)]="searchQuery"
+      name="searchQuery"
+      aria-label="Search"
+      autocomplete="off"
+    />
+    <button class="btn btn-sm btn-outline-warning search-button" type="submit">
+      Search
+    </button>
+  </form>
+  <ul class="nav-links user-section">
+    <li>
+      <i class="fas fa-user"></i>
+      <small>{{ loggedInUser?.firstName }} {{ loggedInUser?.lastName }}</small>
+    </li>
+    <button *ngIf="isLoggedIn()" class="nav-link" routerLink="profile">
+      Profile
+    </button>
+    <button
+      *ngIf="loggedInUser?.role === 'admin'"
+      class="nav-link"
+      routerLink="crudproducts"
+    >
+      Products
+    </button>
+    <button
+      *ngIf="loggedInUser?.role === 'admin'"
+      class="nav-link"
+      routerLink="customers"
+    >
+      Customers
+    </button>
+    <button
+      *ngIf="loggedInUser?.role === 'admin'"
+      class="nav-link"
+      routerLink="orders"
+    >
+      Orders
+    </button>
+    <button *ngIf="!isLoggedIn()" class="nav-link" routerLink="login">
+      Login
+    </button>
+    <button *ngIf="!isLoggedIn()" class="nav-link" routerLink="register">
+      Register
+    </button>
+    <button *ngIf="isLoggedIn()" class="nav-link" (click)="logout()">
+      Logout
+    </button>
+  </ul>
+  <ul class="nav-links">
+    <button
+      class="icon-btn me-3 text-light"
+      title="Wishlist"
+      routerLink="wishlist"
+    >
+      <i class="bi bi-heart"></i>
+      <span *ngIf="wishlistCount > 0" class="badge rounded-pill bg-danger">
+        {{ wishlistCount }}
+      </span>
+    </button>
+    <button
+      class="icon-btn me-3 position-relative text-light"
+      title="Compare"
+      routerLink="compare"
+    >
+      <i class="fa-solid fa-code-compare"></i>
+      <span *ngIf="compareCount > 0" class="badge rounded-pill bg-danger">
+        {{ compareCount }}
+      </span>
+    </button>
+
+    <button
+      class="icon-btn me-3 position-relative text-light"
+      title="Cart"
+      (click)="goToCart()"
+    >
+      <i class="bi bi-cart"></i>
+      <span *ngIf="cartCount > 0" class="badge rounded-pill bg-danger">
+        {{ cartCount }}
+      </span>
+    </button>
+  </ul>
 </div>
 
 <nav class="navbar navbar-expand-lg shadow-sm">
   <a class="navbar-brand" routerLink="">
     <span class="text-warning">Mobile</span>
     <span class="text-light ms-1">Shop</span>
-    <!-- <span class="text-warning">Shopee</span> -->
   </a>
 
   <!-- <button
@@ -123,12 +310,8 @@
     <i class="fas" [ngClass]="sidebarOpen ? 'fa-times' : 'fa-bars'"></i>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarNav" (click)="closeNavbar()">
+  <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <!-- <li class="nav-item">
-        <button class="nav-link" routerLink="compare">Compare</button>
-      </li>  -->
-
       <li class="nav-item" *ngFor="let brand of getBrands()">
         <button class="nav-link" (click)="navigateToBrand(brand)">
           {{ brand | titlecase }}

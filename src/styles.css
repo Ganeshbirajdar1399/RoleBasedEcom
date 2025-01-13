@@ -12,74 +12,131 @@ body {
   /* visibility: hidden; */
 }
 
+/* Sidebar Styles */
 
-.navbar-container {
-  position: relative;
-  background-color: #6f42c1;
-  padding: 0.5rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-}
-
-/* Toggle button styles */
-.toggle-btn {
-  /* position: relative; */
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 1100;
-}
-
-/* Sidebar styles */
+/* Sidebar Styles */
 .sidebar {
+  display: none;
   position: fixed;
-  top: 50px;
-  left: -250px;
-  width: 200px;
-  height: 100%;
+  top: 0;
+  left: -260px;
+  /* Initially hidden */
+  width: 250px;
+  height: 100vh;
   background-color: #6f42c1;
-  color: white;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-  padding: 1rem;
-  transition: left 0.3s ease;
-  z-index: 1000;
+  /* Dark background */
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  transition: left 0.3s ease-in-out;
+  z-index: 1050;
 }
 
+/* Active state for sidebar */
 .sidebar.active {
   left: 0;
+  /* Sidebar slides in */
 }
 
+/* For medium and small screens */
+@media (max-width: 991px) {
+  .sidebar {
+    display: block;
+  }
+}
+
+/* Sidebar Links */
 .nav-links {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 20px 0;
 }
 
+/* Sidebar link items */
 .nav-links .nav-link {
-  display: block;
-  padding: 0.35rem 0.60rem;
-  color: white;
+  padding: 12px 20px;
+  margin: 8px 0;
+  color: #ecf0f1;
   text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .nav-links .nav-link:hover {
-  background-color: #6f42c1;
-  color: #ffc107;
+  background-color: #2980b9;
+  /* Hover effect */
+  transform: scale(1.05);
+  /* Subtle scale animation */
 }
 
-/* Responsive design adjustments */
-@media (min-width: 1200px) {
+.nav-links .nav-link:active {
+  transform: scale(0.98);
+  /* Shrink effect on click */
+}
+
+/* For icons inside links */
+.nav-links .nav-link i {
+  margin-right: 10px;
+}
+
+/* Profile and User Section */
+.user-section {
+  margin-top: 20px;
+  padding-left: 15px;
+}
+
+.user-section li {
+  display: flex;
+  align-items: center;
+  color: #ecf0f1;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.user-section i {
+  margin-right: 10px;
+}
+
+.user-section .nav-link {
+  padding: 8px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.user-section .nav-link:hover {
+  background-color: #16a085;
+}
+
+
+/* Smooth transition for sidebar toggle */
+.navbar-toggler {
+  border: none;
+  background: none;
+  font-size: 28px;
+  color: #ecf0f1;
+}
+
+/* Optional: If you want to make the sidebar content scrollable */
+.sidebar .nav-links {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Additional custom styles for mobile devices */
+@media (max-width: 576px) {
   .sidebar {
-    display: none;
+    width: 200px;
+  }
+
+  .nav-links .nav-link {
+    font-size: 14px;
+  }
+
+  .user-section li {
+    font-size: 12px;
   }
 }
+
 
 /* tostr*/
 .toast-success {
