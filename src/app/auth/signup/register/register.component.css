@@ -32,3 +32,19 @@
 .register-card .card-footer a:hover {
   text-decoration: underline;
 }
+
+/*toggle password*/
+.toggle-password {
+  position: absolute;
+  top: 43.5%;
+  right: 35px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: #6c757d;
+  cursor: pointer;
+}
+
+.toggle-password:hover {
+  color: #495057;
+}

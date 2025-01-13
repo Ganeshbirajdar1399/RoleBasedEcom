@@ -367,7 +367,7 @@
       "firstName": "Shyam",
       "lastName": "Kumar",
       "password": "11221122",
-      "email": "sk1@gmail.com",
+      "email": "Password@123",
       "mobile": "9999999999",
       "address": "Pune",
       "role": "user"
@@ -376,11 +376,71 @@
       "id": "d5f0ff93-0ed6-4da9-bbad-c36cac0c375c",
       "firstName": "Ram",
       "lastName": "Kumar",
-      "password": "11111111",
+      "password": "Ram@12345",
       "email": "rk1@gmail.com",
       "mobile": "9999999999",
       "address": "Pune",
       "role": "admin"
+    },
+    {
+      "id": "92234dc9-61d4-4085-9869-660d87273757",
+      "firstName": "user1",
+      "lastName": "user1",
+      "email": "user1@gmail.com",
+      "mobile": "5555555555",
+      "password": "Password@123",
+      "address": "user1",
+      "role": "user"
+    },
+    {
+      "id": "1c8ab9a3-bc0c-4a2e-8038-77f34afec2a8",
+      "firstName": "Om",
+      "lastName": "Om",
+      "email": "user2@gmail.com",
+      "mobile": "6666666666",
+      "password": "Password@123",
+      "address": "user2",
+      "role": "user"
+    },
+    {
+      "id": "9dd64048-71c4-48e1-9efd-59b375fbbaa7",
+      "firstName": "Amar",
+      "lastName": "Amar",
+      "email": "user3@gmail.com",
+      "mobile": "7777777777",
+      "password": "Password@123",
+      "address": "ddddd",
+      "role": "user"
+    },
+    {
+      "id": "92234dc9-61d4-4085-9869-660d87273757",
+      "firstName": "Vishal",
+      "lastName": "Vishal",
+      "email": "user4@gmail.com",
+      "mobile": "8888888888",
+      "password": "Password@123",
+      "address": "user1",
+      "role": "user"
+    },
+    {
+      "id": "1c8ab9a3-bc0c-4a2e-8038-77f34afec2a8",
+      "firstName": "Aman",
+      "lastName": "Aman",
+      "email": "user5@gmail.com",
+      "mobile": "9999999999",
+      "password": "Password@123",
+      "address": "user2",
+      "role": "user"
+    },
+    {
+      "id": "9dd64048-71c4-48e1-9efd-59b375fbbaa7",
+      "firstName": "Anand",
+      "lastName": "Anand",
+      "email": "user6@gmail.com",
+      "mobile": "0000000000",
+      "password": "Password@123",
+      "address": "ddddd",
+      "role": "user"
     }
   ],
   "otherinfo": [
@@ -493,9 +553,158 @@
       ],
       "totalAmount": 23599,
       "orderDate": "2025-01-11T17:54:58.097Z"
+    },
+    {
+      "id": "1542",
+      "customer": {
+        "name": "Aman Aman",
+        "contactNo": "9999999999",
+        "email": "user5@gmail.com",
+        "address": "sdfsf",
+        "billingAddress": "sfsdf"
+      },
+      "userId": "1c8ab9a3-bc0c-4a2e-8038-77f34afec2a8",
+      "items": [
+        {
+          "pname": "One Plus Nord 4 12/256 Obsidian Midnight",
+          "psp": 32599,
+          "quantity": 1,
+          "ram": "12 GB",
+          "disksize": "256 GB"
+        }
+      ],
+      "totalAmount": 32599,
+      "orderDate": "2025-01-13T11:16:31.789Z"
+    },
+    {
+      "id": "1e34",
+      "customer": {
+        "name": "Aman Aman",
+        "contactNo": "9999999999",
+        "email": "user5@gmail.com",
+        "address": "dsfsd",
+        "billingAddress": "fsdf"
+      },
+      "userId": "1c8ab9a3-bc0c-4a2e-8038-77f34afec2a8",
+      "items": [
+        {
+          "pname": "Vivo 2310 Y17S 4/128 GB Forest Green",
+          "psp": 10199,
+          "quantity": 1,
+          "ram": "4 GB",
+          "disksize": "128 GB"
+        }
+      ],
+      "totalAmount": 10199,
+      "orderDate": "2025-01-13T11:16:55.853Z"
+    },
+    {
+      "id": "ab1e",
+      "customer": {
+        "name": "Aman Aman",
+        "contactNo": "9999999999",
+        "email": "user5@gmail.com",
+        "address": "dsf",
+        "billingAddress": "fsdff"
+      },
+      "userId": "1c8ab9a3-bc0c-4a2e-8038-77f34afec2a8",
+      "items": [
+        {
+          "pname": "Oppo 2565 A78 4G 8/128 GB Mist Black",
+          "psp": 15099,
+          "quantity": 1,
+          "ram": "8 GB",
+          "disksize": "128 GB"
+        }
+      ],
+      "totalAmount": 15099,
+      "orderDate": "2025-01-13T11:17:15.384Z"
+    },
+    {
+      "id": "324f",
+      "customer": {
+        "name": "Aman Aman",
+        "contactNo": "9999999999",
+        "email": "user5@gmail.com",
+        "address": "sfdf",
+        "billingAddress": "sdff"
+      },
+      "userId": "1c8ab9a3-bc0c-4a2e-8038-77f34afec2a8",
+      "items": [
+        {
+          "pname": "Samsung A065 A06 4/128 GB Gold",
+          "psp": 11099,
+          "quantity": 1,
+          "ram": "4 GB",
+          "disksize": "128 GB"
+        }
+      ],
+      "totalAmount": 11099,
+      "orderDate": "2025-01-13T11:17:28.437Z"
+    },
+    {
+      "id": "fc62",
+      "customer": {
+        "name": "Aman Aman",
+        "contactNo": "9999999999",
+        "email": "user5@gmail.com",
+        "address": "sfd",
+        "billingAddress": "sf"
+      },
+      "userId": "1c8ab9a3-bc0c-4a2e-8038-77f34afec2a8",
+      "items": [
+        {
+          "pname": "Redmi 13C 5G 6/128 Startrail Green",
+          "psp": 10799,
+          "quantity": 1,
+          "ram": "6 GB",
+          "disksize": "128 GB"
+        }
+      ],
+      "totalAmount": 10799,
+      "orderDate": "2025-01-13T11:17:42.785Z"
     }
   ],
-  "cart": [],
-  "compare": [],
-  "wishlist": []
+  "cart": [
+    {
+      "id": "16134257-10b4-43d7-8de0-a912b72d6660",
+      "pname": "Oneplus 12R 16/256 GB Iron Gray",
+      "brand": "OnePlus",
+      "description": "1.    16 GB RAM | 256 GB ROM\n2.    17.22 cm (6.78 inch) Display\n3.    50MP Rear Camera\n4.    5500 mAh Battery",
+      "color": "Iron Gray",
+      "disksize": "256 GB",
+      "ram": "16 GB",
+      "psp": 45799,
+      "pop": 45999,
+      "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736494772/uploads/ydocvhkpksrcx0qssq9o.webp"
+    }
+  ],
+  "compare": [
+    {
+      "id": "79620719-7867-4a67-a994-c11e42352425",
+      "pname": "Oneplus Nord 4 8/128 GB Oasis Green",
+      "brand": "OnePlus",
+      "description": "1.    8 GB RAM | 128 GB ROM\n2.    17.12 cm (6.74 inch) Display\n3.    50MP Rear Camera\n4.    5500 mAh Battery",
+      "color": "Oasis Green",
+      "disksize": "128 GB",
+      "ram": "8 GB",
+      "psp": 27599,
+      "pop": 27999,
+      "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736494907/uploads/piru823ywbdo1mfcatpi.webp"
+    }
+  ],
+  "wishlist": [
+    {
+      "id": "a50e6973-e22e-491c-8d54-23c0bcc6063d",
+      "pname": "Oneplus 12 16/512 GB Flowy Emerald",
+      "brand": "OnePlus",
+      "description": "1.    16 GB RAM | 512 GB ROM\n2.    17.32 cm (6.82 inch) Display\n3.    64MP Rear Camera\n4.    5400 mAh Battery",
+      "color": "Flowy Emerald",
+      "disksize": "512 GB",
+      "ram": "12 GB",
+      "psp": 69799,
+      "pop": 69999,
+      "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736494567/uploads/ho3t9mv86m8ptzxgmgth.webp"
+    }
+  ]
 }

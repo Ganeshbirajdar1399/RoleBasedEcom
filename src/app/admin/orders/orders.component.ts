@@ -15,27 +15,48 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { GlobalService } from '../../core/services/global.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { SearchOrderPipe } from '../../shared/pipes/search-order.pipe';
+interface Order {
+  id: string;
+  userId: string;
+  customer: {
+    name: string;
+    email: string;
+    contactNo: string;
+    address: string;
+    billingAddress: string;
+  };
+  orderDate: string;
+  totalAmount: number;
+  items: {
+    pname: string;
+    ram: string;
+    disksize: string;
+    quantity: number;
+    psp: number;
+  }[];
+}
 @Component({
   selector: 'app-orders',
   imports: [
     CommonModule,
     FormsModule,
-    SearchProductPipe,
     ReactiveFormsModule,
     NgxPaginationModule,
+    SearchOrderPipe,
   ],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css',
 })
 export class OrdersComponent {
-  allOrders: any[] = [];
-
+  allOrders: Order[] = [];
+  // rawOrders: Order[] = []; // Raw orders fetched from the server
+  filteredOrders: any[] = [];
   isSubmit = false;
 
-  searchText = '';
+  searchText: string = '';
   page = 1;
-  itemsPerPage = 5;
+  itemsPerPage = 10;
   loggedInUser: any = null;
 
   constructor(
@@ -53,7 +74,15 @@ export class OrdersComponent {
   fetchOrders(): void {
     this.globalService.fetchOrders().subscribe((res) => {
       this.allOrders = res;
-      console.log('All Products', res);
+
+      // Filter orders by user ID
+      if (this.loggedInUser?.id) {
+        this.filteredOrders = this.allOrders.filter(
+          (order) => order.userId === this.loggedInUser.id
+        );
+      } else {
+        this.filteredOrders = this.allOrders;
+      }
     });
   }
 
@@ -90,15 +119,6 @@ export class OrdersComponent {
         },
       });
   }
-
-  // deleteOrders(id: string): void {
-  //   if (confirm('Are you sure you want to delete this Order?')) {
-  //     this.globalService.deleteOrder(id).subscribe((res) => {
-  //       console.log('Product Deleted Successfully');
-  //       this.fetchOrders();
-  //     });
-  //   }
-  // }
 
   get isAdmin(): boolean {
     return this.loggedInUser?.role === 'admin';

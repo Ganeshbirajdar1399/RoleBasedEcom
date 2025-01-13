@@ -32,7 +32,7 @@ export class WishlistComponent {
     this.globalService.getWishlistItems().subscribe({
       next: (res) => {
         this.wishlistItems = res;
-        console.log('Wishlist items:', res);
+        // console.log('Wishlist items:', res);
       },
       error: (err) => {
         console.error('Error fetching wishlist items:', err);

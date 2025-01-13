@@ -40,6 +40,7 @@ export class AdminDashboardComponent {
   isSubmit = false;
 
   searchText = '';
+
   page = 1;
   itemsPerPage = 5;
 
@@ -77,7 +78,7 @@ export class AdminDashboardComponent {
   fetchProducts(): void {
     this.getProducts.fetchData().subscribe((res) => {
       this.products = res;
-      console.log('All Products', res);
+      // console.log('All Products', res);
     });
   }
 

@@ -43,14 +43,14 @@ export class FooterComponent implements OnInit {
   fetchWebData(): void {
     this.productService.fetchWebData().subscribe((res) => {
       this.webdatas = res; // Fallback to empty array if `res` is null/undefined
-      console.log('result', res);
+      // console.log('result', res);
     });
   }
 
   fetchData(): void {
     this.productService.fetchData().subscribe((products: any[]) => {
       this.groupedProducts = this.productUtils.groupByBrand(products);
-      console.log('Grouped Products:', this.groupedProducts);
+      // console.log('Grouped Products:', this.groupedProducts);
     });
   }
 

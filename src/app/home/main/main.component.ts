@@ -59,7 +59,7 @@ export class MainComponent implements OnInit {
   fetchwebdata(): void {
     this.productService.fetchWebData().subscribe((res) => {
       this.webdatas = res;
-      console.log('All data', res);
+      // console.log('All data', res);
     });
   }
 

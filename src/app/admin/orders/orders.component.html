@@ -6,7 +6,7 @@
       <input
         type="text"
         class="form-control"
-        placeholder="Search Product with Name/Brand"
+        placeholder="Search Product with Customer Name/Address"
         [(ngModel)]="searchText"
       />
     </div>
@@ -15,7 +15,7 @@
         <option
           selected
           class="text-primary"
-          *ngFor="let count of [15, 10, 5]"
+          *ngFor="let count of [10, 20, 30]"
           [value]="count"
         >
           {{ count }}
@@ -37,42 +37,32 @@
           <th>Order Date</th>
           <th>Total Amount</th>
           <th>Items</th>
-          <th>Actions</th>
+          <th *ngIf="isAdmin">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr
           *ngFor="
-            let order of allOrders
+            let order of filteredOrders
               | paginate : { itemsPerPage: itemsPerPage, currentPage: page }
-              | searchProduct : searchText : 'pname' : 'brand';
+              | searchOrder
+                : searchText
+                : 'customer.address'
+                : 'totalAmount'
+                : 'items';
             let i = index
           "
         >
           <!-- Display only if order.userId matches logged-in user's ID -->
-          <td *ngIf="order.userId === loggedInUser?.id">{{ order.id }}</td>
-          <td *ngIf="order.userId === loggedInUser?.id">
-            {{ order.customer.name }}
-          </td>
-          <td *ngIf="order.userId === loggedInUser?.id">
-            {{ order.customer.email }}
-          </td>
-          <td *ngIf="order.userId === loggedInUser?.id">
-            {{ order.customer.contactNo }}
-          </td>
-          <td *ngIf="order.userId === loggedInUser?.id">
-            {{ order.customer.address }}
-          </td>
-          <td *ngIf="order.userId === loggedInUser?.id">
-            {{ order.customer.billingAddress }}
-          </td>
-          <td *ngIf="order.userId === loggedInUser?.id">
-            {{ order.orderDate | date : "short" }}
-          </td>
-          <td *ngIf="order.userId === loggedInUser?.id">
-            {{ order.totalAmount | currency : "INR" }}
-          </td>
-          <td *ngIf="order.userId === loggedInUser?.id">
+          <td>{{ order.id }}</td>
+          <td>{{ order.customer.name }}</td>
+          <td>{{ order.customer.email }}</td>
+          <td>{{ order.customer.contactNo }}</td>
+          <td>{{ order.customer.address }}</td>
+          <td>{{ order.customer.billingAddress }}</td>
+          <td>{{ order.orderDate | date : "short" }}</td>
+          <td>{{ order.totalAmount | currency : "INR" }}</td>
+          <td>
             <ul>
               <li *ngFor="let item of order.items">
                 {{ item.pname }} ({{ item.ram }}, {{ item.disksize }}) x

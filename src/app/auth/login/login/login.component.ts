@@ -31,10 +31,42 @@ export class LoginComponent implements OnInit {
     private scroller: ViewportScroller
   ) {
     this.myForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email, // Validates the email format
+          Validators.pattern(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+          ), // Ensures stricter email validation
+        ],
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8), // Minimum length
+          Validators.pattern(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+          ), // Must contain uppercase, lowercase, number, special character
+        ],
+      ],
     });
   }
+
+  //   Email Field:
+
+  //     Uses Validators.email for standard email validation.
+  //     Adds a custom Validators.pattern for stricter email formats.
+
+  // Password Field:
+
+  //     Minimum length of 8 characters.
+  //     The regex ensures:
+  //         At least one lowercase letter.
+  //         At least one uppercase letter.
+  //         At least one numeric digit.
+  //         At least one special character from @$!%*?&.
 
   ngOnInit(): void {
     this.scroller.scrollToPosition([0, 0]);

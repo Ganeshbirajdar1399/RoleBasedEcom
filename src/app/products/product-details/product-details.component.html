@@ -10,13 +10,13 @@
           <div class="col-md-6">
             <img
               [src]="product?.image"
-              class="img-fluid rounded-start product-img"
+              class="img-fluid rounded-start"
               alt="Product Name"
+              height="400px"
+              width="400px"
             />
             <!-- <app-magnifier [image]="product?.image"></app-magnifier> -->
           </div>
-          
-          
 
           <!-- Product Details -->
           <div class="col-md-6">
@@ -27,7 +27,8 @@
               </h6>
               <ul class="list-group list-group-flush small">
                 <li class="list-group-item">
-                  Description: <span class="fw-bold">{{ product?.description }}</span>
+                  Description:
+                  <span class="fw-bold">{{ product?.description }}</span>
                 </li>
                 <li class="list-group-item">
                   Color: <span class="fw-bold">{{ product?.color }}</span>
@@ -59,12 +60,11 @@
               </ul>
 
               <button
-              class="btn btn-primary btn-sm"
-              (click)="addToCart(product)"
-            >
-              Add to Cart
-            </button>
-            
+                class="btn btn-primary btn-sm"
+                (click)="addToCart(product)"
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>

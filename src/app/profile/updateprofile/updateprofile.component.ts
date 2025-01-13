@@ -15,7 +15,7 @@ export class UpdateprofileComponent {
   loggedInUser: any = null;
   usersData: any[] = [];
   isRegister = false;
-
+  hide = true;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -59,6 +59,9 @@ export class UpdateprofileComponent {
         }
       );
     }
+  }
+  toggleHide() {
+    this.hide = !this.hide; // Toggle password visibility
   }
 
   updateUserDetails() {

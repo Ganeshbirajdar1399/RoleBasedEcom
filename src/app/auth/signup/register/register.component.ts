@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 export class RegisterComponent implements OnInit {
   isRegister = false;
   error = ''; // To store any error messages
+  hide = true;
 
   users = {
     id: '', // Add id field to store UUID
@@ -36,6 +37,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.scroller.scrollToPosition([0, 0]);
+  }
+  toggleHide() {
+    this.hide = !this.hide; // Toggle password visibility
   }
 
   onSubmit() {

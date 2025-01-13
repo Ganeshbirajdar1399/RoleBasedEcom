@@ -30,7 +30,7 @@ export class CompareComponent implements OnInit {
     this.globalService.getCompareItems().subscribe({
       next: (res) => {
         this.compareItems = res;
-        console.log('Compare items:', res);
+        // console.log('Compare items:', res);
       },
       error: (err) => {
         console.error('Error fetching compare items:', err);

@@ -43,11 +43,11 @@ export class UserProfileComponent implements OnInit {
     this.loggedInUser = this.authService.getUser(); // Fetch user data
     this.fetchUsers();
     // console.log('loggedin user',this.loggedInUser);
-      // Subscribe to the user observable
-      this.authService.user$.subscribe((user) => {
-        this.user = user;
-        this.isaAdmin = user?.role === 'admin'; // Check if user is admin
-      });
+    // Subscribe to the user observable
+    this.authService.user$.subscribe((user) => {
+      this.user = user;
+      this.isaAdmin = user?.role === 'admin'; // Check if user is admin
+    });
   }
 
   onSubmit() {
@@ -60,7 +60,7 @@ export class UserProfileComponent implements OnInit {
         this.isRegister = false;
       }, 2000);
       this.formEmpty();
-      // this.router.navigate(['/login']);
+      this.router.navigate(['/admin']);
     });
   }
 

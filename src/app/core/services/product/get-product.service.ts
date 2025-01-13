@@ -26,13 +26,15 @@ export class GetProductService {
 
   // Search products
   searchProducts(query: string): Observable<any[]> {
-    return this.http.get<any[]>(this.productsUrl).pipe(
-      map((products) =>
-        products.filter((product) =>
-          product.pname.toLowerCase().includes(query.toLowerCase())
+    return this.http
+      .get<any[]>(this.productsUrl)
+      .pipe(
+        map((products) =>
+          products.filter((product) =>
+            product.pname.toLowerCase().includes(query.toLowerCase())
+          )
         )
-      )
-    );
+      );
   }
 
   // Add product

@@ -31,7 +31,7 @@ export class ProductDetailsComponent implements OnInit {
     this.scroller.scrollToPosition([0, 0]);
     const productId = this.route.snapshot.paramMap.get('id'); // Get product ID from route
     this.loadProduct(productId!);
-    console.log('Product ID from route:', productId);
+    // console.log('Product ID from route:', productId);
   }
 
   calculateDiscount(psp: number, pop: number): number {
@@ -41,7 +41,7 @@ export class ProductDetailsComponent implements OnInit {
 
   loadProduct(productId: string): void {
     this.productService.fetchData().subscribe((products: any[]) => {
-      console.log('Fetched Products:', products);
+      // console.log('Fetched Products:', products);
 
       // Ensure correct type comparison
       this.product = products.find((p) => p.id === productId); //Number
@@ -49,7 +49,7 @@ export class ProductDetailsComponent implements OnInit {
       if (!this.product) {
         console.error(`Product with ID ${productId} not found.`);
       } else {
-        console.log('Selected Product:', this.product);
+        // console.log('Selected Product:', this.product);
       }
     });
   }

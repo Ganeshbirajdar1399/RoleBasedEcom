@@ -1,6 +1,9 @@
 <div class="container mt-5 d-flex justify-content-center">
   <div class="card shadow-lg p-4 login-card">
-    <div class="card-header text-center bg-primary text-white">
+    <div
+      class="card-header text-center text-white"
+      style="background-color: #6f42c1"
+    >
       <h4>Login Here!</h4>
     </div>
     <div class="card-body">
@@ -18,17 +21,17 @@
           />
           <div
             *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched"
+            class="text-danger mt-1"
           >
-            <small
-              class="text-danger"
-              *ngIf="myForm.get('email')?.errors?.['required']"
-              >Email is required.</small
-            >
-            <small
-              class="text-danger"
-              *ngIf="myForm.get('email')?.errors?.['email']"
-              >Invalid email format.</small
-            >
+            <small *ngIf="myForm.get('email')?.errors?.['required']">
+              Email is required.
+            </small>
+            <small *ngIf="myForm.get('email')?.errors?.['email']">
+              Invalid email format.
+            </small>
+            <small *ngIf="myForm.get('email')?.errors?.['pattern']">
+              Please enter a valid email address.
+            </small>
           </div>
         </div>
 
@@ -53,17 +56,17 @@
             *ngIf="
               myForm.get('password')?.invalid && myForm.get('password')?.touched
             "
+            class="text-danger mt-1"
           >
-            <small
-              class="text-danger"
-              *ngIf="myForm.get('password')?.errors?.['required']"
-              >Password is required.</small
-            >
-            <small
-              class="text-danger"
-              *ngIf="myForm.get('password')?.errors?.['minlength']"
-            >
+            <small *ngIf="myForm.get('password')?.errors?.['required']">
+              Password is required.
+            </small>
+            <small *ngIf="myForm.get('password')?.errors?.['minlength']">
               Password must be at least 8 characters long.
+            </small>
+            <small *ngIf="myForm.get('password')?.errors?.['pattern']">
+              Password must include uppercase, lowercase, number, and special
+              character.
             </small>
           </div>
         </div>

@@ -256,7 +256,7 @@ export class OtherinfoComponent {
   fetchwebdata(): void {
     this.getProducts.fetchWebData().subscribe((res) => {
       this.webdatas = res;
-      console.log('All data', res);
+      // console.log('All data', res);
     });
   }
 
@@ -292,7 +292,7 @@ export class OtherinfoComponent {
         .updateWebData(this.editingWebdataId, updatedWebdata)
         .subscribe({
           next: (response) => {
-            console.log('Data updated successfully:', response);
+            // console.log('Data updated successfully:', response);
             this.isUpdated = true;
             setTimeout(() => {
               this.isUpdated = false;

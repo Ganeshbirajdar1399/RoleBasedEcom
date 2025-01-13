@@ -85,22 +85,6 @@
                 />
               </div>
               <div class="mb-3">
-                <label class="form-label">Product Storage Size</label>
-                <select
-                  class="form-select"
-                  aria-label="Default select example"
-                  required
-                  formControlName="disksize"
-                >
-                  <option value="" disabled selected>Select...</option>
-                  <option value="32 GB">32 GB</option>
-                  <option value="64 GB">64 GB</option>
-                  <option value="128 GB">128 GB</option>
-                  <option value="256 GB">256 GB</option>
-                  <option value="512 GB">512 GB</option>
-                </select>
-              </div>
-              <div class="mb-3">
                 <label class="form-label">Product Ram Size </label>
                 <select
                   class="form-select"
@@ -115,6 +99,22 @@
                   <option value="8 GB">8 GB</option>
                   <option value="12 GB">12 GB</option>
                   <option value="16 GB">16 GB</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Product Storage Size</label>
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  required
+                  formControlName="disksize"
+                >
+                  <option value="" disabled selected>Select...</option>
+                  <option value="32 GB">32 GB</option>
+                  <option value="64 GB">64 GB</option>
+                  <option value="128 GB">128 GB</option>
+                  <option value="256 GB">256 GB</option>
+                  <option value="512 GB">512 GB</option>
                 </select>
               </div>
               <div class="mb-3">
@@ -224,8 +224,8 @@
         <tr
           *ngFor="
             let product of products
-              | paginate : { itemsPerPage: itemsPerPage, currentPage: page }
-              | searchProduct : searchText : 'pname' : 'brand';
+              | searchProduct : searchText : 'pname' : 'brand'
+              | paginate : { itemsPerPage: itemsPerPage, currentPage: page };
             let i = index
           "
         >
