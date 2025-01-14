@@ -334,7 +334,7 @@
         <tr
           *ngFor="
             let subscriber of subscribeData
-              | searchProduct : searchText : 'email' : 'email'
+              | sortsubscriber : searchText : 'email'
               | paginate : { itemsPerPage: itemsPerPage, currentPage: page };
             let i = index
           "

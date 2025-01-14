@@ -16,7 +16,7 @@ import { Webdata } from '../../core/services/product/webdata';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalService } from '../../core/services/global.service';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { SearchProductPipe } from '../../shared/pipes/search-product.pipe';
+import { SortsubscriberPipe } from '../../shared/pipes/sortsubscriber.pipe';
 @Component({
   selector: 'app-otherinfo',
   imports: [
@@ -25,7 +25,7 @@ import { SearchProductPipe } from '../../shared/pipes/search-product.pipe';
     RouterModule,
     FormsModule,
     NgxPaginationModule,
-    SearchProductPipe,
+    SortsubscriberPipe,
   ],
   templateUrl: './otherinfo.component.html',
   styleUrl: './otherinfo.component.css',
