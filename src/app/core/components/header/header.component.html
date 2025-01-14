@@ -230,6 +230,13 @@
       Customers
     </button>
     <button class="nav-link" routerLink="orders">Orders</button>
+    <button
+      *ngIf="loggedInUser?.role === 'admin'"
+      class="nav-link"
+      routerLink="otherinfo"
+    >
+      Website Data
+    </button>
     <button *ngIf="!isLoggedIn()" class="nav-link" routerLink="login">
       Login
     </button>

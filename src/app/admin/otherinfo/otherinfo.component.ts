@@ -14,6 +14,7 @@ import { CommonModule, ViewportScroller } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Webdata } from '../../core/services/product/webdata';
 import { ToastrService } from 'ngx-toastr';
+import { GlobalService } from '../../core/services/global.service';
 @Component({
   selector: 'app-otherinfo',
   imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule],
@@ -213,6 +214,7 @@ export class OtherinfoComponent {
   editingWebdataId: string | null = null; // Store the ID of the product being edited
 
   carouselImages: string[] = []; // Store selected file URLs
+  subscribeData: any[] = [];
 
   constructor(
     private getProducts: GetProductService,
@@ -220,7 +222,8 @@ export class OtherinfoComponent {
     private http: HttpClient,
     private authService: AuthService,
     private toastr: ToastrService,
-    private scroller: ViewportScroller
+    private scroller: ViewportScroller,
+    private globalService: GlobalService
   ) {
     this.myForm = this.fb.group({
       about: ['', [Validators.required]],
@@ -237,6 +240,11 @@ export class OtherinfoComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.scroller.scrollToPosition([0, 0]);
+    this.fetchwebdata();
+    this.getSubscribe();
+  }
   imagesValidator(control: any): { [key: string]: boolean } | null {
     if (this.carouselImages.length > 0) {
       return null; // Valid
@@ -244,9 +252,52 @@ export class OtherinfoComponent {
     return { required: true }; // Invalid
   }
 
-  ngOnInit(): void {
-    this.scroller.scrollToPosition([0, 0]);
-    this.fetchwebdata();
+  getSubscribe() {
+    this.globalService.getSubscribe().subscribe((res) => {
+      this.subscribeData = res;
+      // console.log('subscribers data', this.subscribeData);
+    });
+  }
+
+  deleteSubscriber(id: string): void {
+    this.toastr
+      .info(
+        'Are you sure you want to delete subscriber email?',
+        'Confirm Deletion',
+        {
+          closeButton: true,
+          progressBar: true,
+          tapToDismiss: true,
+          positionClass: 'toast-top-center',
+          timeOut: 0, // Make the toast persistent until the user interacts with it
+          extendedTimeOut: 0, // Keep the toast open until action
+        }
+      )
+      .onTap.pipe
+      // Handle confirmation
+      ()
+      .subscribe({
+        next: () => {
+          // Proceed with deletion
+          this.globalService.deleteSubscriber(id).subscribe({
+            next: () => {
+              this.toastr.success('Subscriber email successfully!', 'Success');
+              this.getSubscribe(); // Refresh Subscribe
+            },
+            error: (err) => {
+              console.error('Error removing product:', err);
+              this.toastr.error(
+                'Failed to remove email from subscribers',
+                'Error'
+              );
+            },
+          });
+        },
+        error: () => {
+          // Handle cancellation or interaction
+          this.toastr.info('Subscriber deletion canceled', 'Info');
+        },
+      });
   }
 
   updateCancel() {
@@ -262,7 +313,7 @@ export class OtherinfoComponent {
     });
   }
 
-  editProduct(webdata: any): void {
+  editInfo(webdata: any): void {
     this.isEditing = true;
     this.editingWebdataId = webdata.id;
 

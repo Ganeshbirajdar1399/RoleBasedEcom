@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, EMPTY, forkJoin, Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, throwIfEmpty } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GlobalService {
   private readonly apiUrl = 'https://ecom-db-json.onrender.com';
+  // private readonly apiUrl = 'http://localhost:3000';
   private readonly apiOrders = `${this.apiUrl}/orders`; // merged the API URL
 
   private readonly MAX_ITEMS = 4;
@@ -180,7 +181,6 @@ export class GlobalService {
     return this.cartSubject.getValue().reduce((total, item) => {
       const price = typeof item.psp === 'number' ? item.psp : 0;
       const quantity = item.quantity || 1;
-
       return total + price * quantity;
     }, 0);
   }
@@ -191,6 +191,16 @@ export class GlobalService {
 
   deleteOrder(id: string): Observable<any> {
     return this.http.delete(`${this.apiOrders}/${id}`);
+  }
+
+  postSubscribe(data: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/subscribers`, data);
+  }
+  getSubscribe(): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}/subscribers`);
+  }
+  deleteSubscriber(id: string) {
+    return this.http.delete(`${this.apiUrl}/subscribers/${id}`);
   }
 
   private handleError(error: any, message: string): Observable<never> {

@@ -48,10 +48,11 @@
       <div class="col-md-3">
         <h5 class="text-uppercase fw-bold">Connect with us</h5>
         <p>Subscribe to receive updates on new arrivals and special offers.</p>
-        <form class="d-flex">
+        <form class="d-flex" [formGroup]="myForm" (ngSubmit)="postSubscribe()">
           <input
             type="email"
             class="form-control me-2"
+            formControlName="email"
             placeholder="Your email"
           />
           <button class="btn btn-warning" type="submit">Subscribe</button>

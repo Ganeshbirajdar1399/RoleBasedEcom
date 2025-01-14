@@ -5,11 +5,19 @@ import { GetProductService } from '../../services/product/get-product.service';
 import { ProductUtilsService } from '../../services/utils/product-utils.service';
 import { CartService } from '../../services/cart/cart-service.service';
 import { Webdata } from '../../services/product/webdata';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { GlobalService } from '../../services/global.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterModule, CommonModule, FormsModule],
+  imports: [RouterModule, CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
 })
@@ -19,12 +27,29 @@ export class FooterComponent implements OnInit {
   webdatas: Webdata[] = [];
   groupedProducts: { [brand: string]: any[] } = {};
 
+  myForm: FormGroup;
   constructor(
     private cartService: CartService,
     private router: Router,
     private productService: GetProductService,
-    private productUtils: ProductUtilsService
+    private productUtils: ProductUtilsService,
+    private fb: FormBuilder,
+    private globalService: GlobalService,
+    private toastr: ToastrService
   ) {
+    this.myForm = this.fb.group({
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email, // Validates the email format
+          Validators.pattern(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+          ), // Ensures stricter email validation
+        ],
+      ],
+    });
+
     // Subscribe to cart changes
     this.cartService.getCartObservable().subscribe((cart) => {
       this.cartCount = cart.reduce((count, item) => count + item.quantity, 0);
@@ -33,6 +58,25 @@ export class FooterComponent implements OnInit {
 
   goToCart() {
     this.router.navigate(['/cart']);
+  }
+
+  postSubscribe() {
+    if (this.myForm.valid) {
+      const subscribe = {
+        ...this.myForm.value,
+      };
+
+      this.globalService.postSubscribe(subscribe).subscribe({
+        next: (response) => {
+          this.toastr.success('Thanks for subscribe', 'Success');
+          console.log('Subscribe successfully:', response);
+          this.myForm.reset();
+        },
+        error: (error) => console.error('Error adding product:', error),
+      });
+    } else {
+      console.error('Form is invalid or image is missing');
+    }
   }
 
   ngOnInit(): void {

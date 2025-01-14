@@ -450,7 +450,7 @@
       "location": "1234 Market Street, San Francisco, CA",
       "contactNo": "+91 9999999999",
       "email": "abc12@gmail.com",
-      "wbrand": "www.gbmobileshopee.com",
+      "wbrand": "Mobile Shop",
       "facebook": "https://www.facebook.com/",
       "twitter": "https://x.com/",
       "instagram": "https://www.instagram.com/",
@@ -705,6 +705,16 @@
       "psp": 69799,
       "pop": 69999,
       "image": "https://res.cloudinary.com/djwzctllj/image/upload/v1736494567/uploads/ho3t9mv86m8ptzxgmgth.webp"
+    }
+  ],
+  "subscribers": [
+    {
+      "id": "4042",
+      "email": "ddhhd1@gmail.com"
+    },
+    {
+      "id": "b7fc",
+      "email": "ffd1@gmail.com"
     }
   ]
 }
