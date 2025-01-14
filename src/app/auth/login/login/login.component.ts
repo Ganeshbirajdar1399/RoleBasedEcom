@@ -8,10 +8,8 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { validate } from 'uuid';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../core/services/auth/auth.service';
-import * as CryptoJS from 'crypto-js'; // Import CryptoJS for password hashing
+
 
 @Component({
   selector: 'app-login',
