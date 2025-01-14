@@ -15,9 +15,18 @@ import { RouterModule } from '@angular/router';
 import { Webdata } from '../../core/services/product/webdata';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalService } from '../../core/services/global.service';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SearchProductPipe } from '../../shared/pipes/search-product.pipe';
 @Component({
   selector: 'app-otherinfo',
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    FormsModule,
+    NgxPaginationModule,
+    SearchProductPipe,
+  ],
   templateUrl: './otherinfo.component.html',
   styleUrl: './otherinfo.component.css',
 })
@@ -199,7 +208,9 @@ export class OtherinfoComponent {
   // logout(): void {
   //   this.authService.logout();
   // }
-
+  searchText: string = '';
+  page = 1;
+  itemsPerPage = 10;
   isAdded = false;
   isUpdated = false;
 

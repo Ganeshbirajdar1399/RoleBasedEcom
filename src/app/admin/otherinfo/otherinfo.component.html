@@ -274,14 +274,11 @@
         <p class="card-text">
           <strong>WebsiteBrand:</strong> {{ webdata.wbrand }}
         </p>
-        <p class="card-text">
-          <strong>Copyright:</strong> {{ webdata.cc }}
-        </p>
+        <p class="card-text"><strong>Copyright:</strong> {{ webdata.cc }}</p>
 
         <td>
           <p class="card-text"><strong>Carousel Images:</strong></p>
           <ng-container *ngIf="webdata.image && webdata.image.length > 0">
-            
             <img
               *ngFor="let img of webdata.image"
               [src]="img"
@@ -299,10 +296,32 @@
     </div>
   </div>
 </div>
-<hr>
+<hr />
 <div class="container">
   <div class="table-responsive d-none d-md-block">
     <h2>Subscribers data</h2>
+    <div class="d-flex justify-content-between d-none d-md-block">
+      <div class="w-auto">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search Product with Customer Name/Address"
+          [(ngModel)]="searchText"
+        />
+      </div>
+      <div class="w-auto mt-2">
+        <select class="form-select form-select-sm" [(ngModel)]="itemsPerPage">
+          <option
+            selected
+            class="text-primary"
+            *ngFor="let count of [10, 20, 30]"
+            [value]="count"
+          >
+            {{ count }}
+          </option>
+        </select>
+      </div>
+    </div>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
@@ -312,12 +331,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let subscriber of subscribeData; let i = index">
+        <tr
+          *ngFor="
+            let subscriber of subscribeData
+              | searchProduct : searchText : 'email' : 'email'
+              | paginate : { itemsPerPage: itemsPerPage, currentPage: page };
+            let i = index
+          "
+        >
           <td>{{ i + 1 }}</td>
           <td>{{ subscriber.email }}</td>
           <td>
             <div class="d-flex justify-content-between">
-              <button class="btn btn-sm btn-danger ms-2" (click)="deleteSubscriber(subscriber.id)">
+              <button
+                class="btn btn-sm btn-danger ms-2"
+                (click)="deleteSubscriber(subscriber.id)"
+              >
                 <i class="bi bi-trash"></i>
               </button>
             </div>
@@ -325,6 +354,9 @@
         </tr>
       </tbody>
     </table>
+    <div class="pagination">
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
   </div>
 
   <!-- Mobile-friendly cards for small screens -->
@@ -333,24 +365,27 @@
       <h2>Subscribers data</h2>
       <div class="table-responsive">
         <table class="table table-striped table-bordered">
-        <thead>
-          <tr>
-            <th>Sr.No.</th>
-            <th>Email Address</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let subscriber of subscribeData; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ subscriber.email }}</td>
-            <td>
-                <button class="btn btn-sm btn-danger ms-2" (click)="deleteSubscriber(subscriber.id)">
+          <thead>
+            <tr>
+              <th>Sr.No.</th>
+              <th>Email Address</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let subscriber of subscribeData; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ subscriber.email }}</td>
+              <td>
+                <button
+                  class="btn btn-sm btn-danger ms-2"
+                  (click)="deleteSubscriber(subscriber.id)"
+                >
                   <i class="bi bi-trash"></i>
                 </button>
-            </td>
-          </tr>
-        </tbody>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
