@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <div class="container table-responsive">
+  <div class="container table-responsive d-none d-md-block">
     <table class="product-table table-bordered">
       <thead>
         <tr>
@@ -74,7 +74,6 @@
             <div class="d-flex justify-content-between">
               <!-- Delete button is visible only for admins -->
               <button
-                *ngIf="loggedInUser?.role === 'admin'"
                 class="btn btn-sm btn-danger ms-2"
                 (click)="deleteOrders(order.id)"
               >
@@ -85,17 +84,17 @@
         </tr>
       </tbody>
     </table>
-    <div class="pagination d-none d-md-block">
+    <div class="pagination">
       <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div>
   </div>
 
   <!-- Mobile-friendly cards for small screens -->
-  <div class="product-cards">
+  <div class="product-cards d-block d-md-none">
     <div class="card" *ngFor="let order of allOrders">
       <div class="card-body">
         <!-- Display order only if userId matches logged-in user -->
-        <div *ngIf="order.userId === loggedInUser?.id">
+        <div>
           <h5 class="card-title">Customer Name: {{ order.customer.name }}</h5>
           <p class="card-text">
             <strong>Customer Number:</strong> {{ order.customer.contactNo }}

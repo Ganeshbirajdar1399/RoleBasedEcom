@@ -222,7 +222,7 @@ export class AuthService {
         next: () => {
           this.toastr.success('Logout successful', 'Success');
           sessionStorage.removeItem('user'); // Clear user data
-          this.router.navigate(['']); // Navigate to the home page
+          this.router.navigate(['/login']); // Navigate to the home page
           this.userSubject.next(null); // Emit a null value to indicate logged-out state
         },
         error: () => {

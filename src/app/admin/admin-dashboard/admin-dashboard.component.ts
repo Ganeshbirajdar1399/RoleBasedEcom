@@ -10,7 +10,7 @@ import {
 import { GetProductService } from '../../core/services/product/get-product.service';
 import { HttpClient } from '@angular/common/http';
 import { v4 as uuidv4 } from 'uuid';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchProductPipe } from '../../shared/pipes/search-product.pipe';
@@ -52,7 +52,8 @@ export class AdminDashboardComponent {
     private fb: FormBuilder,
     private http: HttpClient,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private scroller: ViewportScroller
   ) {
     this.myForm = this.fb.group({
       pname: ['', [Validators.required]],
@@ -68,6 +69,7 @@ export class AdminDashboardComponent {
   }
 
   ngOnInit(): void {
+    this.scroller.scrollToPosition([0, 0]);
     this.fetchProducts();
   }
 

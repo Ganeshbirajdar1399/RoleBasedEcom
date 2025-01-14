@@ -229,13 +229,7 @@
     >
       Customers
     </button>
-    <button
-      *ngIf="loggedInUser?.role === 'admin'"
-      class="nav-link"
-      routerLink="orders"
-    >
-      Orders
-    </button>
+    <button class="nav-link" routerLink="orders">Orders</button>
     <button *ngIf="!isLoggedIn()" class="nav-link" routerLink="login">
       Login
     </button>
@@ -246,19 +240,15 @@
       Logout
     </button>
   </ul>
-  <ul class="nav-links">
-    <button
-      class="icon-btn me-3 text-light"
-      title="Wishlist"
-      routerLink="wishlist"
-    >
+  <ul class="nav-links justify-content-start align-items-start">
+    <button class="icon-btn text-light" title="Wishlist" routerLink="wishlist">
       <i class="bi bi-heart"></i>
       <span *ngIf="wishlistCount > 0" class="badge rounded-pill bg-danger">
         {{ wishlistCount }}
       </span>
     </button>
     <button
-      class="icon-btn me-3 position-relative text-light"
+      class="icon-btn position-relative text-light"
       title="Compare"
       routerLink="compare"
     >
@@ -269,7 +259,7 @@
     </button>
 
     <button
-      class="icon-btn me-3 position-relative text-light"
+      class="icon-btn position-relative text-light"
       title="Cart"
       (click)="goToCart()"
     >

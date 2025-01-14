@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { Component } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -62,10 +62,12 @@ export class OrdersComponent {
   constructor(
     private globalService: GlobalService,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private scroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
+    this.scroller.scrollToPosition([0, 0]);
     this.fetchOrders();
     this.loggedInUser = this.authService.getUser(); // Fetch user data
     // console.log('loggedin user',this.loggedInUser);

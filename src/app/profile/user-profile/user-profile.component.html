@@ -46,14 +46,6 @@
           >
             <i class="bi bi-person-plus-fill"></i>
           </button>
-          <!-- <button
-            type="button"
-            class="btn btn-success ms-2"
-            data-bs-toggle="modal"
-            data-bs-target="#updateAdminModal"
-          routerLink="/updateuserprofile">
-            <i class="bi bi-pencil-square"></i>
-          </button> -->
           <button
             type="button"
             class="btn btn-success ms-2"
@@ -108,6 +100,7 @@
                   id="firstName"
                   #firstname="ngModel"
                   class="form-control"
+                  placeholder="Enter your firstname"
                   [(ngModel)]="users.firstName"
                   name="firstName"
                   required
@@ -134,6 +127,7 @@
                   id="lastName"
                   #lastname="ngModel"
                   class="form-control"
+                  placeholder="Enter your lastname"
                   [(ngModel)]="users.lastName"
                   name="lastName"
                   required
@@ -160,6 +154,7 @@
                   id="email"
                   #email="ngModel"
                   class="form-control"
+                  placeholder="Enter your email address"
                   [(ngModel)]="users.email"
                   name="email"
                   required
@@ -190,6 +185,7 @@
                   id="mobile"
                   #mobile="ngModel"
                   class="form-control"
+                  placeholder="Enter your mobile no"
                   [(ngModel)]="users.mobile"
                   name="mobile"
                   required
@@ -265,6 +261,7 @@
                   id="address"
                   #address="ngModel"
                   class="form-control"
+                  placeholder="Enter your address"
                   [(ngModel)]="users.address"
                   name="address"
                   required

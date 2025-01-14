@@ -10,7 +10,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { v4 as uuidv4 } from 'uuid';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Webdata } from '../../core/services/product/webdata';
 import { ToastrService } from 'ngx-toastr';
@@ -219,7 +219,8 @@ export class OtherinfoComponent {
     private fb: FormBuilder,
     private http: HttpClient,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private scroller: ViewportScroller
   ) {
     this.myForm = this.fb.group({
       about: ['', [Validators.required]],
@@ -244,6 +245,7 @@ export class OtherinfoComponent {
   }
 
   ngOnInit(): void {
+    this.scroller.scrollToPosition([0, 0]);
     this.fetchwebdata();
   }
 
